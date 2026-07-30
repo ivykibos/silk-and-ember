@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifting — Silk & Ember</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gifting.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery within Nairobi on orders over KSh 7,000</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="scrolled">
+        <div class="nav-logo">
+            <a href="index.html"><p class="logo-text dark">Silk & Ember</p></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#collection">New</a></li>
+            <li><a href="index.html#collection">Collection</a></li>
+            <li><a href="index.html#about">Our Story</a></li>
+            <li><a href="gifting.html">Gifting</a></li>
+        </ul>
+        <div class="nav-icons">
+            <span>&#9906;</span>
+            <span>&#128722;</span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="gifting-hero">
+        <p class="section-label">For Every Occasion</p>
+        <h1 class="gifting-hero-title">The Art of Gifting.</h1>
+        <p class="gifting-hero-sub">Luxury scents, beautifully wrapped. For the people worth remembering.</p>
+    </section>
+
+    <!-- Gifting Tiers -->
+    <section class="gifting-tiers">
+        <p class="section-label">Gifting Packages</p>
+        <h2 class="section-title">Choose Your Ritual.</h2>
+
+        <div class="tiers-grid">
+
+            <div class="tier-card">
+                <div class="tier-img tier-mini">
+                    <span class="tier-tag">Starter</span>
+                </div>
+                <div class="tier-info">
+                    <p class="tier-name">The Mini</p>
+                    <p class="tier-contents">1 candle · Branded box · Ribbon</p>
+                    <p class="tier-desc">A single, perfect scent. Ideal for birthdays, thank-yous, and small gestures that leave a lasting impression.</p>
+                    <p class="tier-price">KSh 2,500</p>
+                    <a href="https://wa.me/254700000000?text=Hi!%20I'd%20like%20to%20order%20The%20Mini%20gifting%20package." 
+                       class="tier-btn" target="_blank">Order via WhatsApp →</a>
+                </div>
+            </div>
+
+            <div class="tier-card featured">
+                <div class="tier-img tier-ritual">
+                    <span class="tier-tag">Most Popular</span>
+                </div>
+                <div class="tier-info">
+                    <p class="tier-name">The Ritual</p>
+                    <p class="tier-contents">1 candle · Matches · Bouquet · Tissue wrap</p>
+                    <p class="tier-desc">A full sensory experience. Light the candle, hold the flowers. This is the gift people talk about.</p>
+                    <p class="tier-price">KSh 4,500</p>
+                    <a href="https://wa.me/254700000000?text=Hi!%20I'd%20like%20to%20order%20The%20Ritual%20gifting%20package." 
+                       class="tier-btn" target="_blank">Order via WhatsApp →</a>
+                </div>
+            </div>
+
+            <div class="tier-card">
+                <div class="tier-img tier-fullset">
+                    <span class="tier-tag">Premium</span>
+                </div>
+                <div class="tier-info">
+                    <p class="tier-name">The Full Set</p>
+                    <p class="tier-contents">2–3 candles · Refill pack · Bouquet · Premium box</p>
+                    <p class="tier-desc">Three moods, one ritual. The ultimate Silk & Ember experience for the person who deserves everything.</p>
+                    <p class="tier-price">KSh 8,000+</p>
+                    <a href="https://wa.me/254700000000?text=Hi!%20I'd%20like%20to%20order%20The%20Full%20Set%20gifting%20package." 
+                       class="tier-btn" target="_blank">Order via WhatsApp →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Build Your Own -->
+    <section class="build-own">
+        <div class="build-own-inner">
+            <p class="section-label" style="color:#8B5A2B">Build Your Own</p>
+            <h2 class="build-own-title">Your gift. Your way.</h2>
+            <p class="build-own-sub">Pick a scent, choose your extras, and we'll put it together for you.</p>
+
+            <div class="build-steps">
+                <div class="build-step">
+                    <p class="step-num">01</p>
+                    <p class="step-title">Choose your scent</p>
+                    <div class="step-options">
+                        <span class="step-option" data-selected="false">Sugar High</span>
+                        <span class="step-option" data-selected="false">Golden Hour</span>
+                        <span class="step-option" data-selected="false">Slow Burn</span>
+                    </div>
+                </div>
+
+                <div class="build-step">
+                    <p class="step-num">02</p>
+                    <p class="step-title">Add extras</p>
+                    <div class="step-options">
+                        <span class="step-option" data-selected="false">Matches</span>
+                        <span class="step-option" data-selected="false">Bouquet</span>
+                        <span class="step-option" data-selected="false">Refill Pack</span>
+                        <span class="step-option" data-selected="false">Gift Card</span>
+                    </div>
+                </div>
+
+                <div class="build-step">
+                    <p class="step-num">03</p>
+                    <p class="step-title">Any message?</p>
+                    <textarea class="build-message" placeholder="Write your gift message here..." id="gift-message"></textarea>
+                     <div class="note-preview" id="note-preview">your message will appear here...</div>
+                </div>
+            </div>
+
+            <button class="build-btn" id="build-btn">Send via WhatsApp →</button>
+        </div>
+    </section>
+
+    <!-- Corporate -->
+    <section class="corporate">
+        <div class="corporate-text">
+            <p class="section-label">For Businesses</p>
+            <h2 class="corporate-title">Corporate Gifting.</h2>
+            <p class="corporate-desc">Make your brand memorable. Silk & Ember crafts custom-branded candle sets for corporate events, client appreciation, and end-of-year gifting. Minimum order of 10 units with custom message cards available.</p>
+            <ul class="corporate-perks">
+                <li>Custom branding & message cards</li>
+                <li>Bulk pricing from KSh 2,000/unit</li>
+                <li>Nairobi delivery included on orders over KSh 20,000</li>
+                <li>Scent selection guidance included</li>
+            </ul>
+            <a href="https://wa.me/254700000000?text=Hi!%20I'm%20interested%20in%20corporate%20gifting%20with%20Silk%20%26%20Ember." 
+               class="tier-btn" target="_blank">Enquire via WhatsApp →</a>
+        </div>
+        <div class="corporate-img"></div>
+    </section>
+
+    <!-- Footer (same as index) -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <p class="footer-col-title">Newsletter</p>
+                <p class="footer-newsletter-sub">Be the first to know about new drops and exclusive offers.</p>
+                <div class="footer-form">
+                    <input type="email" placeholder="E-mail" class="footer-input" />
+                    <button class="footer-submit">Submit</button>
+                </div>
+                <div class="footer-socials">
+                    <a href="#">IG</a>
+                    <a href="#">TK</a>
+                    <a href="#">WA</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Help</p>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><span id="order-tracking-link">Order Tracking</span></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Company</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="index.html#collection">Collection</a></li>
+                    <li><a href="index.html#about">Our Story</a></li>
+                    <li><a href="gifting.html">Gifting</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">About</p>
+                <p class="footer-about-text">Silk & Ember is a luxury candle brand born in Nairobi. Foreign fantasy scents, handcrafted for the African aesthetic.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Silk & Ember</p>
+            <p>Nairobi, Kenya</p>
+        </div>
+    </footer>
+
+    <script src="gifting.js"></script>
+</body>
+</html>

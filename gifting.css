@@ -1,0 +1,339 @@
+/* GIFTING HERO */
+@font-face {
+    font-family: 'PocketNote';
+    src: url('PocketNote-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.note-preview {
+    font-family: 'PocketNote', 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #F2E8DC90;
+    line-height: 2;
+    padding: 12px 0;
+    margin-top: 8px;
+    min-height: 80px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.note-preview.has-content {
+    color: #F2E8DC;
+}
+
+.gifting-hero {
+    padding: 180px 48px 100px;
+    text-align: center;
+    background-color: #F2E8DC;
+}
+
+.gifting-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: #2B1D14;
+    letter-spacing: 2px;
+    margin: 16px 0;
+}
+
+.gifting-hero-sub {
+    font-size: 15px;
+    color: #2B1D1470;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* TIERS */
+.gifting-tiers {
+    padding: 80px 48px;
+    background-color: #F2E8DC;
+    text-align: center;
+}
+
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+    text-align: left;
+}
+
+.tier-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.tier-card.featured .tier-img {
+    border: 1.5px solid #8B5A2B;
+}
+
+.tier-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.tier-mini { background-color: #E8D8C4; }
+.tier-ritual { background-color: #C4A882; }
+.tier-fullset { background-color: #8B5A2B; }
+
+.tier-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: #5C3A45;
+    color: #F2E8DC;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+}
+
+.tier-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tier-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: #2B1D14;
+}
+
+.tier-contents {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8B5A2B;
+}
+
+.tier-desc {
+    font-size: 13px;
+    color: #2B1D1470;
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 320px;
+}
+
+.tier-price {
+    font-size: 16px;
+    color: #2B1D14;
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.tier-btn {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8B5A2B;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    width: fit-content;
+}
+
+.tier-btn:hover { color: #5C3A45; }
+
+/* BUILD YOUR OWN */
+.build-own {
+    background-color: #2B1D14;
+    padding: 100px 48px;
+}
+
+.build-own-inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.build-own-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: #F2E8DC;
+    margin: 16px 0;
+    letter-spacing: 1px;
+}
+
+.build-own-sub {
+    font-size: 14px;
+    color: #F2E8DC70;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 48px;
+}
+
+.build-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 48px;
+}
+
+.build-step {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.step-num {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #8B5A2B;
+    text-transform: uppercase;
+}
+
+.step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: #F2E8DC;
+}
+
+.step-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.step-option {
+    padding: 10px 20px;
+    border: 0.5px solid #F2E8DC30;
+    color: #F2E8DC70;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.step-option:hover,
+.step-option.selected {
+    border-color: #8B5A2B;
+    color: #F2E8DC;
+    background-color: #8B5A2B20;
+}
+
+.build-message {
+    width: 100%;
+    background: transparent;
+    border: 0.5px solid #F2E8DC30;
+    padding: 16px 20px;
+    color: #F2E8DC;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    resize: none;
+    height: 120px;
+    outline: none;
+    line-height: 1.8;
+}
+
+.build-message::placeholder { color: #F2E8DC30; }
+.build-message:focus { border-color: #8B5A2B; }
+
+.build-btn {
+    padding: 18px 48px;
+    background-color: #8B5A2B;
+    color: #F2E8DC;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.build-btn:hover { background-color: #5C3A45; }
+
+/* CORPORATE */
+.corporate {
+    display: flex;
+    min-height: 60vh;
+    background-color: #F2E8DC;
+}
+
+.corporate-text {
+    flex: 1;
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.corporate-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: #2B1D14;
+    line-height: 1.2;
+}
+
+.corporate-desc {
+    font-size: 14px;
+    color: #2B1D1470;
+    line-height: 1.9;
+    font-weight: 300;
+    max-width: 460px;
+}
+
+.corporate-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.corporate-perks li {
+    font-size: 13px;
+    color: #2B1D14;
+    font-weight: 300;
+    padding-left: 16px;
+    position: relative;
+}
+
+.corporate-perks li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #8B5A2B;
+}
+
+.corporate-img {
+    flex: 1;
+    background-color: #5C3A45;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Nav override for gifting page */
+.logo-text.dark { color: #2B1D14; }
+nav.scrolled .logo-text { color: #2B1D14; }
+nav.scrolled .nav-links a { color: #2B1D14; }
+nav.scrolled .nav-icons { color: #2B1D14; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .gifting-hero { padding: 140px 24px 60px; }
+    .gifting-hero-title { font-size: 48px; }
+    .gifting-tiers { padding: 60px 24px; }
+    .tiers-grid { grid-template-columns: 1fr; }
+    .build-own { padding: 60px 24px; }
+    .build-own-title { font-size: 38px; }
+    .corporate { flex-direction: column; }
+    .corporate-text { padding: 60px 24px; }
+    .corporate-img { min-height: 300px; }
+}
