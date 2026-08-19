@@ -185,21 +185,3 @@ document.getElementById('preorder-btn').addEventListener('click', () => {
 setTimeout(() => {
     document.getElementById('slots-fill').style.width = '0%';
 }, 500);
-const contactLink = document.getElementById('contact-us-link'); // Add this ID to your Contact Us footer link
-const contactPage = document.getElementById('contact-page');
-const contactClose = document.getElementById('contact-close');
-
-if (contactLink) {
-    contactLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        contactPage.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-if (contactClose) {
-    contactClose.addEventListener('click', () => {
-        contactPage.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-}

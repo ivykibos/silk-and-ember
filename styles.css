@@ -322,6 +322,15 @@ nav.scrolled .nav-icons {
 .candle-shop:hover {
     color: #5C3A45;
 }
+.candle-vessel {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8B5A2B;
+    font-weight: 300;
+    margin-top: 2px;
+}
+
 .candle-preorder {
     font-size: 12px;
     color: #F2E8DC;
