@@ -322,6 +322,217 @@ nav.scrolled .nav-icons {
 .candle-shop:hover {
     color: #5C3A45;
 }
+.candle-preorder {
+    font-size: 12px;
+    color: #F2E8DC;
+    background-color: #2B1D14;
+    padding: 12px 24px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 10px;
+    display: inline-block;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.candle-preorder:hover {
+    background-color: #8B5A2B;
+}
+
+/* PRE-ORDER SECTION */
+.preorder-section {
+    background-color: #2B1D14;
+    padding: 100px 48px;
+}
+
+.preorder-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.preorder-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: #F2E8DC;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+.preorder-sub {
+    font-size: 14px;
+    color: #F2E8DC70;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-top: -32px;
+}
+
+/* SLOTS BAR */
+.preorder-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.slots-bar {
+    width: 100%;
+    height: 2px;
+    background: #F2E8DC15;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.slots-fill {
+    height: 100%;
+    background: #8B5A2B;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1s ease;
+}
+
+.slots-text {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #F2E8DC40;
+}
+
+.slots-text span {
+    color: #8B5A2B;
+    font-weight: 500;
+}
+
+/* FORM STEPS */
+.preorder-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.preorder-step {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.preorder-step-num {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #8B5A2B;
+    text-transform: uppercase;
+}
+
+.preorder-step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: #F2E8DC;
+}
+
+.preorder-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.preorder-option {
+    padding: 12px 24px;
+    border: 0.5px solid #F2E8DC30;
+    color: #F2E8DC70;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.preorder-option:hover,
+.preorder-option.selected {
+    border-color: #8B5A2B;
+    color: #F2E8DC;
+    background-color: #8B5A2B20;
+}
+
+.preorder-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.preorder-input {
+    width: 100%;
+    padding: 16px 20px;
+    background: transparent;
+    border: 0.5px solid #F2E8DC20;
+    color: #F2E8DC;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.preorder-input:focus { border-color: #8B5A2B; }
+.preorder-input::placeholder { color: #F2E8DC30; }
+
+/* M-PESA */
+.mpesa-instructions {
+    background: #F2E8DC08;
+    border: 0.5px solid #F2E8DC15;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mpesa-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8B5A2B;
+}
+
+.mpesa-detail {
+    font-size: 14px;
+    color: #F2E8DC;
+    font-weight: 300;
+}
+
+.mpesa-detail strong {
+    color: #F2E8DC;
+    font-weight: 500;
+}
+
+.mpesa-note {
+    font-size: 12px;
+    color: #F2E8DC50;
+    line-height: 1.7;
+    margin-top: 4px;
+}
+
+.preorder-btn {
+    padding: 20px 48px;
+    background-color: #8B5A2B;
+    color: #F2E8DC;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.preorder-btn:hover { background-color: #5C3A45; }
+
+@media (max-width: 768px) {
+    .preorder-section { padding: 60px 24px; }
+    .preorder-title { font-size: 36px; }
+}
 
 /* COMING SOON CAROUSEL */
 .coming-soon {

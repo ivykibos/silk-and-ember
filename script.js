@@ -154,3 +154,52 @@ window.addEventListener('scroll', () => {
         navLogoImg.src = 'Logo-side-light.svg';
     }
 });
+// Pre-order form
+const preorderOptions = document.querySelectorAll('.preorder-option');
+preorderOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        preorderOptions.forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+    });
+});
+
+document.getElementById('preorder-btn').addEventListener('click', () => {
+    const scent = document.querySelector('.preorder-option.selected');
+    const name = document.getElementById('preorder-name').value;
+    const phone = document.getElementById('preorder-phone').value;
+
+    if (!scent) {
+        alert('Please select a scent.');
+        return;
+    }
+    if (!name || !phone) {
+        alert('Please fill in your name and phone number.');
+        return;
+    }
+
+    const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have completed my M-Pesa payment.`;
+    window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
+});
+
+// Slots bar animation
+setTimeout(() => {
+    document.getElementById('slots-fill').style.width = '0%';
+}, 500);
+const contactLink = document.getElementById('contact-us-link'); // Add this ID to your Contact Us footer link
+const contactPage = document.getElementById('contact-page');
+const contactClose = document.getElementById('contact-close');
+
+if (contactLink) {
+    contactLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        contactPage.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+if (contactClose) {
+    contactClose.addEventListener('click', () => {
+        contactPage.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}

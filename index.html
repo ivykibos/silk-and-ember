@@ -12,8 +12,8 @@
 
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        <p>Free delivery within Nairobi on orders over KSh 7,000</p>
-    </div>
+    <p>🕯️ Launch pre-orders now open · Closes August 15th · Limited to 30 candles · Delivered August 25th</p>
+</div>
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -59,12 +59,13 @@
             <div class="candle">
                 <div class="candle-img sugar-high">
                     <span class="candle-tag">New</span>
+                    <img src="sugar-high-stack.jpg" alt="Sugar High candle" style="width: 100%; height: 100%; object-fit: cover; display: block;" />    
                 </div>
                 <div class="candle-info">
                     <p class="candle-name">Sugar High</p>
-                    <p class="candle-note">Warm Vanilla · Caramel · Cream</p>
+                    <p class="candle-note">Sage & Seasalt · Caramel · Amber</p>
                     <p class="candle-price">KSh 3,500</p>
-                    <p class="candle-shop">Order via WhatsApp →</p>
+                    <a href="#preorder" class="candle-preorder">Pre-Order Now →</a>
                 </div>
             </div>
 
@@ -72,7 +73,7 @@
                 <div class="candle-img golden-hour">
                     <span class="candle-tag">New</span>
                      <img 
-    src="golden-hour-counter.jpg" 
+    src="golden-hour-stack.jpg" 
     alt="Golden Hour candle"
     style="width: 100%; height: 100%; object-fit: cover; display: block;"
   />
@@ -81,7 +82,7 @@
                     <p class="candle-name">Golden Hour</p>
                     <p class="candle-note">Vanilla Bay · Amber · Peach</p>
                     <p class="candle-price">KSh 3,500</p>
-                    <p class="candle-shop">Order via WhatsApp →</p>
+                    <a href="#preorder" class="candle-preorder">Pre-Order Now →</a>
                 </div>
             </div>
 
@@ -94,13 +95,62 @@
                     <p class="candle-name">Slow Burn</p>
                     <p class="candle-note">Mahogany · Teakwood · Oud</p>
                     <p class="candle-price">KSh 3,500</p>
-                    <p class="candle-shop">Order via WhatsApp →</p>
+                    <a href="#preorder" class="candle-preorder">Pre-Order Now →</a>
                 </div>
             </div>
 
         </div>
     </section>
-    
+    <section class="preorder-section" id="preorder">
+    <div class="preorder-inner">
+        <p class="section-label">Reserve Yours</p>
+        <h2 class="preorder-title">Pre-Order the Launch Collection.</h2>
+        <p class="preorder-sub">Limited to 30 candles. Pay via M-Pesa, receive by August 25th.</p>
+
+        <div class="preorder-slots">
+            <div class="slots-bar">
+                <div class="slots-fill" id="slots-fill"></div>
+            </div>
+            <p class="slots-text"><span id="slots-remaining">30</span> slots remaining</p>
+        </div>
+
+        <div class="preorder-form">
+
+            <div class="preorder-step">
+                <p class="preorder-step-num">01</p>
+                <p class="preorder-step-title">Choose your scent</p>
+                <div class="preorder-options" id="scent-options">
+                    <span class="preorder-option" data-scent="Sugar High">Sugar High</span>
+                    <span class="preorder-option" data-scent="Golden Hour">Golden Hour</span>
+                    <span class="preorder-option" data-scent="Slow Burn">Slow Burn</span>
+                </div>
+            </div>
+
+            <div class="preorder-step">
+                <p class="preorder-step-num">02</p>
+                <p class="preorder-step-title">Your details</p>
+                <div class="preorder-fields">
+                    <input type="text" id="preorder-name" placeholder="Your name" class="preorder-input" />
+                    <input type="tel" id="preorder-phone" placeholder="Phone number (for M-Pesa)" class="preorder-input" />
+                </div>
+            </div>
+
+            <div class="preorder-step">
+                <p class="preorder-step-num">03</p>
+                <p class="preorder-step-title">Complete your order</p>
+                <div class="mpesa-instructions">
+                    <p class="mpesa-label">Pay via M-Pesa</p>
+                    <p class="mpesa-detail">Till Number: <strong id="mpesa-till">XXXXXXX</strong></p>
+                    <p class="mpesa-detail">Amount: <strong>KSh 3,500</strong></p>
+                    <p class="mpesa-note">After paying, click confirm below and we'll reach out to you within 24 hours.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="preorder-btn" id="preorder-btn">Confirm Pre-Order via WhatsApp →</button>
+    </div>
+</section>
     <!-- Coming Soon Carousel -->
 <section class="coming-soon" id="coming-soon">
     <div class="carousel">
@@ -110,7 +160,7 @@
             <div class="carousel-slide" data-bg="#E8D8C4" data-text="#2B1D14">
                 <div class="carousel-img">
                     <div class="carousel-img-placeholder">
-                        <span>COMING SOON</span>
+                        <img src="linger-stack.jpg" alt="Linger candle" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                     </div>
                 </div>
                 <div class="carousel-info">
@@ -142,7 +192,7 @@
             <div class="carousel-slide" data-bg="#D4E4F0" data-text="#2B1D14">
                 <div class="carousel-img">
                     <div class="carousel-img-placeholder">
-                        <span>COMING SOON</span>
+                        <img src="daydream-stack.jpg" alt="Daydream candle" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                     </div>
                 </div>
                 <div class="carousel-info">
@@ -174,7 +224,7 @@
             <div class="carousel-slide" data-bg="#F5DDD8" data-text="#2B1D14">
                 <div class="carousel-img">
                     <div class="carousel-img-placeholder">
-                        <span>COMING SOON</span>
+                        <img src="first-blush.jpg" alt="First Blush candle" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                     </div>
                 </div>
                 <div class="carousel-info">
@@ -190,7 +240,7 @@
             <div class="carousel-slide" data-bg="#C8B8A2" data-text="#2B1D14">
                 <div class="carousel-img">
                     <div class="carousel-img-placeholder">
-                        <span>COMING SOON</span>
+                        <img src="pillow-talk-stack.jpg" alt="Pillow Talk candle" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                     </div>
                 </div>
                 <div class="carousel-info">
@@ -206,7 +256,7 @@
             <div class="carousel-slide" data-bg="#C17F3A" data-text="#F2E8DC">
                 <div class="carousel-img">
                     <div class="carousel-img-placeholder">
-                        <span>COMING SOON</span>
+                        <img src="glazed-stack.jpg" alt="Glazed candle" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                     </div>
                 </div>
                 <div class="carousel-info">
@@ -278,7 +328,7 @@
                 <button class="footer-submit">Submit</button>
             </div>
             <div class="footer-socials">
-                <a href="https://www.instagram.com/">IG</a>
+                <a href="https://www.instagram.com/silkandember.ke/">IG</a>
                 <a href="#">TK</a>
                 <a href="#">WA</a>
             </div>
@@ -367,6 +417,7 @@
         <p class="welcome-skip" id="welcome-skip">No thanks, I'll pay full price</p>
     </div>
 </div>
+
     <script src="script.js"></script>
 </body>
 </html>
