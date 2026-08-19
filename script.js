@@ -7,7 +7,7 @@ function updateNav() {
     const barHeight = announcementBar.offsetHeight;
     if (window.scrollY > barHeight) {
         navbar.classList.add('scrolled');
-        if (navLogoImg) navLogoImg.src = 'logo-side-dark.svg';
+        if (navLogoImg) navLogoImg.src = 'Logo-side-dark.svg';
     } else {
         navbar.classList.remove('scrolled');
         if (navLogoImg) navLogoImg.src = 'logo-side-light.svg';
