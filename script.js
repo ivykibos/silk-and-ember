@@ -7,7 +7,7 @@ function updateNav() {
     const barHeight = announcementBar.offsetHeight;
     if (window.scrollY > barHeight) {
         navbar.classList.add('scrolled');
-        if (navLogoImg) navLogoImg.src = 'Logo-side-dark.svg';
+        if (navLogoImg) navLogoImg.src = 'logo-side-dark.svg';
     } else {
         navbar.classList.remove('scrolled');
         if (navLogoImg) navLogoImg.src = 'logo-side-light.svg';
@@ -187,7 +187,7 @@ document.getElementById('preorder-btn').addEventListener('click', () => {
         return;
     }
 
-    const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have completed my M-Pesa payment.`;
+    const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 3,500 via M-Pesa to Till No. 1626298.`;
     window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
 });
 
