@@ -37,6 +37,7 @@ nav {
 
 .nav-logo-img {
     height: 36px;
+    max-width: 160px;
     width: auto;
     object-fit: contain;
     transition: opacity 0.3s ease;
