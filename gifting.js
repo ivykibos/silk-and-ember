@@ -24,7 +24,7 @@ document.getElementById('build-btn').addEventListener('click', () => {
     const messageText = message || 'No message';
 
     const wa = `Hi! I'd like to build a custom Silk & Ember gift.\n\nScent: ${scentText}\nExtras: ${extrasText}\nMessage: ${messageText}`;
-    window.open(`https://wa.me/254700000000?text=${encodeURIComponent(wa)}`, '_blank');
+    window.open(`https://wa.me/254102513511?text=${encodeURIComponent(wa)}`, '_blank');
 });
 const giftMessage = document.getElementById('gift-message');
 const notePreview = document.getElementById('note-preview');
