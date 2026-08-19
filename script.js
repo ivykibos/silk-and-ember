@@ -1,15 +1,21 @@
-// Sticky nav scroll effect
+// Sticky nav scroll effect + logo swap
 const navbar = document.getElementById('navbar');
 const announcementBar = document.querySelector('.announcement-bar');
+const navLogoImg = document.getElementById('nav-logo-img');
 
-window.addEventListener('scroll', () => {
+function updateNav() {
     const barHeight = announcementBar.offsetHeight;
     if (window.scrollY > barHeight) {
         navbar.classList.add('scrolled');
+        if (navLogoImg) navLogoImg.src = 'logo-side-dark.svg';
     } else {
         navbar.classList.remove('scrolled');
+        if (navLogoImg) navLogoImg.src = 'logo-side-light.svg';
     }
-});
+}
+
+window.addEventListener('scroll', updateNav);
+updateNav(); // run on page load too
 const searchIcon = document.getElementById('search-icon');
 const searchBar = document.getElementById('search-bar');
 const searchClose = document.getElementById('search-close');
@@ -142,18 +148,6 @@ dots.forEach(dot => {
 
 goToSlide(0);
 setInterval(() => goToSlide(current + 1), 5000);
-const navLogoImg = document.getElementById('nav-logo-img');
-
-window.addEventListener('scroll', () => {
-    const barHeight = announcementBar.offsetHeight;
-    if (window.scrollY > barHeight) {
-        navbar.classList.add('scrolled');
-        navLogoImg.src = 'Logo-side-dark.svg';
-    } else {
-        navbar.classList.remove('scrolled');
-        navLogoImg.src = 'Logo-side-light.svg';
-    }
-});
 // Pre-order form
 const preorderOptions = document.querySelectorAll('.preorder-option');
 preorderOptions.forEach(option => {
@@ -185,3 +179,21 @@ document.getElementById('preorder-btn').addEventListener('click', () => {
 setTimeout(() => {
     document.getElementById('slots-fill').style.width = '0%';
 }, 500);
+const contactLink = document.getElementById('contact-us-link'); // Add this ID to your Contact Us footer link
+const contactPage = document.getElementById('contact-page');
+const contactClose = document.getElementById('contact-close');
+
+if (contactLink) {
+    contactLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        contactPage.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+if (contactClose) {
+    contactClose.addEventListener('click', () => {
+        contactPage.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}
