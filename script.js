@@ -288,10 +288,26 @@ if (track && originalSlides.length > 0) {
 
 // Pre-order form
 const preorderOptions = document.querySelectorAll('.preorder-option');
+
+function selectPreorderOption(option) {
+    preorderOptions.forEach(o => o.classList.remove('selected'));
+    if (option) option.classList.add('selected');
+}
+
 preorderOptions.forEach(option => {
     option.addEventListener('click', () => {
-        preorderOptions.forEach(o => o.classList.remove('selected'));
-        option.classList.add('selected');
+        selectPreorderOption(option);
+    });
+});
+
+const collectionPreorderLinks = document.querySelectorAll('.candle-preorder');
+collectionPreorderLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        const scent = link.dataset.scent;
+        const matchedOption = Array.from(preorderOptions).find(option => option.dataset.scent === scent);
+        if (matchedOption) {
+            selectPreorderOption(matchedOption);
+        }
     });
 });
 
