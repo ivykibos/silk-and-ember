@@ -226,3 +226,15 @@ if (contactClose && contactPage) {
         document.body.style.overflow = '';
     });
 }
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
+        // Check if the click is outside both the mobile menu and the hamburger button
+        const clickedInsideMenu = mobileMenu.contains(e.target);
+        const clickedInsideHamburger = hamburger && hamburger.contains(e.target);
+        
+        if (!clickedInsideMenu && !clickedInsideHamburger) {
+            closeMobileMenu();
+        }
+    }
+});
