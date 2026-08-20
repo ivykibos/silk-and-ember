@@ -19,7 +19,7 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-logo">
-    <img src="logo-side-light.svg" alt="Silk & Ember" class="nav-logo-img" />
+            <img src="logo-side-light.svg" alt="Silk & Ember" class="nav-logo-img" id="nav-logo-img" />
         </div>
         <ul class="nav-links">
             <li><a href="#">New</a></li>
@@ -27,11 +27,28 @@
             <li><a href="#about">Our Story</a></li>
             <li><a href="gifting.html">Gifting</a></li>
         </ul>
-        <div class="nav-icons">
-            <span id="search-icon">&#9906;</span>
-            <span>&#128722;</span
+        <div class="nav-right">
+            <div class="nav-icons">
+                <span id="search-icon">&#9906;</span>
+                <span>&#128722;</span>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-links">
+            <li><a href="#">New</a></li>
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="gifting.html">Gifting</a></li>
+            <li><a href="#preorder">Pre-Order</a></li>
+        </ul>
+    </div>
 
     <div class="search-bar" id="search-bar">
         <input type="text" id="search-input" placeholder="Search candles..." />
@@ -165,7 +182,7 @@
                     <h2 class="carousel-name">Linger</h2>
                     <p class="carousel-note">Bare Vanilla · Cashmere · Sandalwood</p>
                     <p class="carousel-desc">The scent of warm skin and soft fabric. Close, quiet, and impossibly comforting.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -181,7 +198,7 @@
                     <h2 class="carousel-name">Plumdusk</h2>
                     <p class="carousel-note">Plum · Cashmere · Sheer Musk</p>
                     <p class="carousel-desc">Dark fruit and velvet warmth. The feeling of golden hour just before it fades.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -197,7 +214,7 @@
                     <h2 class="carousel-name">Daydream</h2>
                     <p class="carousel-note">Coconut · Lavender · Vanilla Praline · White Musk</p>
                     <p class="carousel-desc">Weightless, fluffy, floating. Like a cloud you could actually live in.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -213,7 +230,7 @@
                     <h2 class="carousel-name">Berry Soft</h2>
                     <p class="carousel-note">Blackberry · Pear · Marshmallow · Sandalwood Musk</p>
                     <p class="carousel-desc">Dark fruit meets soft sweetness. Sophisticated but irresistible.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -229,7 +246,7 @@
                     <h2 class="carousel-name">First Blush</h2>
                     <p class="carousel-note">Cherry Blossom · Peach Skin · Sheer Musk</p>
                     <p class="carousel-desc">Feminine, youthful, light. The kind of scent that turns heads without trying.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -245,7 +262,7 @@
                     <h2 class="carousel-name">Pillow Talk</h2>
                     <p class="carousel-note">Almond Milk · White Musk · Soft Rose · Sandalwood</p>
                     <p class="carousel-desc">Just woke up, skin still warm. Soft, close, and completely yours.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -261,7 +278,7 @@
                     <h2 class="carousel-name">Glazed</h2>
                     <p class="carousel-note">Warm Doughnut · Vanilla Glaze · Brown Butter · Peach</p>
                     <p class="carousel-desc">Gourmand but elevated. A warm, indulgent haze you want to live inside.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -277,7 +294,7 @@
                     <h2 class="carousel-name">Velvet Peach</h2>
                     <p class="carousel-note">Ripe Peach · Cream · Amber Musk</p>
                     <p class="carousel-desc">Skin-like and sensual. The grown-up version of your favourite summer scent.</p>
-                    <button class="carousel-notify">Notify Me When Available</button>
+                    <button class="carousel-notify" type="button">Notify Me When Available</button>
                 </div>
             </div>
 
@@ -325,16 +342,31 @@
                 <button class="footer-submit">Submit</button>
             </div>
             <div class="footer-socials">
-                <a href="https://www.instagram.com/silkandember.ke/">IG</a>
-                <a href="#">TK</a>
-                <a href="#">WA</a>
+                <a href="https://www.instagram.com/silkandember.ke/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </a>
+                <a href="#" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 4c.7 1.8 2.2 3 4.2 3.4v2.5c-1.4-.1-2.7-.7-3.8-1.7v5.4c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.8 0 1.6.1 2.3.4v2.7a3.7 3.7 0 0 0-2.3-.8c-2.1 0-3.8 1.7-3.8 3.8s1.7 3.8 3.8 3.8 3.8-1.7 3.8-3.8V4h3.8z"></path>
+                    </svg>
+                </a>
+                <a href="https://wa.me/254102513511?text=Hi%20Silk%20%26%20Ember%2C%20I%27d%20like%20to%20connect." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.5 12.2a8.5 8.5 0 0 1-13.6 7.1L4 20.5l1.3-3.1A8.4 8.4 0 1 1 20.5 12.2z"></path>
+                        <path d="M14.9 14.4c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.2-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.1-.3 0-.5.1-.6.1-.1.2-.3.3-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.2.1-.4 0-.5-.1-.1-.7-1.8-.9-2.5-.2-.7-.4-.6-.7-.6h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.2 3.5 5.4 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.7-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"></path>
+                    </svg>
+                </a>
             </div>
         </div>
 
         <div class="footer-col">
             <p class="footer-col-title">Help</p>
             <ul class="footer-links">
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="#" id="contact-us-link">Contact Us</a></li>
                 <li><span id="order-tracking-link">Order Tracking</span></li>
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Shipping Policy</a></li>
@@ -421,11 +453,14 @@
             <h2 class="signin-title">Get in Touch</h2>
             <p class="signin-sub">We’d love to hear from you. Connect with us below.</p>
             
-            <a href="https://wa.me/254102513511?text=Hi!%20I'm%20reaching%20out%20from%20the%20Silk%20&%20Ember%20website." 
-               class="signin-shop-btn" target="_blank" style="text-decoration: none; display: block; margin-bottom: 12px;">Chat on WhatsApp →</a>
+            <a href="https://wa.me/254102513511?text=Hi%20Silk%20%26%20Ember%2C%20I%E2%80%99m%20reaching%20out%20from%20your%20website%20and%20would%20love%20to%20learn%20more%20about%20your%20candles%2C%20collections%2C%20and%20ordering%20options.%20Please%20share%20more%20details%20with%20me." 
+               class="signin-shop-btn" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; margin-bottom: 12px;">Chat on WhatsApp →</a>
+
+            <a href="mailto:hello@silkandember.shop?subject=Hello%20Silk%20%26%20Ember&body=Hi%20Silk%20%26%20Ember%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%20your%20candles%20and%20ordering%20options.%0A%0AThank%20you." 
+               class="signin-shop-btn" style="text-decoration: none; display: block; background-color: #2B1D14; margin-bottom: 12px;">Email Us →</a>
             
             <a href="https://www.instagram.com/silkandember.ke/" 
-               class="signin-shop-btn" target="_blank" style="text-decoration: none; display: block; background-color: #2B1D14; margin-bottom: 12px;">Explore Instagram →</a>
+               class="signin-shop-btn" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; background-color: #2B1D14; margin-bottom: 12px;">Explore Instagram →</a>
             
             <a href="https://www.tiktok.com/@silkandember" 
                class="signin-shop-btn" target="_blank" style="text-decoration: none; display: block; background-color: #8B5A2B;">Watch on TikTok →</a>

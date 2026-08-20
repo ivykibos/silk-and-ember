@@ -67,22 +67,39 @@ if (searchClose && searchBar) {
     });
 }
 
-// Order tracking modal
+// Order tracking / account modal
 const orderTrackingLink = document.getElementById('order-tracking-link');
 const signinPage = document.getElementById('signin-page');
 const signinClose = document.getElementById('signin-close');
+const signinWhatsApp = document.querySelector('.signin-shop-btn');
 
-if (orderTrackingLink && signinPage) {
-    orderTrackingLink.addEventListener('click', () => {
+function openSigninModal() {
+    if (signinPage) {
         signinPage.classList.add('active');
         document.body.style.overflow = 'hidden';
-    });
+    }
+}
+
+function closeSigninModal() {
+    if (signinPage) {
+        signinPage.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+}
+
+if (orderTrackingLink && signinPage) {
+    orderTrackingLink.addEventListener('click', openSigninModal);
 }
 
 if (signinClose && signinPage) {
-    signinClose.addEventListener('click', () => {
-        signinPage.classList.remove('active');
-        document.body.style.overflow = '';
+    signinClose.addEventListener('click', closeSigninModal);
+}
+
+if (signinWhatsApp) {
+    signinWhatsApp.addEventListener('click', () => {
+        const msg = encodeURIComponent('Hi Silk & Ember, I would like to continue my order / set up my account.');
+        window.open(`https://wa.me/254102513511?text=${msg}`, '_blank');
+        closeSigninModal();
     });
 }
 
@@ -155,22 +172,28 @@ function launchConfetti() {
 
 // Coming Soon Carousel
 const track = document.getElementById('carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.carousel-dot');
+const originalSlides = [...document.querySelectorAll('.carousel-slide')];
+const dots = [...document.querySelectorAll('.carousel-dot')];
 const prevBtn = document.getElementById('carousel-prev');
 const nextBtn = document.getElementById('carousel-next');
 const comingSoon = document.getElementById('coming-soon');
 
-let current = 0;
+let autoAdvance;
+let current = 1;
 
-if (track && slides.length > 0) {
-    function goToSlide(index) {
-        current = (index + slides.length) % slides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach(d => d.classList.remove('active'));
-        if (dots[current]) dots[current].classList.add('active');
-        const bg = slides[current].dataset.bg;
-        const text = slides[current].dataset.text;
+if (track && originalSlides.length > 0) {
+    const firstClone = originalSlides[0].cloneNode(true);
+    const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+    track.insertBefore(lastClone, track.firstChild);
+    track.appendChild(firstClone);
+
+    const slides = [...track.children];
+    const totalSlides = slides.length;
+    const transitionTiming = 'transform 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
+
+    function applyTheme(slide) {
+        const bg = slide.dataset.bg;
+        const text = slide.dataset.text;
         if (comingSoon) {
             comingSoon.style.backgroundColor = bg;
             comingSoon.style.color = text;
@@ -181,14 +204,86 @@ if (track && slides.length > 0) {
         });
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(current - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(current + 1));
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+    function updateActiveDot(index) {
+        const realIndex = (index - 1 + originalSlides.length) % originalSlides.length;
+        dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === realIndex));
+        const slide = originalSlides[realIndex];
+        if (slide) applyTheme(slide);
+    }
+
+    function goToSlide(index) {
+        current = index;
+        track.style.transition = transitionTiming;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateActiveDot(index);
+    }
+
+    function goNext() {
+        if (current >= totalSlides - 1) {
+            return;
+        }
+        goToSlide(current + 1);
+    }
+
+    function goPrev() {
+        if (current <= 0) {
+            return;
+        }
+        goToSlide(current - 1);
+    }
+
+    function resetToStart() {
+        track.style.transition = 'none';
+        current = 1;
+        track.style.transform = 'translateX(-100%)';
+        updateActiveDot(current);
+        requestAnimationFrame(() => {
+            track.style.transition = transitionTiming;
+        });
+    }
+
+    function resetToEnd() {
+        track.style.transition = 'none';
+        current = originalSlides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        updateActiveDot(current);
+        requestAnimationFrame(() => {
+            track.style.transition = transitionTiming;
+        });
+    }
+
+    track.addEventListener('transitionend', () => {
+        if (current === totalSlides - 1) {
+            resetToStart();
+        } else if (current === 0) {
+            resetToEnd();
+        }
     });
 
-    goToSlide(0);
-    setInterval(() => goToSlide(current + 1), 5000);
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        clearInterval(autoAdvance);
+        goPrev();
+        autoAdvance = setInterval(goNext, 5000);
+    });
+
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        clearInterval(autoAdvance);
+        goNext();
+        autoAdvance = setInterval(goNext, 5000);
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(autoAdvance);
+            goToSlide(index + 1);
+            autoAdvance = setInterval(goNext, 5000);
+        });
+    });
+
+    track.style.transition = 'none';
+    track.style.transform = 'translateX(-100%)';
+    updateActiveDot(current);
+    autoAdvance = setInterval(goNext, 5000);
 }
 
 // Pre-order form
@@ -204,14 +299,28 @@ const preorderBtn = document.getElementById('preorder-btn');
 if (preorderBtn) {
     preorderBtn.addEventListener('click', () => {
         const scent = document.querySelector('.preorder-option.selected');
-        const name = document.getElementById('preorder-name').value;
-        const phone = document.getElementById('preorder-phone').value;
-        if (!scent) { alert('Please select a scent.'); return; }
-        if (!name || !phone) { alert('Please fill in your name and phone number.'); return; }
+        const name = document.getElementById('preorder-name')?.value;
+        const phone = document.getElementById('preorder-phone')?.value;
+
+        if (!scent) {
+            alert('Please select a scent.');
+            return;
+        }
+
+        if (!name || !phone) {
+            openSigninModal();
+            return;
+        }
+
         const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 3,500 via M-Pesa to Till No. 1626298.`;
         window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
     });
 }
+
+const notifyButtons = document.querySelectorAll('.carousel-notify');
+notifyButtons.forEach(button => {
+    button.addEventListener('click', openSigninModal);
+});
 
 // Slots bar animation
 setTimeout(() => {
