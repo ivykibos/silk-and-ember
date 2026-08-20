@@ -19,7 +19,7 @@
     <!-- Navigation -->
     <nav id="navbar" class="scrolled">
         <div class="nav-logo">
-            <img src="Logo-side-dark.svg" alt="Silk & Ember Logo" class="nav-logo-img" id="nav-logo-img">
+            <a href="index.html"><img src="Logo-side-dark.svg" alt="Silk & Ember Logo" class="nav-logo-img" id="nav-logo-img"></a>
         </div>
         <ul class="nav-links">
             <li><a href="index.html#collection">New</a></li>
@@ -27,11 +27,29 @@
             <li><a href="index.html#about">Our Story</a></li>
             <li><a href="gifting.html">Gifting</a></li>
         </ul>
-        <div class="nav-icons">
-            <span>&#9906;</span>
-            <span>&#128722;</span>
+        <div class="nav-right">
+            <div class="nav-icons">
+                <span>&#9906;</span>
+                <span>&#128722;</span>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#collection">Collection</a></li>
+            <li><a href="index.html#about">Our Story</a></li>
+            <li><a href="gifting.html">Gifting</a></li>
+            <li><a href="index.html#preorder">Pre-Order</a></li>
+        </ul>
+    </div>
 
     <!-- Hero -->
     <section class="gifting-hero">
@@ -199,5 +217,20 @@
     </footer>
 
     <script src="gifting.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            });
+        }
+        // Gifting page nav stays dark (already scrolled class)
+        const navLogoImg = document.getElementById('nav-logo-img');
+        const hamburgerSpans = document.querySelectorAll('.hamburger span');
+        hamburgerSpans.forEach(s => s.style.backgroundColor = '#2B1D14');
+    </script>
 </body>
 </html>

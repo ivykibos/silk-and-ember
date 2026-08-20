@@ -4,13 +4,13 @@ const announcementBar = document.querySelector('.announcement-bar');
 const navLogoImg = document.getElementById('nav-logo-img');
 
 function updateNav() {
-    const barHeight = announcementBar.offsetHeight;
+    const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
     if (window.scrollY > barHeight) {
         navbar.classList.add('scrolled');
-        if (navLogoImg) navLogoImg.src = 'logo-side-dark.svg';
+        if (navLogoImg) navLogoImg.src = 'Logo-side-dark.svg';
     } else {
         navbar.classList.remove('scrolled');
-        if (navLogoImg) navLogoImg.src = 'logo-side-light.svg';
+        if (navLogoImg) navLogoImg.src = 'Logo-side-light.svg';
     }
 }
 
@@ -21,59 +21,75 @@ updateNav();
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-});
+if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+}
 
 function closeMobileMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
+    if (hamburger) hamburger.classList.remove('open');
+    if (mobileMenu) mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
 }
+
+// Search
 const searchIcon = document.getElementById('search-icon');
 const searchBar = document.getElementById('search-bar');
 const searchClose = document.getElementById('search-close');
 const searchInput = document.getElementById('search-input');
 
-searchIcon.addEventListener('click', () => {
-    searchBar.classList.add('active');
-    searchInput.focus();
-});
+if (searchIcon && searchBar) {
+    searchIcon.addEventListener('click', () => {
+        searchBar.classList.add('active');
+        if (searchInput) searchInput.focus();
+    });
+}
 
-searchClose.addEventListener('click', () => {
-    searchBar.classList.remove('active');
-    searchInput.value = '';
-});
+if (searchClose && searchBar) {
+    searchClose.addEventListener('click', () => {
+        searchBar.classList.remove('active');
+        if (searchInput) searchInput.value = '';
+    });
+}
+
+// Order tracking
 const orderTrackingLink = document.getElementById('order-tracking-link');
 const signinPage = document.getElementById('signin-page');
 const signinClose = document.getElementById('signin-close');
 
-orderTrackingLink.addEventListener('click', () => {
-    signinPage.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
+if (orderTrackingLink && signinPage) {
+    orderTrackingLink.addEventListener('click', () => {
+        signinPage.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
 
-signinClose.addEventListener('click', () => {
-    signinPage.classList.remove('active');
-    document.body.style.overflow = '';
-});
+if (signinClose && signinPage) {
+    signinClose.addEventListener('click', () => {
+        signinPage.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}
 
-// Close on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        signinPage.classList.remove('active');
+        if (signinPage) signinPage.classList.remove('active');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+        if (hamburger) hamburger.classList.remove('open');
         document.body.style.overflow = '';
     }
 });
+
 // Welcome popup
 const welcomeOverlay = document.getElementById('welcome-overlay');
 const welcomeClose = document.getElementById('welcome-close');
 const welcomeSkip = document.getElementById('welcome-skip');
 const welcomeBtn = document.getElementById('welcome-btn');
 
-if (!localStorage.getItem('silk_ember_welcomed')) {
+if (welcomeOverlay && !localStorage.getItem('silk_ember_welcomed')) {
     setTimeout(() => {
         welcomeOverlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -81,29 +97,31 @@ if (!localStorage.getItem('silk_ember_welcomed')) {
 }
 
 function closeWelcome() {
-    welcomeOverlay.style.display = 'none';
+    if (welcomeOverlay) welcomeOverlay.style.display = 'none';
     document.body.style.overflow = '';
     localStorage.setItem('silk_ember_welcomed', 'true');
 }
 
-welcomeClose.addEventListener('click', closeWelcome);
-welcomeSkip.addEventListener('click', closeWelcome);
+if (welcomeClose) welcomeClose.addEventListener('click', closeWelcome);
+if (welcomeSkip) welcomeSkip.addEventListener('click', closeWelcome);
 
-welcomeBtn.addEventListener('click', () => {
-    const email = document.getElementById('welcome-email').value;
-    if (!email || !email.includes('@')) {
-        document.getElementById('welcome-email').style.borderColor = '#5C3A45';
-        return;
-    }
-    console.log('Email captured:', email);
-    closeWelcome();
-    launchConfetti();
-    alert('Your 10% off code: WELCOME10 — use it at checkout!');
-});
+if (welcomeBtn) {
+    welcomeBtn.addEventListener('click', () => {
+        const emailInput = document.getElementById('welcome-email');
+        const email = emailInput ? emailInput.value : '';
+        if (!email || !email.includes('@')) {
+            if (emailInput) emailInput.style.borderColor = '#5C3A45';
+            return;
+        }
+        closeWelcome();
+        launchConfetti();
+        alert('Your 10% off code: WELCOME10 — use it at checkout!');
+    });
+}
+
 function launchConfetti() {
     const colors = ['#8B5A2B', '#F2E8DC', '#5C3A45', '#C4A882', '#2B1D14'];
     const count = 120;
-
     for (let i = 0; i < count; i++) {
         const confetti = document.createElement('div');
         confetti.style.cssText = `
@@ -119,11 +137,11 @@ function launchConfetti() {
             animation-delay: ${Math.random() * 0.5}s;
         `;
         document.body.appendChild(confetti);
-
-        // Remove after animation
         setTimeout(() => confetti.remove(), 3000);
     }
-}// Coming Soon Carousel
+}
+
+// Coming Soon Carousel
 const track = document.getElementById('carousel-track');
 const slides = document.querySelectorAll('.carousel-slide');
 const dots = document.querySelectorAll('.carousel-dot');
@@ -133,37 +151,34 @@ const comingSoon = document.getElementById('coming-soon');
 
 let current = 0;
 
-function goToSlide(index) {
-    current = (index + slides.length) % slides.length;
+if (track && slides.length > 0) {
+    function goToSlide(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[current]) dots[current].classList.add('active');
+        const bg = slides[current].dataset.bg;
+        const text = slides[current].dataset.text;
+        if (comingSoon) {
+            comingSoon.style.backgroundColor = bg;
+            comingSoon.style.color = text;
+        }
+        document.querySelectorAll('.carousel-arrow, .carousel-dot, .carousel-label, .carousel-name, .carousel-desc, .carousel-notify').forEach(el => {
+            el.style.color = text;
+            el.style.borderColor = text;
+        });
+    }
 
-    // Slide the track
-    track.style.transform = `translateX(-${current * 100}%)`;
-
-    // Update dots
-    dots.forEach(d => d.classList.remove('active'));
-    dots[current].classList.add('active');
-
-    // Update background and text color
-    const bg = slides[current].dataset.bg;
-    const text = slides[current].dataset.text;
-    comingSoon.style.backgroundColor = bg;
-    comingSoon.style.color = text;
-
-    // Update arrow and element colors
-    document.querySelectorAll('.carousel-arrow, .carousel-dot, .carousel-label, .carousel-name, .carousel-desc, .carousel-notify').forEach(el => {
-        el.style.color = text;
-        el.style.borderColor = text;
+    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(current + 1));
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
     });
+
+    goToSlide(0);
+    setInterval(() => goToSlide(current + 1), 5000);
 }
 
-prevBtn.addEventListener('click', () => goToSlide(current - 1));
-nextBtn.addEventListener('click', () => goToSlide(current + 1));
-dots.forEach(dot => {
-    dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
-});
-
-goToSlide(0);
-setInterval(() => goToSlide(current + 1), 5000);
 // Pre-order form
 const preorderOptions = document.querySelectorAll('.preorder-option');
 preorderOptions.forEach(option => {
@@ -173,33 +188,31 @@ preorderOptions.forEach(option => {
     });
 });
 
-document.getElementById('preorder-btn').addEventListener('click', () => {
-    const scent = document.querySelector('.preorder-option.selected');
-    const name = document.getElementById('preorder-name').value;
-    const phone = document.getElementById('preorder-phone').value;
+const preorderBtn = document.getElementById('preorder-btn');
+if (preorderBtn) {
+    preorderBtn.addEventListener('click', () => {
+        const scent = document.querySelector('.preorder-option.selected');
+        const name = document.getElementById('preorder-name').value;
+        const phone = document.getElementById('preorder-phone').value;
+        if (!scent) { alert('Please select a scent.'); return; }
+        if (!name || !phone) { alert('Please fill in your name and phone number.'); return; }
+        const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 3,500 via M-Pesa to Till No. 1626298.`;
+        window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+}
 
-    if (!scent) {
-        alert('Please select a scent.');
-        return;
-    }
-    if (!name || !phone) {
-        alert('Please fill in your name and phone number.');
-        return;
-    }
-
-    const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 3,500 via M-Pesa to Till No. 1626298.`;
-    window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
-});
-
-// Slots bar animation
+// Slots bar
 setTimeout(() => {
-    document.getElementById('slots-fill').style.width = '0%';
+    const slotsFill = document.getElementById('slots-fill');
+    if (slotsFill) slotsFill.style.width = '0%';
 }, 500);
-const contactLink = document.getElementById('contact-us-link'); // Add this ID to your Contact Us footer link
+
+// Contact page
+const contactLink = document.getElementById('contact-us-link');
 const contactPage = document.getElementById('contact-page');
 const contactClose = document.getElementById('contact-close');
 
-if (contactLink) {
+if (contactLink && contactPage) {
     contactLink.addEventListener('click', (e) => {
         e.preventDefault();
         contactPage.classList.add('active');
@@ -207,7 +220,7 @@ if (contactLink) {
     });
 }
 
-if (contactClose) {
+if (contactClose && contactPage) {
     contactClose.addEventListener('click', () => {
         contactPage.classList.remove('active');
         document.body.style.overflow = '';

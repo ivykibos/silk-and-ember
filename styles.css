@@ -1091,61 +1091,180 @@ footer {
     }
 }
 
+/* HAMBURGER */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background-color: #F2E8DC;
+    transition: all 0.3s ease;
+}
+
+nav.scrolled .hamburger span {
+    background-color: #2B1D14;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* MOBILE MENU OVERLAY */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: #2B1D14;
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu.open {
+    display: flex;
+}
+
+.mobile-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.mobile-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: #F2E8DC;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.mobile-links a:hover { color: #8B5A2B; }
+
 /* MOBILE */
 @media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
     nav {
         padding: 16px 24px;
         top: 36px;
     }
 
-    nav.scrolled {
-        top: 0;
-    }
+    nav.scrolled { top: 0; }
 
-    .nav-links {
-        display: none;
-    }
+    .nav-links { display: none; }
 
+    .hamburger { display: flex; }
+
+    .nav-icons { display: none; }
+
+    /* HERO */
     .hero-content {
         padding: 0 24px;
+        max-width: 100%;
+        position: relative;
+        z-index: 2;
     }
 
-    .hero-title {
-        font-size: 52px;
+    .hero-title { font-size: 40px; }
+    .hero-sub { font-size: 13px; }
+
+    .hero-gif {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 55%;
+        opacity: 0.5;
     }
 
-    .collection {
-        padding: 60px 24px;
+    /* ANNOUNCEMENT BAR */
+    .announcement-bar {
+        font-size: 9px;
+        letter-spacing: 1px;
+        padding: 8px 16px;
     }
+
+    /* COLLECTION */
+    .collection { padding: 60px 24px; }
+    .section-title { font-size: 32px; }
 
     .candles {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
     }
 
     .candle {
         width: 100%;
-        max-width: 400px;
+        max-width: 100%;
     }
 
-    .about {
+    /* CAROUSEL */
+    .carousel-slide {
         flex-direction: column;
+        padding: 60px 24px 80px;
+        gap: 32px;
+        min-height: auto;
     }
 
-    .about-text {
-        padding: 60px 24px;
+    .carousel-img {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 1 / 1;
     }
 
-    .about-img {
-        min-height: 300px;
+    .carousel-img-placeholder {
+        aspect-ratio: 1 / 1;
+        max-height: 280px;
     }
 
-    .footer-top,
-    .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-    }
+    .carousel-name { font-size: 48px; }
+    .carousel-info { max-width: 100%; }
+
+    /* ABOUT */
+    .about { flex-direction: column; }
+    .about-text { padding: 60px 24px; }
+    .about-img { min-height: 280px; }
+    .about-text h2 { font-size: 36px; }
+
+    /* PREORDER */
+    .preorder-section { padding: 60px 24px; }
+    .preorder-title { font-size: 36px; }
+    .preorder-fields { flex-direction: column; }
+
+    /* FOOTER */
+    footer { padding: 60px 24px 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 }
 
 /* WELCOME POPUP */
