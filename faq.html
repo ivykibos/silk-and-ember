@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ — Silk & Ember</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #F2E8DC;
+            color: #2B1D14;
+        }
+
+        .faq-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 32px 80px;
+        }
+
+        .faq-kicker {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #8B5A2B;
+            margin-bottom: 18px;
+        }
+
+        .faq-page h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 7vw, 72px);
+            font-weight: 300;
+            line-height: 1;
+            margin: 0 0 32px;
+            letter-spacing: 1px;
+        }
+
+        .faq-item {
+            background: rgba(255,255,255,0.16);
+            border: 1px solid rgba(43,29,20,0.12);
+            border-radius: 18px;
+            padding: 24px 24px;
+            margin-bottom: 18px;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 0 10px;
+            color: #2B1D14;
+        }
+
+        .faq-answer {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(43,29,20,0.86);
+        }
+
+        @media (max-width: 768px) {
+            .faq-page {
+                padding-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="nav-logo">
+            <a href="index.html"><img src="logo-side-dark.svg" alt="Silk & Ember" class="nav-logo-img" id="nav-logo-img" /></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#collection">Collection</a></li>
+            <li><a href="index.html#about">Our Story</a></li>
+            <li><a href="gifting.html">Gifting</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="nav-icons">
+                <span>&#9906;</span>
+                <span>&#128722;</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="faq-page">
+        <p class="faq-kicker">Silk & Ember</p>
+        <h1>FAQ</h1>
+
+        <div class="faq-item">
+            <p class="faq-question">How long does it take to receive my candle?</p>
+            <p class="faq-answer">Our launch collection is currently in pre-order and is expected to be dispatched by September 15th. Once shipped, delivery timing depends on your location and courier schedule.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">Do you offer gifting options?</p>
+            <p class="faq-answer">Yes. We offer curated gifting packages and custom gift messages. You can view our gifting collection or reach out via WhatsApp to create a personalised order.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">How do I pay for a pre-order?</p>
+            <p class="faq-answer">Pre-orders are paid via M-Pesa to the designated till number provided on the order page. After payment, we verify the transaction and confirm your order.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">Can I place a custom order?</p>
+            <p class="faq-answer">Absolutely. For custom gifting, corporate gifting, or special requests, we recommend contacting us through WhatsApp or email so we can guide you through the available options.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">Do you ship outside Nairobi?</p>
+            <p class="faq-answer">Yes, we can arrange shipping depending on the order and destination. Please contact us directly for the best delivery option and cost for your location.</p>
+        </div>
+    </main>
+</body>
+</html>

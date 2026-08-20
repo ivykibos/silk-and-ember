@@ -172,6 +172,7 @@ function launchConfetti() {
 
 // Coming Soon Carousel
 const track = document.getElementById('carousel-track');
+const carousel = document.querySelector('.carousel');
 const originalSlides = [...document.querySelectorAll('.carousel-slide')];
 const dots = [...document.querySelectorAll('.carousel-dot')];
 const prevBtn = document.getElementById('carousel-prev');
@@ -180,6 +181,9 @@ const comingSoon = document.getElementById('coming-soon');
 
 let autoAdvance;
 let current = 1;
+let dragStartX = 0;
+let dragCurrentX = 0;
+let isDragging = false;
 
 if (track && originalSlides.length > 0) {
     const firstClone = originalSlides[0].cloneNode(true);
@@ -279,6 +283,72 @@ if (track && originalSlides.length > 0) {
             autoAdvance = setInterval(goNext, 5000);
         });
     });
+
+    if (carousel) {
+        carousel.addEventListener('wheel', (event) => {
+            const delta = event.deltaY || event.deltaX;
+            if (Math.abs(delta) === 0) return;
+            event.preventDefault();
+            clearInterval(autoAdvance);
+            if (delta > 0) {
+                goNext();
+            } else {
+                goPrev();
+            }
+            autoAdvance = setInterval(goNext, 5000);
+        }, { passive: false });
+
+        carousel.addEventListener('pointerdown', (event) => {
+            isDragging = true;
+            dragStartX = event.clientX;
+            dragCurrentX = event.clientX;
+            clearInterval(autoAdvance);
+            track.style.transition = 'none';
+            if (event.pointerId !== undefined) {
+                track.setPointerCapture(event.pointerId);
+            }
+        });
+
+        carousel.addEventListener('pointermove', (event) => {
+            if (!isDragging) return;
+            dragCurrentX = event.clientX;
+            const deltaX = dragCurrentX - dragStartX;
+            const offset = -(current * 100) + (deltaX / carousel.clientWidth) * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        });
+
+        carousel.addEventListener('pointerup', () => {
+            if (!isDragging) return;
+            const deltaX = dragCurrentX - dragStartX;
+            isDragging = false;
+            if (Math.abs(deltaX) > 60) {
+                if (deltaX < 0) {
+                    goNext();
+                } else {
+                    goPrev();
+                }
+            } else {
+                goToSlide(current);
+            }
+            autoAdvance = setInterval(goNext, 5000);
+        });
+
+        carousel.addEventListener('pointerleave', () => {
+            if (!isDragging) return;
+            const deltaX = dragCurrentX - dragStartX;
+            isDragging = false;
+            if (Math.abs(deltaX) > 60) {
+                if (deltaX < 0) {
+                    goNext();
+                } else {
+                    goPrev();
+                }
+            } else {
+                goToSlide(current);
+            }
+            autoAdvance = setInterval(goNext, 5000);
+        });
+    }
 
     track.style.transition = 'none';
     track.style.transform = 'translateX(-100%)';
