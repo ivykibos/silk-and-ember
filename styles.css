@@ -1079,20 +1079,41 @@ footer {
 }
 /* Footer mobile */
 @media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-
     .footer-bottom {
         flex-direction: column;
         gap: 12px;
         text-align: center;
     }
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack everything cleanly in one column */
+        gap: 40px;
+    }
+    
+    .footer-form {
+        flex-direction: column; /* Stack input and submit button vertically on tiny screens */
+        gap: 10px;
+    }
+
+    .footer-submit {
+        border-left: 0.5px solid #F2E8DC30; /* Restore border for stacked button */
+    }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
+    .hero {
+        height: 100vh;
+        align-items: center;
+    }
+    .hero-gif {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4; /* Softens it so text remains crisp and readable */
+        transform: none;
+    }
     nav {
         padding: 16px 24px;
         top: 36px;
@@ -1121,11 +1142,12 @@ footer {
     .candles {
         flex-direction: column;
         align-items: center;
+        gap: 32px;
     }
 
     .candle {
         width: 100%;
-        max-width: 400px;
+        max-width: 100px;
     }
 
     .about {
@@ -1146,6 +1168,7 @@ footer {
         gap: 16px;
         text-align: center;
     }
+    
 }
 
 /* WELCOME POPUP */
