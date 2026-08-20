@@ -17,7 +17,7 @@ function updateNav() {
 window.addEventListener('scroll', updateNav);
 updateNav();
 
-// Hamburger menu
+// Hamburger menu toggle
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -35,7 +35,19 @@ function closeMobileMenu() {
     document.body.style.overflow = '';
 }
 
-// Search
+// Close mobile menu when clicking outside of it
+document.addEventListener('click', (e) => {
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
+        const clickedInsideMenu = mobileMenu.contains(e.target);
+        const clickedInsideHamburger = hamburger && hamburger.contains(e.target);
+        
+        if (!clickedInsideMenu && !clickedInsideHamburger) {
+            closeMobileMenu();
+        }
+    }
+});
+
+// Search functionality
 const searchIcon = document.getElementById('search-icon');
 const searchBar = document.getElementById('search-bar');
 const searchClose = document.getElementById('search-close');
@@ -55,7 +67,7 @@ if (searchClose && searchBar) {
     });
 }
 
-// Order tracking
+// Order tracking modal
 const orderTrackingLink = document.getElementById('order-tracking-link');
 const signinPage = document.getElementById('signin-page');
 const signinClose = document.getElementById('signin-close');
@@ -201,13 +213,13 @@ if (preorderBtn) {
     });
 }
 
-// Slots bar
+// Slots bar animation
 setTimeout(() => {
     const slotsFill = document.getElementById('slots-fill');
     if (slotsFill) slotsFill.style.width = '0%';
 }, 500);
 
-// Contact page
+// Contact page modal
 const contactLink = document.getElementById('contact-us-link');
 const contactPage = document.getElementById('contact-page');
 const contactClose = document.getElementById('contact-close');
@@ -226,15 +238,3 @@ if (contactClose && contactPage) {
         document.body.style.overflow = '';
     });
 }
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (mobileMenu && mobileMenu.classList.contains('open')) {
-        // Check if the click is outside both the mobile menu and the hamburger button
-        const clickedInsideMenu = mobileMenu.contains(e.target);
-        const clickedInsideHamburger = hamburger && hamburger.contains(e.target);
-        
-        if (!clickedInsideMenu && !clickedInsideHamburger) {
-            closeMobileMenu();
-        }
-    }
-});
