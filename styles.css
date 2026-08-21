@@ -35,12 +35,20 @@ nav {
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+.nav-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
 .nav-logo-img {
+    display: block;
     height: 36px;
     max-width: 160px;
     width: auto;
     object-fit: contain;
     transition: opacity 0.3s ease;
+    flex-shrink: 0;
 }
 
 nav.scrolled {
@@ -1518,6 +1526,18 @@ nav.scrolled .hamburger span {
     nav {
         padding: 16px 24px;
         top: 36px;
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .nav-logo-img {
+        height: 28px;
+        max-width: 132px;
+        width: auto;
     }
 
     nav.scrolled { top: 0; }
