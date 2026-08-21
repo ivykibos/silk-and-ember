@@ -631,12 +631,23 @@ nav.scrolled .nav-icons {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px;
-    gap: 80px;
+    padding: 80px clamp(32px, 6vw, 80px);
+    gap: 48px;
     min-height: 80vh;
     flex-shrink: 0;
     width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
     text-align: center;
+}
+
+.carousel-slide-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    width: min(100%, 980px);
+    margin: 0 auto;
 }
 
 .carousel-img {
@@ -681,6 +692,7 @@ nav.scrolled .nav-icons {
     max-width: 480px;
     min-width: 0;
     text-align: center;
+    margin: 0 auto;
 }
 
 .carousel-label {

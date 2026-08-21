@@ -226,9 +226,10 @@ if (track && originalSlides.length > 0) {
     }
 
     function goToSlide(index) {
+        const slideWidthPx = carousel ? carousel.clientWidth : 0;
         current = index;
         track.style.transition = transitionTiming;
-        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transform = `translateX(-${index * slideWidthPx}px)`;
         updateActiveDot(index);
     }
 
@@ -247,9 +248,10 @@ if (track && originalSlides.length > 0) {
     }
 
     function resetToStart() {
+        const slideWidthPx = carousel ? carousel.clientWidth : 0;
         track.style.transition = 'none';
         current = 1;
-        track.style.transform = 'translateX(-100%)';
+        track.style.transform = `translateX(-${slideWidthPx}px)`;
         updateActiveDot(current);
         requestAnimationFrame(() => {
             track.style.transition = transitionTiming;
@@ -257,9 +259,10 @@ if (track && originalSlides.length > 0) {
     }
 
     function resetToEnd() {
+        const slideWidthPx = carousel ? carousel.clientWidth : 0;
         track.style.transition = 'none';
         current = originalSlides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
+        track.style.transform = `translateX(-${current * slideWidthPx}px)`;
         updateActiveDot(current);
         requestAnimationFrame(() => {
             track.style.transition = transitionTiming;
@@ -323,8 +326,8 @@ if (track && originalSlides.length > 0) {
             if (!isDragging) return;
             dragCurrentX = event.clientX;
             const deltaX = dragCurrentX - dragStartX;
-            const offset = -(current * 100) + (deltaX / carousel.clientWidth) * 100;
-            track.style.transform = `translateX(${offset}%)`;
+            const offset = -(current * carousel.clientWidth) + deltaX;
+            track.style.transform = `translateX(${offset}px)`;
         });
 
         carousel.addEventListener('pointerup', () => {
@@ -361,7 +364,7 @@ if (track && originalSlides.length > 0) {
     }
 
     track.style.transition = 'none';
-    track.style.transform = 'translateX(-100%)';
+    track.style.transform = `translateX(-${carousel ? carousel.clientWidth : 0}px)`;
     updateActiveDot(current);
     autoAdvance = setInterval(goNext, 5000);
 }
