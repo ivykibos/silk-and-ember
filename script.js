@@ -2,6 +2,7 @@
 const navbar = document.getElementById('navbar');
 const announcementBar = document.querySelector('.announcement-bar');
 const navLogoImg = document.getElementById('nav-logo-img');
+let navUpdateFrame = null;
 
 function updateNav() {
     const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
@@ -14,7 +15,16 @@ function updateNav() {
     }
 }
 
-window.addEventListener('scroll', updateNav);
+function requestNavUpdate() {
+    if (navUpdateFrame) return;
+
+    navUpdateFrame = requestAnimationFrame(() => {
+        navUpdateFrame = null;
+        updateNav();
+    });
+}
+
+window.addEventListener('scroll', requestNavUpdate, { passive: true });
 updateNav();
 
 // Hamburger menu toggle
