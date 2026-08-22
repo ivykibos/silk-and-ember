@@ -147,7 +147,7 @@
                     <span class="preorder-option" data-scent="Golden Hour">Golden Hour</span>
                     <span class="preorder-option" data-scent="Slow Burn">Slow Burn</span>
                 </div>
-                <select id="preorder-scent" name="Scent Selection" class="preorder-input preorder-select" required aria-label="Scent selection">
+                <select id="preorder-scent" name="Scent Selection" class="preorder-input preorder-select" aria-label="Scent selection" tabindex="-1">
                     <option value="">Select a scent</option>
                     <option value="Sugar High">Sugar High</option>
                     <option value="Golden Hour">Golden Hour</option>
@@ -171,13 +171,14 @@
                     <p class="mpesa-label">M-Pesa Till</p>
                     <p class="mpesa-detail">Till Number: <strong>1626298</strong></p>
                     <p class="mpesa-detail">Amount: <strong>KSh 6,500</strong></p>
-                    <p class="mpesa-note">Pay via M-Pesa, then continue to WhatsApp. We'll verify your payment and dispatch your complimentary tester within the week.</p>
+                    <input type="text" id="preorder-transaction" name="M-Pesa Transaction ID" placeholder="Paste your M-Pesa transaction ID here" class="preorder-input" required />
+                    <p class="mpesa-note">Pay via M-Pesa, then paste your transaction ID above so we can verify your payment.</p>
                 </div>
             </div>
 
             <input type="hidden" name="Fulfillment Status" value="Unverified" />
 
-            <button class="preorder-btn" id="preorder-btn" type="submit">Reserve My Candle via WhatsApp →</button>
+            <button class="preorder-btn" id="preorder-btn" type="submit">Submit Reservation →</button>
         </form>
     </div>
 </section>
