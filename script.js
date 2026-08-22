@@ -63,19 +63,32 @@ const searchBar = document.getElementById('search-bar');
 const searchClose = document.getElementById('search-close');
 const searchInput = document.getElementById('search-input');
 
+function closeSearchBar() {
+    if (searchBar) searchBar.classList.remove('active');
+    if (searchInput) searchInput.value = '';
+}
+
 if (searchIcon && searchBar) {
     searchIcon.addEventListener('click', () => {
-        searchBar.classList.add('active');
+        searchBar.classList.toggle('active');
         if (searchInput) searchInput.focus();
     });
 }
 
 if (searchClose && searchBar) {
     searchClose.addEventListener('click', () => {
-        searchBar.classList.remove('active');
-        if (searchInput) searchInput.value = '';
+        closeSearchBar();
     });
 }
+
+document.addEventListener('click', (e) => {
+    const clickedInsideSearch = searchBar && searchBar.contains(e.target);
+    const clickedSearchButton = searchIcon && searchIcon.contains(e.target);
+
+    if (searchBar && searchBar.classList.contains('active') && !clickedInsideSearch && !clickedSearchButton) {
+        closeSearchBar();
+    }
+});
 
 // Order tracking / account modal
 const orderTrackingLink = document.getElementById('order-tracking-link');
@@ -118,6 +131,7 @@ document.addEventListener('keydown', (e) => {
         if (signinPage) signinPage.classList.remove('active');
         if (mobileMenu) mobileMenu.classList.remove('open');
         if (hamburger) hamburger.classList.remove('open');
+        closeSearchBar();
         document.body.style.overflow = '';
     }
 });
@@ -411,7 +425,7 @@ if (preorderBtn) {
             return;
         }
 
-        const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 3,500 via M-Pesa to Till No. 1626298.`;
+        const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 6,500 via M-Pesa to Till No. 1626298.`;
         window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
     });
 }

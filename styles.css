@@ -87,18 +87,38 @@ nav.scrolled .nav-links a {
 .nav-icons {
     display: flex;
     gap: 20px;
-    font-size: 18px;
+    align-items: center;
     color: #F2E8DC;
     transition: color 0.4s ease;
-    cursor: pointer;
 }
+
+.nav-icons button {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-icons button:hover {
+    transform: translateY(-1px);
+}
+
 .search-bar {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    width: min(720px, calc(100% - 32px));
+    transform: translateX(-50%);
     background-color: #F2E8DC;
-    padding: 28px 48px;
+    padding: 18px 20px;
     display: none;
     align-items: center;
     gap: 16px;
@@ -116,11 +136,11 @@ nav.scrolled .nav-links a {
     border: none;
     background: transparent;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 24px;
     color: #2B1D14;
     outline: none;
     letter-spacing: 1px;
-    padding: 8px 0;
+    padding: 4px 0;
 }
 
 .search-bar input::placeholder {
@@ -131,7 +151,7 @@ nav.scrolled .nav-links a {
     cursor: pointer;
     font-size: 18px;
     color: #8B5A2B;
-    padding: 8px 12px;
+    padding: 6px 8px;
     flex-shrink: 0;
     transition: color 0.3s ease;
 }
@@ -139,6 +159,28 @@ nav.scrolled .nav-links a {
 #search-close:hover {
     color: #2B1D14;
 }
+
+.reserve-allocation {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid currentColor;
+    padding: 9px 13px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.reserve-allocation:hover {
+    background-color: #8B5A2B;
+    border-color: #8B5A2B;
+    color: #F2E8DC;
+}
+
 nav.scrolled .nav-icons {
     color: #2B1D14;
 }
@@ -632,7 +674,7 @@ nav.scrolled .nav-icons {
     align-items: center;
     justify-content: center;
     padding: 80px clamp(32px, 6vw, 80px);
-    gap: 48px;
+    gap: 80px;
     min-height: 80vh;
     flex-shrink: 0;
     width: 100%;
@@ -641,19 +683,10 @@ nav.scrolled .nav-icons {
     text-align: center;
 }
 
-.carousel-slide-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 48px;
-    width: min(100%, 980px);
-    margin: 0 auto;
-}
-
 .carousel-img {
     flex: 1;
-    width: min(100%, 420px) !important;
-    max-width: 420px !important;
+    width: min(100%, 500px) !important;
+    max-width: 500px !important;
     min-width: 0;
     aspect-ratio: 1 / 1;
     height: auto !important;
