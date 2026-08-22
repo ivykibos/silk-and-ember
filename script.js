@@ -426,16 +426,23 @@ if (preorderForm) {
         const scent = document.querySelector('.preorder-option.selected');
         const name = document.getElementById('preorder-name')?.value;
         const phone = document.getElementById('preorder-phone')?.value;
-        const transactionId = document.getElementById('preorder-transaction')?.value;
 
         if (!scent) {
             alert('Please select a scent.');
             return;
         }
 
-        if (!name || !phone || !transactionId) {
-            alert('Please complete your name, phone number, and M-Pesa transaction ID.');
+        if (!name || !phone) {
+            alert('Please complete your name and phone number.');
             return;
+        }
+
+        const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 6,500 via M-Pesa to Till No. 1626298. I can share my transaction ID here if needed.`;
+        const whatsappUrl = `https://wa.me/254102513511?text=${encodeURIComponent(msg)}`;
+        const whatsappWindow = window.open(whatsappUrl, '_blank');
+
+        if (!whatsappWindow) {
+            window.location.href = whatsappUrl;
         }
 
         const submitButton = document.getElementById('preorder-btn');
@@ -455,12 +462,10 @@ if (preorderForm) {
                 submitButton.disabled = false;
                 submitButton.textContent = 'Reserve My Candle via WhatsApp →';
             }
-            alert('We could not send your reservation. Please try again.');
+            console.warn('Reservation could not be sent to Zapier.', error);
             return;
         }
 
-        const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 6,500 via M-Pesa to Till No. 1626298.`;
-        window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
         if (submitButton) submitButton.textContent = 'Reservation Sent';
     });
 }
