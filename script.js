@@ -463,10 +463,27 @@ if (preorderForm) {
 
         const submitButton = document.getElementById('preorder-btn');
         if (submitButton) {
-            submitButton.textContent = 'Reservations Temporarily Unavailable';
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending Reservation...';
         }
-        alert('Reservations are temporarily unavailable while payment processing is being set up.');
-        if (submitButton) submitButton.textContent = 'Submit Reservation →';
+
+        try {
+            await fetch(preorderForm.action, {
+                method: 'POST',
+                body: new FormData(preorderForm),
+                mode: 'no-cors'
+            });
+        } catch (error) {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Reservation →';
+            }
+            alert('We could not send your reservation. Please try again.');
+            return;
+        }
+
+        if (submitButton) submitButton.textContent = 'Reservation Sent';
+        openConfirmation();
     });
 }
 
