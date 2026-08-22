@@ -137,7 +137,7 @@
             <p class="slots-text"><span id="slots-remaining">30</span> slots remaining</p>
         </div>
 
-        <div class="preorder-form">
+        <form class="preorder-form" id="preorder-form" action="https://hooks.zapier.com/hooks/catch/28366013/4twk0vh/" method="POST">
 
             <div class="preorder-step">
                 <p class="preorder-step-num">01</p>
@@ -147,14 +147,20 @@
                     <span class="preorder-option" data-scent="Golden Hour">Golden Hour</span>
                     <span class="preorder-option" data-scent="Slow Burn">Slow Burn</span>
                 </div>
+                <select id="preorder-scent" name="Scent Selection" class="preorder-input preorder-select" required aria-label="Scent selection">
+                    <option value="">Select a scent</option>
+                    <option value="Sugar High">Sugar High</option>
+                    <option value="Golden Hour">Golden Hour</option>
+                    <option value="Slow Burn">Slow Burn</option>
+                </select>
             </div>
 
             <div class="preorder-step">
                 <p class="preorder-step-num">02</p>
                 <p class="preorder-step-title">Your details</p>
                 <div class="preorder-fields">
-                    <input type="text" id="preorder-name" placeholder="Your name" class="preorder-input" />
-                    <input type="tel" id="preorder-phone" placeholder="Phone number" class="preorder-input" />
+                    <input type="text" id="preorder-name" name="Client Name" placeholder="Your name" class="preorder-input" required />
+                    <input type="tel" id="preorder-phone" name="Contact Number" placeholder="Phone number" class="preorder-input" required />
                 </div>
             </div>
 
@@ -165,13 +171,15 @@
                     <p class="mpesa-label">M-Pesa Till</p>
                     <p class="mpesa-detail">Till Number: <strong>1626298</strong></p>
                     <p class="mpesa-detail">Amount: <strong>KSh 6,500</strong></p>
+                    <input type="text" id="preorder-transaction" name="M-Pesa Transaction ID" placeholder="M-Pesa transaction ID" class="preorder-input" required />
                     <p class="mpesa-note">Pay via M-Pesa, then click confirm below. We'll verify your payment and dispatch your complimentary tester within the week.</p>
                 </div>
             </div>
 
-        </div>
+            <input type="hidden" name="Fulfillment Status" value="Unverified" />
 
-        <button class="preorder-btn" id="preorder-btn">Reserve My Candle via WhatsApp →</button>
+            <button class="preorder-btn" id="preorder-btn" type="submit">Reserve My Candle via WhatsApp →</button>
+        </form>
     </div>
 </section>
     <!--

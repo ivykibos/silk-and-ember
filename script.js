@@ -385,10 +385,15 @@ if (track && originalSlides.length > 0) {
 
 // Pre-order form
 const preorderOptions = document.querySelectorAll('.preorder-option');
+const preorderForm = document.getElementById('preorder-form');
+const preorderScent = document.getElementById('preorder-scent');
 
 function selectPreorderOption(option) {
     preorderOptions.forEach(o => o.classList.remove('selected'));
-    if (option) option.classList.add('selected');
+    if (option) {
+        option.classList.add('selected');
+        if (preorderScent) preorderScent.value = option.dataset.scent;
+    }
 }
 
 preorderOptions.forEach(option => {
@@ -396,6 +401,13 @@ preorderOptions.forEach(option => {
         selectPreorderOption(option);
     });
 });
+
+if (preorderScent) {
+    preorderScent.addEventListener('change', () => {
+        const matchingOption = Array.from(preorderOptions).find(option => option.dataset.scent === preorderScent.value);
+        if (matchingOption) selectPreorderOption(matchingOption);
+    });
+}
 
 const collectionPreorderLinks = document.querySelectorAll('.candle-preorder');
 collectionPreorderLinks.forEach(link => {
@@ -408,25 +420,48 @@ collectionPreorderLinks.forEach(link => {
     });
 });
 
-const preorderBtn = document.getElementById('preorder-btn');
-if (preorderBtn) {
-    preorderBtn.addEventListener('click', () => {
+if (preorderForm) {
+    preorderForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
         const scent = document.querySelector('.preorder-option.selected');
         const name = document.getElementById('preorder-name')?.value;
         const phone = document.getElementById('preorder-phone')?.value;
+        const transactionId = document.getElementById('preorder-transaction')?.value;
 
         if (!scent) {
             alert('Please select a scent.');
             return;
         }
 
-        if (!name || !phone) {
-            openSigninModal();
+        if (!name || !phone || !transactionId) {
+            alert('Please complete your name, phone number, and M-Pesa transaction ID.');
+            return;
+        }
+
+        const submitButton = document.getElementById('preorder-btn');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending Reservation...';
+        }
+
+        try {
+            await fetch(preorderForm.action, {
+                method: 'POST',
+                body: new FormData(preorderForm),
+                mode: 'no-cors'
+            });
+        } catch (error) {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Reserve My Candle via WhatsApp →';
+            }
+            alert('We could not send your reservation. Please try again.');
             return;
         }
 
         const msg = `Hi! I'd like to pre-order a Silk & Ember candle.\n\nScent: ${scent.dataset.scent}\nName: ${name}\nPhone: ${phone}\n\nI have paid KSh 6,500 via M-Pesa to Till No. 1626298.`;
         window.open(`https://wa.me/254102513511?text=${encodeURIComponent(msg)}`, '_blank');
+        if (submitButton) submitButton.textContent = 'Reservation Sent';
     });
 }
 
