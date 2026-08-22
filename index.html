@@ -161,6 +161,7 @@
                 <div class="preorder-fields">
                     <input type="text" id="preorder-name" name="Client Name" placeholder="Your name" class="preorder-input" required />
                     <input type="tel" id="preorder-phone" name="Contact Number" placeholder="Phone number" class="preorder-input" required />
+                    <input type="email" id="preorder-email" name="Client Email" placeholder="Email address" class="preorder-input" required />
                 </div>
             </div>
 
@@ -453,6 +454,15 @@
         <p class="welcome-skip" id="welcome-skip">No thanks, I'll pay full price</p>
     </div>
 </div>
+<div class="confirmation-overlay" id="confirmation-overlay" aria-hidden="true">
+    <div class="confirmation-modal" role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
+        <button class="confirmation-close" id="confirmation-close" type="button" aria-label="Close confirmation">✕</button>
+        <p class="welcome-eyebrow">Reservation Received</p>
+        <h2 class="welcome-title" id="confirmation-title">Your payment is being verified.</h2>
+        <p class="welcome-sub">We have received your order details and will message you shortly with an update.</p>
+        <button class="welcome-btn" id="confirmation-btn" type="button">Done</button>
+    </div>
+</div>
 <div class="signin-page" id="contact-page">
     <div class="signin-wrap">
         <img src="logo-stacked-dark.svg" alt="Silk & Ember" class="signin-logo" />
@@ -475,6 +485,6 @@
     </div>
     <span class="signin-close" id="contact-close">✕</span>
 </div>
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 </html>

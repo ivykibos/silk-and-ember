@@ -387,6 +387,28 @@ if (track && originalSlides.length > 0) {
 const preorderOptions = document.querySelectorAll('.preorder-option');
 const preorderForm = document.getElementById('preorder-form');
 const preorderScent = document.getElementById('preorder-scent');
+const confirmationOverlay = document.getElementById('confirmation-overlay');
+const confirmationClose = document.getElementById('confirmation-close');
+const confirmationButton = document.getElementById('confirmation-btn');
+
+function closeConfirmation() {
+    if (confirmationOverlay) {
+        confirmationOverlay.classList.remove('active');
+        confirmationOverlay.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+}
+
+function openConfirmation() {
+    if (confirmationOverlay) {
+        confirmationOverlay.classList.add('active');
+        confirmationOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+if (confirmationClose) confirmationClose.addEventListener('click', closeConfirmation);
+if (confirmationButton) confirmationButton.addEventListener('click', closeConfirmation);
 
 function selectPreorderOption(option) {
     preorderOptions.forEach(o => o.classList.remove('selected'));
@@ -426,6 +448,7 @@ if (preorderForm) {
         const scent = document.querySelector('.preorder-option.selected');
         const name = document.getElementById('preorder-name')?.value;
         const phone = document.getElementById('preorder-phone')?.value;
+        const email = document.getElementById('preorder-email')?.value;
         const transactionId = document.getElementById('preorder-transaction')?.value;
 
         if (!scent) {
@@ -433,8 +456,8 @@ if (preorderForm) {
             return;
         }
 
-        if (!name || !phone || !transactionId) {
-            alert('Please complete your name, phone number, and M-Pesa transaction ID.');
+        if (!name || !phone || !email || !transactionId) {
+            alert('Please complete your name, phone number, email, and M-Pesa transaction ID.');
             return;
         }
 
@@ -460,6 +483,7 @@ if (preorderForm) {
         }
 
         if (submitButton) submitButton.textContent = 'Reservation Sent';
+        openConfirmation();
     });
 }
 
