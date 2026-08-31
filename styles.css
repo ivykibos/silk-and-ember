@@ -592,7 +592,7 @@ nav.scrolled .nav-icons {
     margin-top: 4px;
 }
 
-.preorder-btn {
+.intasend-pay-btn {
     padding: 20px 48px;
     background-color: #8B5A2B;
     color: #F2E8DC;
@@ -606,7 +606,7 @@ nav.scrolled .nav-icons {
     width: 100%;
 }
 
-.preorder-btn:hover { background-color: #5C3A45; }
+.intasend-pay-btn:hover { background-color: #5C3A45; }
 
 @media (max-width: 1024px) {
     nav {

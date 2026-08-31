@@ -177,7 +177,13 @@
 
             <input type="hidden" name="Fulfillment Status" value="Pending M-Pesa Prompt" />
 
-            <button class="preorder-btn" id="preorder-btn" type="submit">Reserve and Pay via M-Pesa →</button>
+            <button class="intasend-pay-btn" 
+        data-public-key="YOUR_LIVE_PUBLISHABLE_KEY" 
+        data-amount="4500" 
+        data-currency="KES" 
+        data-reference="BATCH001-ALLOCATION">
+    Secure Allocation
+</button>
         </form>
     </div>
 </section>
@@ -484,5 +490,19 @@
     <span class="signin-close" id="contact-close">✕</span>
 </div>
     <script src="script.js?v=2"></script>
+    <script>
+    new window.IntaSend({
+        publicAPIKey: "ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5",
+        live: true // Change to false to run a test transaction tonight
+    })
+    .on("COMPLETE", (results) => {
+        console.log("Payment Successful", results);
+        // Redirect the client to a bespoke confirmation page
+        window.location.href = "/allocation-secured.html"; 
+    })
+    .on("FAILED", (results) => {
+        console.log("Payment Failed", results);
+    });
+</script>
 </body>
 </html>
