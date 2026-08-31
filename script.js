@@ -390,6 +390,7 @@ const preorderScent = document.getElementById('preorder-scent');
 const confirmationOverlay = document.getElementById('confirmation-overlay');
 const confirmationClose = document.getElementById('confirmation-close');
 const confirmationButton = document.getElementById('confirmation-btn');
+const instasendCheckoutUrl = 'https://www.instasend.com/';
 
 function closeConfirmation() {
     if (confirmationOverlay) {
@@ -442,50 +443,37 @@ collectionPreorderLinks.forEach(link => {
     });
 });
 
-if (preorderForm) {
-    preorderForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const scent = document.querySelector('.preorder-option.selected');
-        const name = document.getElementById('preorder-name')?.value;
-        const phone = document.getElementById('preorder-phone')?.value;
-        const email = document.getElementById('preorder-email')?.value;
-        const transactionId = document.getElementById('preorder-transaction')?.value;
+const intasendButton = document.getElementById('intasend-btn');
 
-        if (!scent) {
+if (intasendButton) {
+    intasendButton.addEventListener('click', () => {
+        const scent = document.querySelector('.preorder-option.selected');
+        const scentValue = preorderScent ? preorderScent.value : (scent ? scent.dataset.scent : '');
+        const name = document.getElementById('preorder-name')?.value.trim();
+        const phone = document.getElementById('preorder-phone')?.value.trim();
+        const email = document.getElementById('preorder-email')?.value.trim();
+
+        if (!scentValue) {
             alert('Choose your scent to continue.');
             return;
         }
 
-        if (!name || !phone || !email || !transactionId) {
-            alert('Please complete your name, phone number, email, and M-Pesa transaction ID.');
+        if (!name || !phone || !email) {
+            alert('Please complete your name, phone number, and email before continuing.');
             return;
         }
 
-        const submitButton = document.getElementById('preorder-btn');
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending Reservation...';
-        }
+        const promptMessage = `Reserve ${scentValue} for ${name}? You’ll then be sent the M-Pesa payment prompt via InstaSend.`;
+        const confirmed = window.confirm(promptMessage);
 
-        try {
-            await fetch(preorderForm.action, {
-                method: 'POST',
-                body: new FormData(preorderForm),
-                mode: 'no-cors'
-            });
-        } catch (error) {
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Submit Reservation →';
-            }
-            alert('We could not send your reservation. Please try again.');
+        if (!confirmed) {
             return;
         }
 
-        if (submitButton) submitButton.textContent = 'Reservation Sent';
-        openConfirmation();
+        intasendButton.setAttribute('data-reference', `SE-${Date.now()}`);
     });
 }
+
 
 const notifyButtons = document.querySelectorAll('.carousel-notify');
 notifyButtons.forEach(button => {

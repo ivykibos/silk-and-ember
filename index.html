@@ -167,19 +167,24 @@
 
             <div class="preorder-step">
                 <p class="preorder-step-num">03</p>
-                <p class="preorder-step-title">Pay via M-Pesa</p>
+                <p class="preorder-step-title">Secure your slot</p>
                 <div class="mpesa-instructions">
-                    <p class="mpesa-label">M-Pesa Till</p>
-                    <p class="mpesa-detail">Till Number: <strong>1626298</strong></p>
-                    <p class="mpesa-detail">Amount: <strong>KSh 4,500</strong></p>
-                    <input type="text" id="preorder-transaction" name="M-Pesa Transaction ID" placeholder="Paste your M-Pesa transaction ID here" class="preorder-input" required />
-                    <p class="mpesa-note">Pay via M-Pesa, then paste your transaction ID above so we can verify your payment.</p>
+                    <p class="mpesa-label">Payment prompt</p>
+                    <p class="mpesa-detail">After you submit, we’ll send a prompt to complete payment via M-Pesa through InstaSend.</p>
+                    <p class="mpesa-note">Your allocation is reserved once you confirm the payment prompt.</p>
                 </div>
             </div>
 
-            <input type="hidden" name="Fulfillment Status" value="Unverified" />
+            <input type="hidden" name="Fulfillment Status" value="Pending InstaSend Checkout" />
 
-            <button class="preorder-btn" id="preorder-btn" type="submit">Submit Reservation →</button>
+            <button class="preorder-btn" id="intasend-btn" type="button"
+        data-public-key="YOUR_PUBLISHABLE_KEY" 
+        data-amount="4500" 
+        data-currency="KES" 
+        data-method="M-PESA" 
+        data-reference="BATCH001-ALLOCATION">
+    Secure Allocation
+</button>
         </form>
     </div>
 </section>
@@ -486,5 +491,19 @@
     <span class="signin-close" id="contact-close">✕</span>
 </div>
     <script src="script.js?v=2"></script>
+    <script src="https://unpkg.com/intasend-inlinejs-sdk@3.0.4/build/intasend-inline.js"></script>
+    <script>
+        new window.InstaSend({
+            publicAPIKey: 'YOUR_PUBLISHABLE_KEY',
+            live: true,
+        })
+        .on('COMPLETE', (results) => {
+            console.log('Payment Successful', results);
+            window.location.href = '/allocation-secured.html';
+        })
+        .on('FAILED', (results) => {
+            console.log('Payment Failed', results);
+        });
+    </script>
 </body>
 </html>
