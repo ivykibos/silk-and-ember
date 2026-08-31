@@ -390,7 +390,6 @@ const preorderScent = document.getElementById('preorder-scent');
 const confirmationOverlay = document.getElementById('confirmation-overlay');
 const confirmationClose = document.getElementById('confirmation-close');
 const confirmationButton = document.getElementById('confirmation-btn');
-const instasendCheckoutUrl = 'https://www.instasend.com/';
 
 function closeConfirmation() {
     if (confirmationOverlay) {
