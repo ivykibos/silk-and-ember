@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Allocation Secured | Silk & Ember</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #140f0d;
+            --panel: #1d1715;
+            --panel-soft: rgba(255,255,255,0.04);
+            --line: rgba(242,232,220,0.18);
+            --text: #f7efe8;
+            --muted: #d8c9ba;
+            --accent: #d7a977;
+            --accent-strong: #8b5a2b;
+            --success: #d5b07e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(circle at top, rgba(139,90,43,0.2), transparent 35%),
+                linear-gradient(135deg, #140f0d 0%, #1d1715 100%);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding: 32px 20px;
+        }
+
+        .card {
+            width: min(760px, 100%);
+            background: rgba(27, 22, 20, 0.9);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            padding: clamp(28px, 5vw, 56px);
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--success);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 0.95;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+        }
+
+        .sub {
+            margin: 22px auto 0;
+            max-width: 560px;
+            color: var(--muted);
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            margin-top: 28px;
+            border: 1px solid rgba(215,169,119,0.35);
+            background: rgba(215,169,119,0.08);
+            border-radius: 999px;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .actions {
+            margin-top: 34px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 26px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #1b1715;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--line);
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <p class="eyebrow">Reservation confirmed</p>
+        <h1>Batch 001 allocation is secured.</h1>
+        <p class="sub">
+            Your reservation has been received. Check your email for the bespoke receipt and payment details.
+            Our team will follow up with the next step shortly.
+        </p>
+        <div class="badge">Payment prompt pending</div>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn-primary">Back to the collection</a>
+            <a href="index.html#preorder" class="btn btn-secondary">Reserve another scent</a>
+        </div>
+    </main>
+</body>
+</html>
