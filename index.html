@@ -491,19 +491,5 @@
     <span class="signin-close" id="contact-close">✕</span>
 </div>
     <script src="script.js?v=2"></script>
-    <script src="https://unpkg.com/intasend-inlinejs-sdk@3.0.4/build/intasend-inline.js"></script>
-    <script>
-        new window.InstaSend({
-            publicAPIKey: 'YOUR_PUBLISHABLE_KEY',
-            live: true,
-        })
-        .on('COMPLETE', (results) => {
-            console.log('Payment Successful', results);
-            window.location.href = '/allocation-secured.html';
-        })
-        .on('FAILED', (results) => {
-            console.log('Payment Failed', results);
-        });
-    </script>
 </body>
 </html>

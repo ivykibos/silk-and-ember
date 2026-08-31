@@ -443,10 +443,9 @@ collectionPreorderLinks.forEach(link => {
     });
 });
 
-const intasendButton = document.getElementById('intasend-btn');
-
-if (intasendButton) {
-    intasendButton.addEventListener('click', () => {
+if (preorderForm) {
+    preorderForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
         const scent = document.querySelector('.preorder-option.selected');
         const scentValue = preorderScent ? preorderScent.value : (scent ? scent.dataset.scent : '');
         const name = document.getElementById('preorder-name')?.value.trim();
@@ -463,14 +462,36 @@ if (intasendButton) {
             return;
         }
 
-        const promptMessage = `Reserve ${scentValue} for ${name}? You’ll then be sent the M-Pesa payment prompt via InstaSend.`;
+        const promptMessage = `Reserve ${scentValue} for ${name}? You’ll then be sent the M-Pesa payment prompt.`;
         const confirmed = window.confirm(promptMessage);
 
         if (!confirmed) {
             return;
         }
 
-        intasendButton.setAttribute('data-reference', `SE-${Date.now()}`);
+        const submitButton = document.getElementById('preorder-btn');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending Reservation...';
+        }
+
+        try {
+            await fetch(preorderForm.action, {
+                method: 'POST',
+                body: new FormData(preorderForm),
+                mode: 'no-cors'
+            });
+        } catch (error) {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Reserve and Pay via M-Pesa →';
+            }
+            alert('We could not send your reservation. Please try again.');
+            return;
+        }
+
+        if (submitButton) submitButton.textContent = 'Reservation Sent';
+        openConfirmation();
     });
 }
 
