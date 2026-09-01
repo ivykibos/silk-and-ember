@@ -182,9 +182,9 @@
         data-currency="KES"
         data-method="M-PESA"
         data-reference="BATCH001-ALLOCATION">
+        
     Secure Allocation
-</button>
-<div class="secure-lockup" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; opacity: 0.6;">
+    <div class="secure-lockup" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; opacity: 0.6;">
     <svg width="12" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -193,6 +193,8 @@
         End-to-End Encrypted via M-Pesa Express
     </p>
 </div>
+</button>
+
         </form>
     </div>
 </section>
@@ -508,8 +510,9 @@
     if (window.IntaSend) {
         new window.IntaSend({
             publicAPIKey: "ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5",
-            live: true, // TESTING: keep this false until you've confirmed a real end-to-end test works, then switch to true to accept real money
-            element: "intaSendPayButton"
+            live: true, // The vault is now open to Safaricom's live network
+            element: "intaSendPayButton",
+            method: "M-PESA" // This absolutely forces the modal to bypass cards and lock into the STK push
         })
         .on("COMPLETE", (results) => {
             console.log("Payment Successful", results);
@@ -524,7 +527,9 @@
             console.log("Payment in progress", results);
         });
     } else {
-        console.warn("IntaSend SDK not loaded yet. Payment modal is still available for selection.");
+        console.warn("IntaSend SDK not loaded yet.");
+    }
+</script>
     }
 </script>
 </body>
