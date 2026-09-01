@@ -177,7 +177,7 @@
 
             <input type="hidden" name="Fulfillment Status" value="Pending payment confirmation" />
 
-            <button type="button" id="preorder-btn" class="intasend-pay-btn"
+            <button type="button" id="preorder-btn" class="intasend-pay-btn intaSendPayButton"
         data-amount="4500"
         data-currency="KES"
         data-reference="BATCH001-ALLOCATION">
@@ -520,7 +520,7 @@
     if (window.IntaSend) {
         new window.IntaSend({
             publicAPIKey: "ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5",
-            live: false, // TESTING: keep this false until you've confirmed a real end-to-end test works, then switch to true to accept real money
+            live: true, // TESTING: keep this false until you've confirmed a real end-to-end test works, then switch to true to accept real money
             element: "intaSendPayButton"
         })
         .on("COMPLETE", (results) => {
