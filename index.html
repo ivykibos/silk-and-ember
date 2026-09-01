@@ -169,10 +169,10 @@
                 <p class="preorder-step-num">03</p>
                 <p class="preorder-step-title">Secure your slot</p>
                 <div class="mpesa-instructions">
-                    <p class="mpesa-label">Payment method</p>
-                    <p class="mpesa-detail">Choose your preferred payment option when you click Secure Allocation. This is where M-Pesa, Airtel Money, and other available methods appear.</p>
-                    <p class="mpesa-note">Your allocation is reserved after you complete the selected payment option.</p>
-                </div>
+    <p class="mpesa-label">Direct Settlement</p>
+    <p class="mpesa-detail">Instant Mobile Money Authorization (M-Pesa STK Push).</p>
+    <p class="mpesa-note">Clicking Secure Allocation initiates an encrypted prompt directly to your phone. Your allocation is confirmed the moment the PIN clears.</p>
+</div>
             </div>
 
             <input type="hidden" name="Fulfillment Status" value="Pending payment confirmation" />
@@ -467,28 +467,6 @@
         <button class="welcome-btn" id="confirmation-btn" type="button">Done</button>
     </div>
 </div>
-
-<div class="payment-method-overlay" id="payment-method-overlay" aria-hidden="true">
-    <div class="payment-method-modal" role="dialog" aria-modal="true" aria-labelledby="payment-method-title">
-        <button class="confirmation-close" id="payment-method-close" type="button" aria-label="Close payment methods">✕</button>
-        <p class="welcome-eyebrow">Choose payment method</p>
-        <h2 class="welcome-title" id="payment-method-title">How would you like to pay?</h2>
-        <p class="welcome-sub">Select your preferred option below. M-Pesa, Airtel Money, and other available methods will be available here.</p>
-
-        <div class="payment-options">
-            <button type="button" class="payment-method-option selected" data-method="M-Pesa">
-                <span class="payment-method-name">M-Pesa</span>
-                <span class="payment-method-desc">Instant mobile payment</span>
-            </button>
-            <button type="button" class="payment-method-option" data-method="Airtel Money">
-                <span class="payment-method-name">Airtel Money</span>
-                <span class="payment-method-desc">Mobile wallet payment</span>
-            </button>
-            <button type="button" class="payment-method-option" data-method="Card / Bank Transfer">
-                <span class="payment-method-name">Card / Bank Transfer</span>
-                <span class="payment-method-desc">Alternative payment option</span>
-            </button>
-        </div>
 
         <button class="welcome-btn" id="payment-method-confirm" type="button">Continue to Payment</button>
     </div>

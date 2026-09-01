@@ -1537,25 +1537,6 @@ footer {
     margin-top: 12px;
 }
 
-.payment-method-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background: rgba(43,29,20,0.7);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-}
-
-.payment-method-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
 .payment-method-modal {
     position: relative;
     width: min(520px, 100%);
