@@ -178,7 +178,6 @@
             <input type="hidden" name="Fulfillment Status" value="Pending payment confirmation" />
 
             <button type="button" id="preorder-btn" class="intasend-pay-btn"
-        data-public-key="ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5"
         data-amount="4500"
         data-currency="KES"
         data-reference="BATCH001-ALLOCATION">
@@ -515,20 +514,25 @@
     </div>
     <span class="signin-close" id="contact-close">✕</span>
 </div>
+    <script src="https://unpkg.com/intasend-inlinejs-sdk@4.0.0/build/intasend-inline.js"></script>
     <script src="script.js?v=2"></script>
     <script>
     if (window.IntaSend) {
         new window.IntaSend({
             publicAPIKey: "ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5",
-            live: true // Change to false to run a test transaction tonight
+            live: false // TESTING: keep this false until you've confirmed a real end-to-end test works, then switch to true to accept real money
         })
         .on("COMPLETE", (results) => {
             console.log("Payment Successful", results);
-            // Redirect the client to a bespoke confirmation page
-            window.location.href = "/allocation-secured.html"; 
+            sendReservationToZapier(results);
+            window.location.href = "/allocation-secured.html";
         })
         .on("FAILED", (results) => {
             console.log("Payment Failed", results);
+            alert("Payment did not go through. Please try again.");
+        })
+        .on("IN-PROGRESS", (results) => {
+            console.log("Payment in progress", results);
         });
     } else {
         console.warn("IntaSend SDK not loaded yet. Payment modal is still available for selection.");

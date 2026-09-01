@@ -448,72 +448,28 @@ if (preorderForm) {
     });
 }
 
-const paymentMethodOverlay = document.getElementById('payment-method-overlay');
-const paymentMethodClose = document.getElementById('payment-method-close');
-const paymentMethodOptions = document.querySelectorAll('.payment-method-option');
-const paymentMethodConfirm = document.getElementById('payment-method-confirm');
-
-function openPaymentMethodModal() {
-    if (paymentMethodOverlay) {
-        paymentMethodOverlay.classList.add('active');
-        paymentMethodOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+function sendReservationToZapier(paymentResults) {
+    if (!preorderForm) return;
+    const hiddenStatus = document.querySelector('input[name="Fulfillment Status"]');
+    if (hiddenStatus) hiddenStatus.value = 'Paid';
+    const formData = new FormData(preorderForm);
+    if (paymentResults && paymentResults.invoice && paymentResults.invoice.invoice_id) {
+        formData.set('Payment Reference', paymentResults.invoice.invoice_id);
     }
-}
-
-function closePaymentMethodModal() {
-    if (paymentMethodOverlay) {
-        paymentMethodOverlay.classList.remove('active');
-        paymentMethodOverlay.setAttribute('aria-hidden', 'true');
+    try {
+        fetch(preorderForm.action, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        });
+    } catch (error) {
+        console.warn('Could not log reservation to Zapier:', error);
     }
-    document.body.style.overflow = '';
-}
-
-if (paymentMethodClose) {
-    paymentMethodClose.addEventListener('click', closePaymentMethodModal);
-}
-
-paymentMethodOptions.forEach((option) => {
-    option.addEventListener('click', () => {
-        paymentMethodOptions.forEach((item) => item.classList.remove('selected'));
-        option.classList.add('selected');
-    });
-});
-
-if (paymentMethodConfirm) {
-    paymentMethodConfirm.addEventListener('click', () => {
-        const selectedMethod = document.querySelector('.payment-method-option.selected')?.dataset.method || 'M-Pesa';
-        closePaymentMethodModal();
-        const confirmed = window.confirm(`Reserve your selection via ${selectedMethod}?`);
-
-        if (!confirmed) {
-            return;
-        }
-
-        if (preorderForm) {
-            const hiddenStatus = document.querySelector('input[name="Fulfillment Status"]');
-            if (hiddenStatus) hiddenStatus.value = `Pending ${selectedMethod} confirmation`;
-            const formData = new FormData(preorderForm);
-            formData.set('Payment Method', selectedMethod);
-            try {
-                fetch(preorderForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
-                });
-            } catch (error) {
-                alert('We could not send your reservation. Please try again.');
-                return;
-            }
-        }
-
-        openConfirmation();
-    });
 }
 
 const secureAllocationButton = document.getElementById('preorder-btn');
 if (secureAllocationButton) {
-    secureAllocationButton.addEventListener('click', () => {
+    secureAllocationButton.addEventListener('click', (event) => {
         const scent = document.querySelector('.preorder-option.selected');
         const scentValue = preorderScent ? preorderScent.value : (scent ? scent.dataset.scent : '');
         const name = document.getElementById('preorder-name')?.value.trim();
@@ -522,19 +478,22 @@ if (secureAllocationButton) {
 
         if (!scentValue) {
             alert('Choose your scent to continue.');
+            event.stopImmediatePropagation();
             return;
         }
 
         if (!name || !phone || !email) {
             alert('Please complete your name, contact number, and email before continuing.');
+            event.stopImmediatePropagation();
             return;
         }
 
         if (preorderForm && !preorderForm.reportValidity()) {
+            event.stopImmediatePropagation();
             return;
         }
 
-        openPaymentMethodModal();
+        // Validation passed \u2014 let IntaSend's own click handler take over from here and open the real checkout.
     });
 }
 
