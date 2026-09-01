@@ -157,10 +157,10 @@
 
             <div class="preorder-step">
                 <p class="preorder-step-num">02</p>
-                <p class="preorder-step-title">Your details</p>
+                <p class="preorder-step-title">Your contact details</p>
                 <div class="preorder-fields">
                     <input type="text" id="preorder-name" name="Client Name" placeholder="Your name" class="preorder-input" required />
-                    <input type="tel" id="preorder-phone" name="Contact Number" placeholder="Phone number" class="preorder-input" required />
+                    <input type="tel" id="preorder-phone" name="Contact Number" placeholder="Phone / WhatsApp for outreach" class="preorder-input" aria-label="Phone or WhatsApp for outreach" required />
                     <input type="email" id="preorder-email" name="Client Email" placeholder="Email address" class="preorder-input" required />
                 </div>
             </div>
@@ -169,18 +169,18 @@
                 <p class="preorder-step-num">03</p>
                 <p class="preorder-step-title">Secure your slot</p>
                 <div class="mpesa-instructions">
-                    <p class="mpesa-label">Payment prompt</p>
-                    <p class="mpesa-detail">After you submit, we’ll send a prompt to complete payment via M-Pesa through InstaSend.</p>
-                    <p class="mpesa-note">Your allocation is reserved once you confirm the payment prompt.</p>
+                    <p class="mpesa-label">Payment method</p>
+                    <p class="mpesa-detail">Choose your preferred payment option when you click Secure Allocation. This is where M-Pesa, Airtel Money, and other available methods appear.</p>
+                    <p class="mpesa-note">Your allocation is reserved after you complete the selected payment option.</p>
                 </div>
             </div>
 
-            <input type="hidden" name="Fulfillment Status" value="Pending M-Pesa Prompt" />
+            <input type="hidden" name="Fulfillment Status" value="Pending payment confirmation" />
 
-            <button class="intasend-pay-btn" 
-        data-public-key="YOUR_LIVE_PUBLISHABLE_KEY" 
-        data-amount="4500" 
-        data-currency="KES" 
+            <button type="button" id="preorder-btn" class="intasend-pay-btn"
+        data-public-key="ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5"
+        data-amount="4500"
+        data-currency="KES"
         data-reference="BATCH001-ALLOCATION">
     Secure Allocation
 </button>
@@ -467,6 +467,32 @@
         <button class="welcome-btn" id="confirmation-btn" type="button">Done</button>
     </div>
 </div>
+
+<div class="payment-method-overlay" id="payment-method-overlay" aria-hidden="true">
+    <div class="payment-method-modal" role="dialog" aria-modal="true" aria-labelledby="payment-method-title">
+        <button class="confirmation-close" id="payment-method-close" type="button" aria-label="Close payment methods">✕</button>
+        <p class="welcome-eyebrow">Choose payment method</p>
+        <h2 class="welcome-title" id="payment-method-title">How would you like to pay?</h2>
+        <p class="welcome-sub">Select your preferred option below. M-Pesa, Airtel Money, and other available methods will be available here.</p>
+
+        <div class="payment-options">
+            <button type="button" class="payment-method-option selected" data-method="M-Pesa">
+                <span class="payment-method-name">M-Pesa</span>
+                <span class="payment-method-desc">Instant mobile payment</span>
+            </button>
+            <button type="button" class="payment-method-option" data-method="Airtel Money">
+                <span class="payment-method-name">Airtel Money</span>
+                <span class="payment-method-desc">Mobile wallet payment</span>
+            </button>
+            <button type="button" class="payment-method-option" data-method="Card / Bank Transfer">
+                <span class="payment-method-name">Card / Bank Transfer</span>
+                <span class="payment-method-desc">Alternative payment option</span>
+            </button>
+        </div>
+
+        <button class="welcome-btn" id="payment-method-confirm" type="button">Continue to Payment</button>
+    </div>
+</div>
 <div class="signin-page" id="contact-page">
     <div class="signin-wrap">
         <img src="logo-stacked-dark.svg" alt="Silk & Ember" class="signin-logo" />
@@ -491,18 +517,22 @@
 </div>
     <script src="script.js?v=2"></script>
     <script>
-    new window.IntaSend({
-        publicAPIKey: "ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5",
-        live: true // Change to false to run a test transaction tonight
-    })
-    .on("COMPLETE", (results) => {
-        console.log("Payment Successful", results);
-        // Redirect the client to a bespoke confirmation page
-        window.location.href = "/allocation-secured.html"; 
-    })
-    .on("FAILED", (results) => {
-        console.log("Payment Failed", results);
-    });
+    if (window.IntaSend) {
+        new window.IntaSend({
+            publicAPIKey: "ISPubKey_live_5da2def1-d293-4031-812a-f00b9d28acc5",
+            live: true // Change to false to run a test transaction tonight
+        })
+        .on("COMPLETE", (results) => {
+            console.log("Payment Successful", results);
+            // Redirect the client to a bespoke confirmation page
+            window.location.href = "/allocation-secured.html"; 
+        })
+        .on("FAILED", (results) => {
+            console.log("Payment Failed", results);
+        });
+    } else {
+        console.warn("IntaSend SDK not loaded yet. Payment modal is still available for selection.");
+    }
 </script>
 </body>
 </html>

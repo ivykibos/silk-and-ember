@@ -443,8 +443,77 @@ collectionPreorderLinks.forEach(link => {
 });
 
 if (preorderForm) {
-    preorderForm.addEventListener('submit', async (event) => {
+    preorderForm.addEventListener('submit', (event) => {
         event.preventDefault();
+    });
+}
+
+const paymentMethodOverlay = document.getElementById('payment-method-overlay');
+const paymentMethodClose = document.getElementById('payment-method-close');
+const paymentMethodOptions = document.querySelectorAll('.payment-method-option');
+const paymentMethodConfirm = document.getElementById('payment-method-confirm');
+
+function openPaymentMethodModal() {
+    if (paymentMethodOverlay) {
+        paymentMethodOverlay.classList.add('active');
+        paymentMethodOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closePaymentMethodModal() {
+    if (paymentMethodOverlay) {
+        paymentMethodOverlay.classList.remove('active');
+        paymentMethodOverlay.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+}
+
+if (paymentMethodClose) {
+    paymentMethodClose.addEventListener('click', closePaymentMethodModal);
+}
+
+paymentMethodOptions.forEach((option) => {
+    option.addEventListener('click', () => {
+        paymentMethodOptions.forEach((item) => item.classList.remove('selected'));
+        option.classList.add('selected');
+    });
+});
+
+if (paymentMethodConfirm) {
+    paymentMethodConfirm.addEventListener('click', () => {
+        const selectedMethod = document.querySelector('.payment-method-option.selected')?.dataset.method || 'M-Pesa';
+        closePaymentMethodModal();
+        const confirmed = window.confirm(`Reserve your selection via ${selectedMethod}?`);
+
+        if (!confirmed) {
+            return;
+        }
+
+        if (preorderForm) {
+            const hiddenStatus = document.querySelector('input[name="Fulfillment Status"]');
+            if (hiddenStatus) hiddenStatus.value = `Pending ${selectedMethod} confirmation`;
+            const formData = new FormData(preorderForm);
+            formData.set('Payment Method', selectedMethod);
+            try {
+                fetch(preorderForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+            } catch (error) {
+                alert('We could not send your reservation. Please try again.');
+                return;
+            }
+        }
+
+        openConfirmation();
+    });
+}
+
+const secureAllocationButton = document.getElementById('preorder-btn');
+if (secureAllocationButton) {
+    secureAllocationButton.addEventListener('click', () => {
         const scent = document.querySelector('.preorder-option.selected');
         const scentValue = preorderScent ? preorderScent.value : (scent ? scent.dataset.scent : '');
         const name = document.getElementById('preorder-name')?.value.trim();
@@ -457,40 +526,15 @@ if (preorderForm) {
         }
 
         if (!name || !phone || !email) {
-            alert('Please complete your name, phone number, and email before continuing.');
+            alert('Please complete your name, contact number, and email before continuing.');
             return;
         }
 
-        const promptMessage = `Reserve ${scentValue} for ${name}? You’ll then be sent the M-Pesa payment prompt.`;
-        const confirmed = window.confirm(promptMessage);
-
-        if (!confirmed) {
+        if (preorderForm && !preorderForm.reportValidity()) {
             return;
         }
 
-        const submitButton = document.getElementById('preorder-btn');
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending Reservation...';
-        }
-
-        try {
-            await fetch(preorderForm.action, {
-                method: 'POST',
-                body: new FormData(preorderForm),
-                mode: 'no-cors'
-            });
-        } catch (error) {
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Reserve and Pay via M-Pesa →';
-            }
-            alert('We could not send your reservation. Please try again.');
-            return;
-        }
-
-        if (submitButton) submitButton.textContent = 'Reservation Sent';
-        openConfirmation();
+        openPaymentMethodModal();
     });
 }
 
