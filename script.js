@@ -453,8 +453,14 @@ function sendReservationToZapier(paymentResults) {
     const hiddenStatus = document.querySelector('input[name="Fulfillment Status"]');
     if (hiddenStatus) hiddenStatus.value = 'Paid';
     const formData = new FormData(preorderForm);
-    if (paymentResults && paymentResults.invoice && paymentResults.invoice.invoice_id) {
-        formData.set('Payment Reference', paymentResults.invoice.invoice_id);
+    if (paymentResults && paymentResults.invoice) {
+        if (paymentResults.invoice.invoice_id) {
+            formData.set('Payment Reference', paymentResults.invoice.invoice_id);
+        }
+        const amountPaid = paymentResults.invoice.net_amount || paymentResults.invoice.value;
+        if (amountPaid) {
+            formData.set('Amount Paid', amountPaid);
+        }
     }
     try {
         fetch(preorderForm.action, {
