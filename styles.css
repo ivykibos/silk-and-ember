@@ -2249,71 +2249,89 @@ nav.scrolled {
 }
 
 /* Standalone Product Page Layout (Harriet Allure Style) */
+/* Standalone Product Page Layout (Harriet Allure Style) */
 .pdp-page-container {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 140px 48px 80px;
-    background-color: #F2E8DC;
-    color: #2B1D14;
+    padding: 140px 48px 100px;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
 }
 
 .pdp-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 56px;
+    gap: 64px;
     align-items: start;
 }
 
 .pdp-gallery {
     display: flex;
-    gap: 16px;
+    gap: 18px;
 }
 
 .pdp-thumb-col {
-    width: 72px;
+    width: 76px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .pdp-thumb {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1px solid #8B5A2B;
+    border: 1px solid var(--border-dark);
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.pdp-thumb.active,
+.pdp-thumb:hover {
+    border-color: var(--accent-ember);
 }
 
 .pdp-main-img-wrap {
     flex: 1;
     aspect-ratio: 1 / 1;
-    background: #E8D8C4;
+    background: #E8E2D9;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
 }
 
 .pdp-content {
+    position: sticky;
+    top: 120px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
 }
 
 .pdp-brand-kicker {
-    color: #8B5A2B;
+    color: var(--accent-ember);
     font-size: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .pdp-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 300;
-    line-height: 1;
-    color: #2B1D14;
+    line-height: 1.05;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
 }
 
 .pdp-meta-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
+    gap: 10px 24px;
     align-items: center;
-    color: #2B1D14B8;
+    color: var(--text-secondary);
     font-size: 12px;
     line-height: 1.5;
 }
@@ -2330,7 +2348,7 @@ nav.scrolled {
     height: 15px;
     flex-shrink: 0;
     fill: none;
-    stroke: currentColor;
+    stroke: var(--accent-ember);
     stroke-width: 1.5;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -2339,27 +2357,28 @@ nav.scrolled {
 .pdp-eco-tag {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    color: #2B1D14B8;
+    gap: 8px;
+    color: var(--text-secondary);
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .pdp-price-row {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-top: 8px;
+    margin-top: 4px;
 }
 
 .pdp-price {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    color: #2B1D14;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--text-primary);
 }
 
 .pdp-tax-note {
-    color: #2B1D1470;
+    color: var(--text-secondary);
     font-size: 11px;
 }
 
@@ -2367,74 +2386,86 @@ nav.scrolled {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #2B1D14;
+    color: var(--text-primary);
     font-size: 12px;
+    font-weight: 400;
 }
 
 .pdp-stock-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: #8B5A2B;
+    background-color: var(--accent-ember);
 }
 
 .pdp-actions {
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 .pdp-btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
+    min-height: 52px;
     width: 100%;
-    padding: 14px 24px;
-    background-color: #2B1D14;
-    color: #F2E8DC;
+    padding: 16px 28px;
+    background-color: var(--btn-bg);
+    color: var(--text-light);
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    border-radius: 2px;
+    border: 1px solid var(--btn-bg);
+    transition: all 0.3s ease;
 }
 
 .pdp-btn-primary:hover {
-    background-color: #8B5A2B;
+    background-color: var(--accent-ember);
+    border-color: var(--accent-ember);
+    color: #FFFFFF;
 }
 
 .pdp-description-block {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    margin-top: 8px;
+    gap: 20px;
+    margin-top: 10px;
 }
 
 .pdp-desc-text {
-    color: #2B1D14;
+    color: var(--text-primary);
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
-    line-height: 1.2;
+    line-height: 1.4;
+    font-weight: 300;
 }
 
 .pdp-notes-breakdown {
-    background: rgba(255,255,255,0.4);
-    padding: 16px 20px;
-    border-left: 2px solid #8B5A2B;
+    background: #FFFFFF;
+    border: 1px solid var(--border-dark);
+    border-radius: 2px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .pdp-note-line {
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #8B5A2B;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .pdp-note-line strong {
-    color: #2B1D14;
-    font-weight: 400;
+    color: var(--accent-ember);
+    font-weight: 500;
+    min-width: 60px;
 }
 
 .pdp-details-accordion {
