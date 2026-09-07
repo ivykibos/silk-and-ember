@@ -1,19 +1,46 @@
+:root {
+    /* Base Palette */
+    --bg-main: #FAF6F0;              /* Luminous Alabaster Ivory */
+    --bg-dark: #0D0B0A;              /* Deep Warm Obsidian Black */
+    --bg-dark-card: #161412;         /* Rich Charcoal Espresso */
+    --bg-dark-elevated: #201D1A;     /* Soft Elevated Onyx */
+    
+    /* Dynamic Luxury Accents */
+    --accent-ember: #C87D55;         /* Warm Terracotta Ember */
+    --accent-gold: #D4AF37;          /* Luminous Champagne Gold */
+    --accent-sand: #B89979;          /* Warm Sand / Oat */
+    
+    /* Text Hierarchy */
+    --text-primary: #1C1917;         /* Crisp Soft Charcoal */
+    --text-secondary: #6B6158;       /* Muted Slate Earth */
+    --text-light: #FAF6F0;           /* Bright Ivory Alabaster */
+    --text-light-muted: #C8BEB3;     /* Muted Warm Cream */
+    
+    /* Buttons & Controls */
+    --btn-bg: #1C1917;               /* Deep Charcoal button */
+    --btn-hover: #C87D55;            /* Terracotta Ember Hover */
+    --border-gold: rgba(212, 175, 55, 0.25);
+    --border-dark: rgba(28, 25, 23, 0.12);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
-    background-color: #F2E8DC;
+    background-color: var(--bg-main);
     font-family: 'Inter', sans-serif;
-    color: #2B1D14;
+    color: var(--text-primary);
     overflow-x: hidden;
 }
 
 /* ANNOUNCEMENT BAR */
 .announcement-bar {
-    background-color: #2B1D14;
-    color: #F2E8DC;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border-bottom: 1px solid var(--border-gold);
     text-align: center;
     padding: 10px 24px;
     font-size: 11px;
@@ -348,12 +375,15 @@ nav.scrolled .nav-icons {
     position: absolute;
     top: 16px;
     left: 16px;
-    background-color: #5C3A45;
-    color: #F2E8DC;
+    background-color: var(--accent-ember);
+    color: #FFFFFF;
     font-size: 9px;
+    font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 4px 10px;
+    padding: 5px 12px;
+    border-radius: 1px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .candle-info {
@@ -374,7 +404,7 @@ nav.scrolled .nav-icons {
     font-family: 'Cormorant Garamond', serif;
     font-size: 24px;
     font-weight: 400;
-    color: #2B1D14;
+    color: var(--text-primary);
     margin: 0;
     line-height: 1.2;
 }
@@ -382,8 +412,8 @@ nav.scrolled .nav-icons {
 .candle-price {
     font-family: 'Inter', sans-serif;
     font-size: 13px;
-    font-weight: 400;
-    color: #5C3A45;
+    font-weight: 500;
+    color: var(--accent-ember);
     letter-spacing: 0.5px;
     white-space: nowrap;
 }
@@ -393,11 +423,10 @@ nav.scrolled .nav-icons {
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.5px;
-    color: #8B5A2B;
+    color: var(--text-secondary);
     text-transform: none;
     margin: 2px 0 14px 0;
     line-height: 1.4;
-    opacity: 0.9;
 }
 
 .candle-actions {
@@ -412,33 +441,33 @@ nav.scrolled .nav-icons {
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #8B5A2B;
+    color: var(--accent-ember);
     text-decoration: none;
     transition: opacity 0.25s ease;
 }
 
 .candle-details-link:hover {
-    opacity: 0.65;
+    opacity: 0.75;
 }
 
 .candle-preorder {
     font-size: 10px;
-    color: #F2E8DC;
-    background-color: #2B1D14;
+    color: var(--text-light);
+    background-color: var(--btn-bg);
     padding: 8px 16px;
     text-decoration: none;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     display: inline-block;
     border-radius: 2px;
-    border: 1px solid #2B1D14;
+    border: 1px solid var(--btn-bg);
     transition: all 0.3s ease;
 }
 
 .candle-preorder:hover {
-    background-color: #8B5A2B;
-    border-color: #8B5A2B;
-    color: #F2E8DC;
+    background-color: var(--accent-ember);
+    border-color: var(--accent-ember);
+    color: #FFFFFF;
 }
 
 /* PRE-ORDER SECTION */
@@ -1896,7 +1925,9 @@ nav.scrolled .hamburger span {
    KURINUKI SECTION — Dark, scarce, editorial
    ============================================================ */
 .kurinuki-section {
-    background-color: #1A1008;
+    background-color: var(--bg-dark);
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
     padding: 100px 48px;
     text-align: center;
 }
@@ -1914,7 +1945,7 @@ nav.scrolled .hamburger span {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(42px, 6vw, 72px);
     font-weight: 300;
-    color: #F2E8DC;
+    color: var(--text-light);
     letter-spacing: 2px;
     margin: 8px 0 20px;
     line-height: 1;
@@ -1922,7 +1953,7 @@ nav.scrolled .hamburger span {
 
 .kurinuki-sub {
     font-size: 14px;
-    color: #F2E8DC80;
+    color: var(--text-light-muted);
     font-weight: 300;
     line-height: 1.8;
     max-width: 560px;
@@ -1934,22 +1965,22 @@ nav.scrolled .hamburger span {
 }
 
 .kurinuki-candle .candle-name {
-    color: #F2E8DC;
+    color: var(--text-light);
 }
 
 .kurinuki-price {
-    color: #C4A882 !important;
+    color: var(--accent-gold) !important;
     font-size: 14px !important;
+    font-weight: 500;
 }
 
 .kurinuki-candle .candle-note {
-    color: #C4A882;
-    opacity: 0.85;
+    color: var(--text-light-muted);
 }
 
 .kurinuki-candle .candle-details-link {
-    color: #C4A882;
-    opacity: 0.8;
+    color: var(--accent-gold);
+    opacity: 0.9;
 }
 
 .kurinuki-candle .candle-details-link:hover {
@@ -1957,19 +1988,21 @@ nav.scrolled .hamburger span {
 }
 
 .kurinuki-tag {
-    background-color: #8B5A2B !important;
+    background-color: var(--accent-gold) !important;
+    color: #0D0B0A !important;
+    font-weight: 600 !important;
 }
 
 .kurinuki-candle .candle-preorder {
     background-color: transparent;
-    border: 1px solid #C4A88260;
-    color: #C4A882 !important;
+    border: 1px solid var(--border-gold);
+    color: var(--accent-gold) !important;
 }
 
 .kurinuki-candle .candle-preorder:hover {
-    background-color: #C4A882;
-    color: #180D07 !important;
-    border-color: #C4A882;
+    background-color: var(--accent-gold);
+    color: #0D0B0A !important;
+    border-color: var(--accent-gold);
 }
 
 /* Kurinuki pre-order form — dark background */
