@@ -383,125 +383,188 @@ if (track && originalSlides.length > 0) {
     autoAdvance = setInterval(goNext, 5000);
 }
 
-// Pre-order form
-const preorderOptions = document.querySelectorAll('.preorder-option');
-const preorderForm = document.getElementById('preorder-form');
-const preorderScent = document.getElementById('preorder-scent');
-const confirmationOverlay = document.getElementById('confirmation-overlay');
-const confirmationClose = document.getElementById('confirmation-close');
-const confirmationButton = document.getElementById('confirmation-btn');
+// ============================================================
+// DUAL-TIER CHECKOUT — Kurinuki (KSh 6,500) + Studio (KSh 4,500)
+// ============================================================
 
-function closeConfirmation() {
-    if (confirmationOverlay) {
-        confirmationOverlay.classList.remove('active');
-        confirmationOverlay.setAttribute('aria-hidden', 'true');
+// Track which tier's button was last clicked so the COMPLETE
+// handler knows which form + amount to send to Make.
+let activeTier = null; // 'kurinuki' | 'studio'
+
+// ---------- Tier config ----------
+const TIERS = {
+    kurinuki: {
+        formId:       'kurinuki-form',
+        btnId:        'kurinuki-btn',
+        scentSelectId:'kurinuki-scent',
+        optionsId:    'kurinuki-scent-options',
+        nameId:       'kurinuki-name',
+        phoneId:      'kurinuki-phone',
+        emailId:      'kurinuki-email',
+        amount:       6500,
+        label:        'Kurinuki Vessel — Batch 001',
+    },
+    studio: {
+        formId:       'studio-form',
+        btnId:        'studio-btn',
+        scentSelectId:'studio-scent',
+        optionsId:    'studio-scent-options',
+        nameId:       'studio-name',
+        phoneId:      'studio-phone',
+        emailId:      'studio-email',
+        amount:       4500,
+        label:        'Studio Collection — Glass Vessel',
     }
-    document.body.style.overflow = '';
-}
+};
 
-function openConfirmation() {
-    if (confirmationOverlay) {
-        confirmationOverlay.classList.add('active');
-        confirmationOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-}
+// ---------- Scent pill selection ----------
+function initScentOptions(optionsId, scentSelectId) {
+    const container = document.getElementById(optionsId);
+    const select    = document.getElementById(scentSelectId);
+    if (!container) return;
 
-if (confirmationClose) confirmationClose.addEventListener('click', closeConfirmation);
-if (confirmationButton) confirmationButton.addEventListener('click', closeConfirmation);
+    const options = container.querySelectorAll('.preorder-option');
 
-function selectPreorderOption(option) {
-    preorderOptions.forEach(o => o.classList.remove('selected'));
-    if (option) {
-        option.classList.add('selected');
-        if (preorderScent) preorderScent.value = option.dataset.scent;
-    }
-}
-
-preorderOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        selectPreorderOption(option);
+    options.forEach(opt => {
+        opt.addEventListener('click', () => {
+            options.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            if (select) select.value = opt.dataset.scent;
+        });
     });
-});
 
-if (preorderScent) {
-    preorderScent.addEventListener('change', () => {
-        const matchingOption = Array.from(preorderOptions).find(option => option.dataset.scent === preorderScent.value);
-        if (matchingOption) selectPreorderOption(matchingOption);
-    });
+    if (select) {
+        select.addEventListener('change', () => {
+            const match = [...options].find(o => o.dataset.scent === select.value);
+            options.forEach(o => o.classList.remove('selected'));
+            if (match) match.classList.add('selected');
+        });
+    }
 }
 
-const collectionPreorderLinks = document.querySelectorAll('.candle-preorder');
-collectionPreorderLinks.forEach(link => {
+initScentOptions(TIERS.kurinuki.optionsId, TIERS.kurinuki.scentSelectId);
+initScentOptions(TIERS.studio.optionsId,   TIERS.studio.scentSelectId);
+
+// ---------- Collection card links pre-fill form ----------
+document.querySelectorAll('.candle-preorder').forEach(link => {
     link.addEventListener('click', () => {
         const scent = link.dataset.scent;
-        const matchedOption = Array.from(preorderOptions).find(option => option.dataset.scent === scent);
-        if (matchedOption) {
-            selectPreorderOption(matchedOption);
+        const tier  = link.dataset.tier; // 'kurinuki' | 'studio'
+        if (!tier || !TIERS[tier]) return;
+
+        const cfg       = TIERS[tier];
+        const container = document.getElementById(cfg.optionsId);
+        const select    = document.getElementById(cfg.scentSelectId);
+        if (container) {
+            const options = container.querySelectorAll('.preorder-option');
+            options.forEach(o => o.classList.remove('selected'));
+            const match = [...options].find(o => o.dataset.scent === scent);
+            if (match) match.classList.add('selected');
         }
+        if (select) select.value = scent;
     });
 });
 
-if (preorderForm) {
-    preorderForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-    });
-}
+// ---------- Validate + arm IntaSend button ----------
+function armTierButton(tierKey) {
+    const cfg = TIERS[tierKey];
+    const btn = document.getElementById(cfg.btnId);
+    if (!btn) return;
 
-function sendReservationToZapier(paymentResults) {
-    if (!preorderForm) return;
-    const hiddenStatus = document.querySelector('input[name="Fulfillment Status"]');
-    if (hiddenStatus) hiddenStatus.value = 'Paid';
-    const formData = new FormData(preorderForm);
-    if (paymentResults && paymentResults.invoice) {
-        if (paymentResults.invoice.invoice_id) {
-            formData.set('Payment Reference', paymentResults.invoice.invoice_id);
-        }
-        const amountPaid = paymentResults.invoice.net_amount || paymentResults.invoice.value;
-        if (amountPaid) {
-            formData.set('Amount Paid', amountPaid);
-        }
-    }
-    try {
-        fetch(preorderForm.action, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors'
-        });
-    } catch (error) {
-        console.warn('Could not log reservation to Zapier:', error);
-    }
-}
-
-const secureAllocationButton = document.getElementById('preorder-btn');
-if (secureAllocationButton) {
-    secureAllocationButton.addEventListener('click', (event) => {
-        const scent = document.querySelector('.preorder-option.selected');
-        const scentValue = preorderScent ? preorderScent.value : (scent ? scent.dataset.scent : '');
-        const name = document.getElementById('preorder-name')?.value.trim();
-        const phone = document.getElementById('preorder-phone')?.value.trim();
-        const email = document.getElementById('preorder-email')?.value.trim();
+    btn.addEventListener('click', (event) => {
+        const select = document.getElementById(cfg.scentSelectId);
+        const scentValue = select ? select.value : '';
+        const name  = document.getElementById(cfg.nameId)?.value.trim();
+        const phone = document.getElementById(cfg.phoneId)?.value.trim();
+        const email = document.getElementById(cfg.emailId)?.value.trim();
 
         if (!scentValue) {
-            alert('Choose your scent to continue.');
+            alert('Please choose your scent to continue.');
             event.stopImmediatePropagation();
             return;
         }
-
         if (!name || !phone || !email) {
             alert('Please complete your name, contact number, and email before continuing.');
             event.stopImmediatePropagation();
             return;
         }
 
-        if (preorderForm && !preorderForm.reportValidity()) {
-            event.stopImmediatePropagation();
-            return;
-        }
-
-        // Validation passed \u2014 let IntaSend's own click handler take over from here and open the real checkout.
+        // Record which tier is paying so COMPLETE handler uses the right form
+        activeTier = tierKey;
+        // Let IntaSend's own handler take over — it reads data-amount from the button
     });
 }
+
+armTierButton('kurinuki');
+armTierButton('studio');
+
+// ---------- Async-safe Make webhook (fixes race condition) ----------
+async function sendToMake(form, paymentResults) {
+    if (!form) return;
+
+    // Mark as paid
+    const hiddenStatus = form.querySelector('input[name="Fulfillment Status"]');
+    if (hiddenStatus) hiddenStatus.value = 'Paid';
+
+    const formData = new FormData(form);
+
+    // Attach IntaSend transaction data
+    if (paymentResults?.invoice) {
+        if (paymentResults.invoice.invoice_id) {
+            formData.set('Payment Reference', paymentResults.invoice.invoice_id);
+        }
+        const amountPaid = paymentResults.invoice.net_amount || paymentResults.invoice.value;
+        if (amountPaid) formData.set('Amount Paid', amountPaid);
+    }
+
+    // CRITICAL: await the fetch before redirecting — this is what kills the race condition.
+    // mode: no-cors means we won't get a readable response but Make still receives the payload.
+    try {
+        await fetch(form.action, {
+            method: 'POST',
+            body:   formData,
+            mode:   'no-cors',
+            keepalive: true  // allows request to outlive page navigation as a safety net
+        });
+    } catch (err) {
+        console.warn('Make webhook error:', err);
+        // Don't block redirect on network error — data is best-effort
+    }
+}
+
+// ---------- IntaSend COMPLETE handler ----------
+// IntaSend fires a global 'COMPLETE' event on window when payment succeeds.
+window.addEventListener('COMPLETE', async (e) => {
+    const paymentResults = e.detail || {};
+    const tier = activeTier;
+    const cfg  = tier ? TIERS[tier] : null;
+    const form = cfg ? document.getElementById(cfg.formId) : null;
+
+    // Send to Make first, THEN redirect — no more race condition
+    await sendToMake(form, paymentResults);
+    window.location.href = 'allocation-secured.html';
+});
+
+// FAILED event
+window.addEventListener('FAILED', (e) => {
+    console.error('IntaSend payment failed:', e.detail);
+    alert('Payment could not be completed. Please try again or contact us on WhatsApp.');
+});
+
+// ---------- Prevent native form submit ----------
+['kurinuki-form', 'studio-form'].forEach(id => {
+    const f = document.getElementById(id);
+    if (f) f.addEventListener('submit', e => e.preventDefault());
+});
+
+// ---------- Slots bar animation ----------
+setTimeout(() => {
+    const fills = ['kurinuki-slots-fill', 'slots-fill'];
+    fills.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.width = '0%';
+    });
+}, 500);
 
 
 const notifyButtons = document.querySelectorAll('.carousel-notify');
@@ -534,3 +597,101 @@ if (contactClose && contactPage) {
         document.body.style.overflow = '';
     });
 }
+// ============================================================
+// PRODUCT DETAIL VIEW (PDP) CONTROLLER
+// ============================================================
+const pdpOverlay = document.getElementById('pdp-overlay');
+const pdpClose = document.getElementById('pdp-close');
+
+// Product Data Dictionary (Maps each scent to its specific attributes & notes)
+const PRODUCT_DATA = {
+    "Sugar High": {
+        tier: "kurinuki",
+        price: "KSh 6,500",
+        vessel: "HAND-CAST VESSEL · DISCOVERY POUR INCLUDED",
+        top: "Salted Caramel",
+        heart: "Sage & Sea Salt",
+        base: "Amber",
+        desc: "A rich, indulgent haze designed to anchor your space. Opening with salted caramel warmth, settling into crisp sage & sea salt, and grounded by rich amber.",
+        targetHref: "#kurinuki-preorder"
+    },
+    "Golden Hour": {
+        tier: "kurinuki",
+        price: "KSh 6,500",
+        vessel: "HAND-CAST VESSEL · DISCOVERY POUR INCLUDED",
+        top: "Vanilla Bay",
+        heart: "Amber",
+        base: "Peach",
+        desc: "Capturing the final amber light before dusk. Warm vanilla bay melds seamlessly with sun-drenched peach and resinous amber.",
+        targetHref: "#kurinuki-preorder"
+    },
+    "Slow Burn": {
+        tier: "kurinuki",
+        price: "KSh 6,500",
+        vessel: "HAND-CAST VESSEL · DISCOVERY POUR INCLUDED",
+        top: "Mahogany",
+        heart: "Teakwood",
+        base: "Oud",
+        desc: "Deep, woody, and unapologetically bold. Rich mahogany and aged teakwood layered over smoky, hypnotic oud.",
+        targetHref: "#kurinuki-preorder"
+    }
+};
+
+function openPdp(scentName) {
+    if (!pdpOverlay) return;
+    const data = PRODUCT_DATA[scentName] || PRODUCT_DATA["Sugar High"];
+
+    // Populate fields
+    document.getElementById('pdp-title').textContent = scentName;
+    document.getElementById('pdp-price').textContent = data.price;
+    document.getElementById('pdp-desc-text').textContent = data.desc;
+    document.getElementById('pdp-note-top').textContent = data.top;
+    document.getElementById('pdp-note-heart').textContent = data.heart;
+    document.getElementById('pdp-note-base').textContent = data.base;
+    document.getElementById('pdp-img-label').textContent = scentName.toUpperCase();
+    
+    const primaryCta = document.getElementById('pdp-primary-cta');
+    if (primaryCta) {
+        primaryCta.setAttribute('href', data.targetHref);
+        primaryCta.setAttribute('data-scent', scentName);
+    }
+
+    pdpOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePdp() {
+    if (!pdpOverlay) return;
+    pdpOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Attach click listeners to collection candle cards to trigger PDP
+document.querySelectorAll('.candle-img, .candle-name').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', (e) => {
+        const candleCard = e.target.closest('.candle');
+        if (!candleCard) return;
+        const nameEl = candleCard.querySelector('.candle-name');
+        if (nameEl) {
+            openPdp(nameEl.textContent.trim());
+        }
+    });
+});
+
+if (pdpClose) {
+    pdpClose.addEventListener('click', closePdp);
+}
+
+if (pdpOverlay) {
+    pdpOverlay.addEventListener('click', (e) => {
+        if (e.target === pdpOverlay) closePdp();
+    });
+}
+
+// Close PDP on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && pdpOverlay && pdpOverlay.classList.contains('active')) {
+        closePdp();
+    }
+});
