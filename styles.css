@@ -356,64 +356,89 @@ nav.scrolled .nav-icons {
     padding: 4px 10px;
 }
 
-.candle-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 300;
-    color: #2B1D14;
-    margin-bottom: 6px;
+.candle-info {
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
 }
 
-.candle-note {
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #8B5A2B;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+.candle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.candle-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #2B1D14;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .candle-price {
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
+    font-weight: 400;
     color: #5C3A45;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.candle-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
     font-weight: 300;
-}
-
-.candle-shop {
-    font-size: 12px;
+    letter-spacing: 0.5px;
     color: #8B5A2B;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: color 0.3s ease;
+    text-transform: none;
+    margin: 2px 0 14px 0;
+    line-height: 1.4;
+    opacity: 0.9;
 }
 
-.candle-shop:hover {
-    color: #5C3A45;
+.candle-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
 }
-.candle-vessel {
-    font-size: 10px;
-    letter-spacing: 1.5px;
+
+.candle-details-link {
+    font-size: 11px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: #8B5A2B;
-    font-weight: 300;
-    margin-top: 2px;
+    text-decoration: none;
+    transition: opacity 0.25s ease;
+}
+
+.candle-details-link:hover {
+    opacity: 0.65;
 }
 
 .candle-preorder {
-    font-size: 12px;
+    font-size: 10px;
     color: #F2E8DC;
     background-color: #2B1D14;
-    padding: 12px 24px;
+    padding: 8px 16px;
     text-decoration: none;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    font-size: 10px;
     display: inline-block;
-    margin-top: 8px;
-    transition: background-color 0.3s ease;
+    border-radius: 2px;
+    border: 1px solid #2B1D14;
+    transition: all 0.3s ease;
 }
 
 .candle-preorder:hover {
     background-color: #8B5A2B;
+    border-color: #8B5A2B;
+    color: #F2E8DC;
 }
 
 /* PRE-ORDER SECTION */
@@ -1912,29 +1937,39 @@ nav.scrolled .hamburger span {
     color: #F2E8DC;
 }
 
-.kurinuki-candle .candle-note {
-    color: #C4A882;
-}
-
 .kurinuki-price {
     color: #C4A882 !important;
-    font-size: 15px !important;
+    font-size: 14px !important;
 }
 
-.kurinuki-candle .candle-vessel {
-    color: #F2E8DC50;
+.kurinuki-candle .candle-note {
+    color: #C4A882;
+    opacity: 0.85;
+}
+
+.kurinuki-candle .candle-details-link {
+    color: #C4A882;
+    opacity: 0.8;
+}
+
+.kurinuki-candle .candle-details-link:hover {
+    opacity: 1;
 }
 
 .kurinuki-tag {
     background-color: #8B5A2B !important;
 }
 
-.kurinuki-preorder-link {
+.kurinuki-candle .candle-preorder {
+    background-color: transparent;
+    border: 1px solid #C4A88260;
     color: #C4A882 !important;
 }
 
-.kurinuki-preorder-link:hover {
-    color: #F2E8DC !important;
+.kurinuki-candle .candle-preorder:hover {
+    background-color: #C4A882;
+    color: #180D07 !important;
+    border-color: #C4A882;
 }
 
 /* Kurinuki pre-order form — dark background */
