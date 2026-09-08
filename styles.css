@@ -3,23 +3,28 @@
     --bg-main: #FAF6F0;              /* Luminous Alabaster Ivory */
     --bg-dark: #0D0B0A;              /* Deep Warm Obsidian Black */
     --bg-dark-card: #161412;         /* Rich Charcoal Espresso */
-    --bg-dark-elevated: #201D1A;     /* Soft Elevated Onyx */
+    --bg-dark-elevated: #1F1B18;     /* Soft Elevated Onyx */
     
-    /* Dynamic Luxury Accents */
+    /* Luxury Brand Accents — Burgundy & Ember */
+    --color-burgundy: #4A1521;       /* Rich Deep Velvet Burgundy */
+    --color-burgundy-hover: #6E2231; /* Vibrant Garnet Burgundy Hover */
+    --color-burgundy-light: rgba(74, 21, 33, 0.08); /* Soft Burgundy Tint */
+    
     --accent-ember: #C87D55;         /* Warm Terracotta Ember */
     --accent-gold: #D4AF37;          /* Luminous Champagne Gold */
     --accent-sand: #B89979;          /* Warm Sand / Oat */
     
     /* Text Hierarchy */
     --text-primary: #1C1917;         /* Crisp Soft Charcoal */
-    --text-secondary: #6B6158;       /* Muted Slate Earth */
+    --text-secondary: #5C524A;       /* Muted Slate Earth */
     --text-light: #FAF6F0;           /* Bright Ivory Alabaster */
     --text-light-muted: #C8BEB3;     /* Muted Warm Cream */
     
     /* Buttons & Controls */
-    --btn-bg: #1C1917;               /* Deep Charcoal button */
-    --btn-hover: #C87D55;            /* Terracotta Ember Hover */
+    --btn-bg: #4A1521;               /* Deep Burgundy button */
+    --btn-hover: #6E2231;            /* Vibrant Garnet Burgundy Hover */
     --border-gold: rgba(212, 175, 55, 0.25);
+    --border-burgundy: rgba(74, 21, 33, 0.2);
     --border-dark: rgba(28, 25, 23, 0.12);
 }
 
@@ -38,9 +43,9 @@ body {
 
 /* ANNOUNCEMENT BAR */
 .announcement-bar {
-    background-color: var(--bg-dark);
+    background-color: var(--color-burgundy);
     color: var(--text-light);
-    border-bottom: 1px solid var(--border-gold);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     text-align: center;
     padding: 10px 24px;
     font-size: 11px;
@@ -82,8 +87,8 @@ nav {
 }
 
 nav.scrolled {
-    background-color: #F2E8DC;
-    box-shadow: 0 1px 0 #2B1D1415;
+    background-color: var(--bg-main);
+    box-shadow: 0 1px 0 rgba(74, 21, 33, 0.1);
     transform: translateY(0);
     padding-top: 16px;
     padding-bottom: 16px;
@@ -92,6 +97,7 @@ nav.scrolled {
     display: flex;
     gap: 40px;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links a {
@@ -104,11 +110,77 @@ nav.scrolled {
 }
 
 nav.scrolled .nav-links a {
-    color: #2B1D14;
+    color: var(--text-primary);
 }
 
 .nav-links a:hover {
-    color: #8B5A2B;
+    color: var(--color-burgundy);
+}
+
+/* NAVBAR DROPDOWN MENU */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    font-size: 9px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-burgundy);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    padding: 10px 0;
+    min-width: 190px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 150;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(4px);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-primary) !important;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--color-burgundy-light);
+    color: var(--color-burgundy) !important;
 }
 
 .nav-icons {
