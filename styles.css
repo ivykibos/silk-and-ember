@@ -3006,13 +3006,43 @@ nav.scrolled {
     box-shadow: 0 16px 36px rgba(74, 21, 33, 0.08);
 }
 
+.craft-card-header,
+.refill-step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.vessel-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--color-burgundy);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+.idea-icon-svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--color-burgundy);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
 .craft-step-number {
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
     font-weight: 300;
     color: var(--color-burgundy);
     display: block;
-    margin-bottom: 16px;
     line-height: 1;
 }
 
@@ -3075,10 +3105,6 @@ nav.scrolled {
     font-weight: 500;
 }
 
-.idea-icon {
-    font-size: 16px;
-}
-
 /* SECTION 4: REFILL PROGRAM */
 .refill-section {
     background-color: #F5EFE6;
@@ -3116,7 +3142,6 @@ nav.scrolled {
     padding: 4px 10px;
     border-radius: 2px;
     display: inline-block;
-    margin-bottom: 14px;
     font-weight: 500;
 }
 
