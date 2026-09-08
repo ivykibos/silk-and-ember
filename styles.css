@@ -425,8 +425,18 @@ nav.scrolled .nav-icons {
     letter-spacing: 0.5px;
     color: var(--text-secondary);
     text-transform: none;
-    margin: 2px 0 14px 0;
+    margin: 2px 0 6px 0;
     line-height: 1.4;
+}
+
+.candle-spatial-note {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-ember);
+    opacity: 0.9;
+    margin-bottom: 12px;
+    display: block;
 }
 
 .candle-actions {
@@ -1978,6 +1988,11 @@ nav.scrolled .hamburger span {
     color: var(--text-light-muted);
 }
 
+.kurinuki-candle .candle-spatial-note {
+    color: var(--accent-gold);
+    opacity: 0.9;
+}
+
 .kurinuki-candle .candle-details-link {
     color: var(--accent-gold);
     opacity: 0.9;
@@ -2326,6 +2341,47 @@ nav.scrolled {
     letter-spacing: 0.5px;
 }
 
+.pdp-vibe-tag {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: -6px;
+}
+
+.pdp-vibe-tag span {
+    font-style: normal;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent-ember);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.pdp-prescription-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(200, 125, 85, 0.07);
+    border: 1px solid rgba(200, 125, 85, 0.22);
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--text-primary);
+    margin: 2px 0 4px 0;
+    width: fit-content;
+}
+
+.pdp-prescription-badge .badge-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-ember);
+    font-weight: 500;
+}
+
 .pdp-meta-pills {
     display: flex;
     flex-wrap: wrap;
@@ -2434,10 +2490,10 @@ nav.scrolled {
 }
 
 .pdp-desc-text {
-    color: var(--text-primary);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    line-height: 1.4;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
     font-weight: 300;
 }
 
