@@ -11,8 +11,8 @@
     --color-burgundy-light: rgba(74, 21, 33, 0.08); /* Soft Burgundy Tint */
     
     --accent-ember: #C87D55;         /* Warm Terracotta Ember */
-    --accent-gold: #D4AF37;          /* Luminous Champagne Gold */
     --accent-sand: #B89979;          /* Warm Sand / Oat */
+    --accent-rose: #E0B0B6;          /* Soft Champagne Rose */
     
     /* Text Hierarchy */
     --text-primary: #1C1917;         /* Crisp Soft Charcoal */
@@ -23,7 +23,6 @@
     /* Buttons & Controls */
     --btn-bg: #4A1521;               /* Deep Burgundy button */
     --btn-hover: #6E2231;            /* Vibrant Garnet Burgundy Hover */
-    --border-gold: rgba(212, 175, 55, 0.25);
     --border-burgundy: rgba(74, 21, 33, 0.2);
     --border-dark: rgba(28, 25, 23, 0.12);
 }
@@ -45,7 +44,7 @@ body {
 .announcement-bar {
     background-color: var(--color-burgundy);
     color: var(--text-light);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(250, 246, 240, 0.15);
     text-align: center;
     padding: 10px 24px;
     font-size: 11px;
@@ -2008,8 +2007,8 @@ nav.scrolled .hamburger span {
    ============================================================ */
 .kurinuki-section {
     background-color: var(--bg-dark);
-    border-top: 1px solid var(--border-gold);
-    border-bottom: 1px solid var(--border-gold);
+    border-top: 1px solid var(--border-burgundy);
+    border-bottom: 1px solid var(--border-burgundy);
     padding: 100px 48px;
     text-align: center;
 }
@@ -2051,7 +2050,7 @@ nav.scrolled .hamburger span {
 }
 
 .kurinuki-price {
-    color: var(--accent-gold) !important;
+    color: var(--accent-ember) !important;
     font-size: 14px !important;
     font-weight: 500;
 }
@@ -2061,12 +2060,12 @@ nav.scrolled .hamburger span {
 }
 
 .kurinuki-candle .candle-spatial-note {
-    color: var(--accent-gold);
+    color: var(--accent-ember);
     opacity: 0.9;
 }
 
 .kurinuki-candle .candle-details-link {
-    color: var(--accent-gold);
+    color: var(--accent-ember);
     opacity: 0.9;
 }
 
@@ -2075,21 +2074,20 @@ nav.scrolled .hamburger span {
 }
 
 .kurinuki-tag {
-    background-color: var(--accent-gold) !important;
-    color: #0D0B0A !important;
+    background-color: var(--color-burgundy) !important;
+    color: #FAF6F0 !important;
     font-weight: 600 !important;
 }
 
 .kurinuki-candle .candle-preorder {
     background-color: transparent;
-    border: 1px solid var(--border-gold);
-    color: var(--accent-gold) !important;
+    border: 1px solid rgba(250, 246, 240, 0.3);
+    color: #FAF6F0 !important;
 }
 
 .kurinuki-candle .candle-preorder:hover {
-    background-color: var(--accent-gold);
     color: #0D0B0A !important;
-    border-color: var(--accent-gold);
+    border-color: #FAF6F0;
 }
 
 /* Kurinuki pre-order form — dark background */
@@ -3232,3 +3230,92 @@ nav.scrolled {
     .pdp-scent-slideshow { height: 420px; min-height: 0; }
     .pdp-slide-dots { right: 24px; bottom: 24px; }
 }
+
+/* ============================================================
+   UNIVERSAL LUXURY BUTTON HOVER ANIMATION (MATCHING DEMO VIDEO)
+   ============================================================ */
+.candle-preorder,
+.reserve-allocation,
+.pdp-btn-primary,
+.vessel-btn-primary,
+.vessel-btn-secondary,
+.refill-submit-btn,
+.hero-btn,
+.preorder-btn,
+.welcome-btn,
+.footer-submit,
+.build-btn {
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+    transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease !important;
+}
+
+/* Sliding background sweep element */
+.candle-preorder::before,
+.reserve-allocation::before,
+.pdp-btn-primary::before,
+.vessel-btn-primary::before,
+.vessel-btn-secondary::before,
+.refill-submit-btn::before,
+.hero-btn::before,
+.preorder-btn::before,
+.welcome-btn::before,
+.footer-submit::before,
+.build-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #FAF6F0 !important; /* Off-white / Ivory sweep fill */
+    transform: scaleX(0) !important;
+    transform-origin: left center !important;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    z-index: -1 !important;
+}
+
+/* Hover fill state */
+.candle-preorder:hover::before,
+.reserve-allocation:hover::before,
+.pdp-btn-primary:hover::before,
+.vessel-btn-primary:hover::before,
+.vessel-btn-secondary:hover::before,
+.refill-submit-btn:hover::before,
+.hero-btn:hover::before,
+.preorder-btn:hover::before,
+.welcome-btn:hover::before,
+.footer-submit:hover::before,
+.build-btn:hover::before {
+    transform: scaleX(1) !important;
+}
+
+/* Text & border color inversion on hover */
+.candle-preorder:hover,
+.reserve-allocation:hover,
+.pdp-btn-primary:hover,
+.vessel-btn-primary:hover,
+.refill-submit-btn:hover,
+.hero-btn:hover,
+.preorder-btn:hover,
+.welcome-btn:hover,
+.footer-submit:hover,
+.build-btn:hover {
+    color: #0D0B0A !important;
+    border-color: #FAF6F0 !important;
+}
+
+.vessel-btn-secondary {
+    background-color: transparent !important;
+    border: 1px solid rgba(250, 246, 240, 0.4) !important;
+    color: #FAF6F0 !important;
+}
+
+.vessel-btn-secondary:hover {
+    color: #0D0B0A !important;
+    border-color: #FAF6F0 !important;
+}
+
