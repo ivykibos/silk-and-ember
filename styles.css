@@ -321,27 +321,27 @@ nav.scrolled .nav-icons {
 }
 
 .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
+    font-size: 10px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
     color: #C4A882;
 }
 
 .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 64px;
+    font-size: clamp(34px, 4.8vw, 52px);
     font-weight: 300;
     color: #F2E8DC;
-    line-height: 1;
-    letter-spacing: 1.5px;
+    line-height: 1.1;
+    letter-spacing: 1px;
     margin: 0;
 }
 
 .hero-sub {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #F2E8DCcc;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.8;
     max-width: 300px;
     margin: 0;
 }
@@ -372,20 +372,21 @@ nav.scrolled .nav-icons {
 }
 
 .section-label {
-    font-size: 10px;
-    letter-spacing: 4px;
+    font-size: 9.5px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
     color: #8B5A2B;
     margin-bottom: 16px;
+    font-weight: 500;
 }
 
 .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
+    font-size: clamp(26px, 3.5vw, 36px);
     font-weight: 300;
     color: #2B1D14;
     margin-bottom: 60px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .candles {
@@ -448,7 +449,7 @@ nav.scrolled .nav-icons {
     left: 16px;
     background-color: var(--accent-ember);
     color: #FFFFFF;
-    font-size: 9px;
+    font-size: 8.5px;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -473,7 +474,7 @@ nav.scrolled .nav-icons {
 
 .candle-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     color: var(--text-primary);
     margin: 0;
@@ -482,7 +483,7 @@ nav.scrolled .nav-icons {
 
 .candle-price {
     font-family: 'Inter', sans-serif;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 500;
     color: var(--accent-ember);
     letter-spacing: 0.5px;
@@ -491,17 +492,17 @@ nav.scrolled .nav-icons {
 
 .candle-note {
     font-family: 'Inter', sans-serif;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 300;
     letter-spacing: 0.5px;
     color: var(--text-secondary);
     text-transform: none;
     margin: 2px 0 6px 0;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .candle-spatial-note {
-    font-size: 10px;
+    font-size: 9.5px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--accent-ember);
@@ -519,7 +520,7 @@ nav.scrolled .nav-icons {
 }
 
 .candle-details-link {
-    font-size: 11px;
+    font-size: 10.5px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--accent-ember);
@@ -567,15 +568,15 @@ nav.scrolled .nav-icons {
 
 .preorder-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 52px;
+    font-size: clamp(28px, 3.8vw, 38px);
     font-weight: 300;
     color: #F2E8DC;
     line-height: 1.2;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .preorder-sub {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #F2E8DC70;
     font-weight: 300;
     line-height: 1.8;
@@ -2404,9 +2405,9 @@ nav.scrolled {
 
 .pdp-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 52px;
+    font-size: clamp(28px, 3.8vw, 38px);
     font-weight: 300;
-    line-height: 1.05;
+    line-height: 1.1;
     color: var(--text-primary);
     letter-spacing: 0.5px;
 }
@@ -2423,7 +2424,7 @@ nav.scrolled {
     font-style: normal;
     font-weight: 500;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 9.5px;
     letter-spacing: 2px;
     color: var(--accent-ember);
     display: block;
@@ -2438,14 +2439,14 @@ nav.scrolled {
     border: 1px solid rgba(200, 125, 85, 0.22);
     padding: 8px 16px;
     border-radius: 2px;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-primary);
     margin: 2px 0 4px 0;
     width: fit-content;
 }
 
 .pdp-prescription-badge .badge-label {
-    font-size: 10px;
+    font-size: 9.5px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--accent-ember);
@@ -2458,7 +2459,7 @@ nav.scrolled {
     gap: 10px 24px;
     align-items: center;
     color: var(--text-secondary);
-    font-size: 12px;
+    font-size: 11.5px;
     line-height: 1.5;
 }
 
@@ -2485,7 +2486,7 @@ nav.scrolled {
     align-items: center;
     gap: 8px;
     color: var(--text-secondary);
-    font-size: 12px;
+    font-size: 11.5px;
     letter-spacing: 0.5px;
 }
 
@@ -2498,14 +2499,14 @@ nav.scrolled {
 
 .pdp-price {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 34px;
+    font-size: 26px;
     font-weight: 400;
     color: var(--text-primary);
 }
 
 .pdp-tax-note {
     color: var(--text-secondary);
-    font-size: 11px;
+    font-size: 10.5px;
 }
 
 .pdp-stock-status {
@@ -2513,7 +2514,7 @@ nav.scrolled {
     align-items: center;
     gap: 8px;
     color: var(--text-primary);
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 400;
 }
 
@@ -2537,8 +2538,8 @@ nav.scrolled {
     padding: 16px 28px;
     background-color: var(--btn-bg);
     color: var(--text-light);
-    font-size: 11px;
-    letter-spacing: 2px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 2px;
@@ -2562,8 +2563,8 @@ nav.scrolled {
 .pdp-desc-text {
     color: var(--text-secondary);
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.75;
+    font-size: 13.5px;
+    line-height: 1.8;
     font-weight: 300;
 }
 
@@ -3297,8 +3298,8 @@ nav.scrolled {
     .pdp-gallery { flex-direction: column-reverse; }
     .pdp-thumb-col { width: 100%; flex-direction: row; }
     .pdp-thumb { width: 64px; }
-    .pdp-title { font-size: 42px; }
-    .pdp-desc-text { font-size: 20px; }
+    .pdp-title { font-size: 32px; }
+    .pdp-desc-text { font-size: 13.5px; }
     .pdp-accordions { margin-top: 52px; }
     .pdp-accordion summary { min-height: 64px; }
     .pdp-accordion-body { padding-right: 0; }
