@@ -384,7 +384,7 @@ if (track && originalSlides.length > 0) {
 }
 
 // ============================================================
-// DUAL-TIER CHECKOUT — Kurinuki (KSh 6,500) + Studio (KSh 4,500)
+// DUAL-TIER CHECKOUT — Kurinuki (KSh 2,800) + Studio (KSh 1,800)
 // ============================================================
 
 // Track which tier's button was last clicked so the COMPLETE
@@ -401,7 +401,7 @@ const TIERS = {
         nameId:       'kurinuki-name',
         phoneId:      'kurinuki-phone',
         emailId:      'kurinuki-email',
-        amount:       6500,
+        amount:       2800,
         label:        'Kurinuki Vessel — Batch 001',
     },
     studio: {
@@ -412,8 +412,19 @@ const TIERS = {
         nameId:       'studio-name',
         phoneId:      'studio-phone',
         emailId:      'studio-email',
-        amount:       4500,
+        amount:       1800,
         label:        'Studio Collection — Glass Vessel',
+    },
+    mini: {
+        formId:       'mini-form',
+        btnId:        'mini-btn',
+        scentSelectId:'mini-scent',
+        optionsId:    'mini-scent-options',
+        nameId:       'mini-name',
+        phoneId:      'mini-phone',
+        emailId:      'mini-email',
+        amount:       800,
+        label:        'Mini Collection — Glass Vessel',
     }
 };
 
