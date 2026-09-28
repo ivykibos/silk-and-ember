@@ -25,6 +25,9 @@
     --btn-hover: #6E2231;            /* Vibrant Garnet Burgundy Hover */
     --border-burgundy: rgba(74, 21, 33, 0.2);
     --border-dark: rgba(28, 25, 23, 0.12);
+
+    --hover-duration: 1.8s;
+    --hover-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -85,12 +88,14 @@ nav {
     transform-origin: left center;
 }
 
-nav.scrolled {
-    background-color: var(--bg-main);
-    box-shadow: 0 1px 0 rgba(74, 21, 33, 0.1);
-    transform: translateY(0);
-    padding-top: 16px;
-    padding-bottom: 16px;
+nav.scrolled,
+nav.nav-always-scrolled,
+.pdp-body nav {
+    background-color: var(--bg-main) !important;
+    box-shadow: 0 1px 0 rgba(74, 21, 33, 0.1) !important;
+    transform: translateY(0) !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
 }
 .nav-links {
     display: flex;
@@ -108,12 +113,30 @@ nav.scrolled {
     transition: color 0.4s ease;
 }
 
-nav.scrolled .nav-links a {
-    color: var(--text-primary);
+nav.scrolled .nav-links a,
+nav.nav-always-scrolled .nav-links a,
+.pdp-body nav .nav-links a {
+    color: var(--text-primary) !important;
 }
 
-.nav-links a:hover {
-    color: var(--color-burgundy);
+.nav-links a:hover,
+nav.scrolled .nav-links a:hover,
+nav.nav-always-scrolled .nav-links a:hover,
+.pdp-body nav .nav-links a:hover {
+    color: var(--color-burgundy) !important;
+}
+
+nav.scrolled .nav-icons,
+nav.nav-always-scrolled .nav-icons,
+.pdp-body nav .nav-icons {
+    color: #2B1D14 !important;
+}
+
+nav.scrolled .reserve-allocation:not(:hover),
+nav.nav-always-scrolled .reserve-allocation:not(:hover),
+.pdp-body nav .reserve-allocation:not(:hover) {
+    border-color: var(--color-burgundy) !important;
+    color: var(--color-burgundy) !important;
 }
 
 /* NAVBAR DROPDOWN MENU */
@@ -131,7 +154,7 @@ nav.scrolled .nav-links a {
 .dropdown-arrow {
     font-size: 9px;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform var(--hover-duration) var(--hover-ease);
 }
 
 .nav-dropdown:hover .dropdown-arrow {
@@ -152,7 +175,7 @@ nav.scrolled .nav-links a {
     list-style: none;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all var(--hover-duration) var(--hover-ease);
     z-index: 150;
 }
 
@@ -202,7 +225,7 @@ nav.scrolled .nav-links a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform var(--hover-duration) var(--hover-ease), opacity var(--hover-duration) var(--hover-ease);
 }
 
 .nav-icons button:hover {
@@ -270,13 +293,6 @@ nav.scrolled .nav-links a {
     letter-spacing: 1.5px;
     line-height: 1;
     text-transform: uppercase;
-    transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-.reserve-allocation:hover {
-    background-color: #8B5A2B;
-    border-color: #8B5A2B;
-    color: #F2E8DC;
 }
 
 nav.scrolled .nav-icons {
@@ -408,22 +424,22 @@ nav.scrolled .nav-icons {
     position: relative;
     margin-bottom: 20px;
     overflow: hidden;
-    transition: transform 0.4s ease;
+    transition: transform var(--hover-duration) var(--hover-ease);
 }
 .candle:hover .candle-img {
     transform: scale(1.02);
 }
 
-.sugar-high {
+.brown-butter {
     background-color: #E8D8C4;
-    background-image: url('sugar-high-stack.jpg');
+    background-image: url('brown-butter-studio.jpg');
     background-size: cover;
     background-position: center;
 }
 
-.golden-hour {
+.caramel-dusk {
     background-color: #8B5A2B;
-    background-image: url('golden-hour-stack.jpg');
+    background-image: url('caramel-dusk-studio.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -435,6 +451,17 @@ nav.scrolled .nav-icons {
 .slow-burn, .secret-garden {
     background-color: #2B1D14;
     background-image: url('daydream-stack.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;  /* keeps it square */
+    overflow: hidden;
+    position: relative;
+}
+
+.melon-haze {
+    background-color: #2B1D14;
+    background-image: url('melon-haze-studio.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -1772,7 +1799,9 @@ footer {
     transition: all 0.3s ease;
 }
 
-nav.scrolled .hamburger span {
+nav.scrolled .hamburger span,
+nav.nav-always-scrolled .hamburger span,
+.pdp-body nav .hamburger span {
     background-color: #2B1D14;
 }
 
@@ -2139,6 +2168,187 @@ nav.scrolled .hamburger span {
     color: #F2E8DC60;
 }
 
+/* ==========================================================================
+   MINI & STUDIO PRE-ORDER / CHECKOUT SECTION — LIGHT LUXURY THEME
+   ========================================================================== */
+
+.mini-preorder-section,
+.studio-preorder-section {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    border-top: 1px solid var(--border-dark);
+    padding: 80px 24px !important;
+}
+
+.mini-preorder-section .preorder-inner,
+.studio-preorder-section .preorder-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mini-preorder-section .preorder-step,
+.studio-preorder-section .preorder-step {
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+.mini-preorder-section .preorder-title,
+.studio-preorder-section .preorder-title {
+    color: #1C1917 !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 400;
+}
+
+.mini-preorder-section .preorder-sub,
+.studio-preorder-section .preorder-sub {
+    color: #5C524A !important;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.mini-preorder-section .preorder-step-num,
+.studio-preorder-section .preorder-step-num {
+    color: var(--color-burgundy) !important;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.mini-preorder-section .preorder-step-title,
+.studio-preorder-section .preorder-step-title {
+    color: #1C1917 !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.mini-preorder-section .preorder-options,
+.studio-preorder-section .preorder-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.mini-preorder-section .preorder-option,
+.studio-preorder-section .preorder-option {
+    background-color: #FFFFFF !important;
+    border: 1px solid rgba(43, 29, 20, 0.22) !important;
+    color: #1C1917 !important;
+    padding: 10px 18px !important;
+    font-size: 13px !important;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+.mini-preorder-section .preorder-option:hover,
+.studio-preorder-section .preorder-option:hover {
+    border-color: var(--color-burgundy) !important;
+    color: var(--color-burgundy) !important;
+    background-color: rgba(74, 21, 33, 0.05) !important;
+}
+
+.mini-preorder-section .preorder-option.selected,
+.studio-preorder-section .preorder-option.selected {
+    background-color: var(--color-burgundy) !important;
+    color: #FAF6F0 !important;
+    border-color: var(--color-burgundy) !important;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(74, 21, 33, 0.2);
+}
+
+.mini-preorder-section .preorder-fields,
+.studio-preorder-section .preorder-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.mini-preorder-section .preorder-input,
+.studio-preorder-section .preorder-input {
+    width: 100% !important;
+    padding: 14px 18px !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(43, 29, 20, 0.22) !important;
+    border-radius: 2px;
+    color: #1C1917 !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px !important;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mini-preorder-section .preorder-input::placeholder,
+.studio-preorder-section .preorder-input::placeholder {
+    color: rgba(43, 29, 20, 0.48) !important;
+    font-size: 13.5px;
+    font-weight: 300;
+}
+
+.mini-preorder-section .preorder-input:focus,
+.studio-preorder-section .preorder-input:focus {
+    border-color: var(--color-burgundy) !important;
+    box-shadow: 0 0 0 1px var(--color-burgundy) !important;
+}
+
+.mini-preorder-section .mpesa-instructions,
+.studio-preorder-section .mpesa-instructions {
+    background: rgba(74, 21, 33, 0.04) !important;
+    border: 1px solid rgba(74, 21, 33, 0.12) !important;
+    border-left: 3px solid var(--color-burgundy) !important;
+    padding: 16px 20px !important;
+    border-radius: 2px;
+    text-align: left;
+    margin-top: 12px;
+}
+
+.mini-preorder-section .mpesa-detail,
+.studio-preorder-section .mpesa-detail {
+    font-size: 13px !important;
+    color: #1C1917 !important;
+    font-weight: 600 !important;
+    margin: 0 0 4px 0 !important;
+}
+
+.mini-preorder-section .mpesa-note,
+.studio-preorder-section .mpesa-note {
+    font-size: 12px !important;
+    color: #5C524A !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+}
+
+.mini-preorder-section .intasend-pay-btn,
+.studio-preorder-section .intasend-pay-btn {
+    width: 100% !important;
+    padding: 18px 24px !important;
+    background-color: var(--color-burgundy) !important;
+    color: #FAF6F0 !important;
+    border: none !important;
+    border-radius: 2px;
+    font-size: 12px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+    margin-top: 8px;
+}
+
+.mini-preorder-section .intasend-pay-btn:hover,
+.studio-preorder-section .intasend-pay-btn:hover {
+    background-color: #360E18 !important;
+    transform: translateY(-1px);
+}
+
 /* Studio section — light, accessible */
 .studio-section {
     background-color: #F2E8DC;
@@ -2177,8 +2387,8 @@ nav.scrolled .hamburger span {
     max-width: 1200px;
     margin: 0 auto;
     padding: 140px 48px 80px;
-    background-color: #F2E8DC;
-    color: #2B1D14;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -2193,10 +2403,15 @@ nav.scrolled .hamburger span {
     box-sizing: border-box;
 }
 body {
-    background-color: #F2E8DC;
+    background-color: var(--bg-main);
     font-family: 'Inter', sans-serif;
-    color: #2B1D14;
+    color: var(--text-primary);
     overflow-x: hidden;
+}
+
+body.pdp-body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
 }
 
 .announcement-bar {
@@ -2293,7 +2508,7 @@ nav.scrolled {
     margin-bottom: 20px;
 }
 
-.sugar-high {
+.brown-butter {
     background-color: #E8D8C4;
     background-size: cover;
     background-position: center;
@@ -2354,10 +2569,11 @@ nav.scrolled {
 .pdp-gallery {
     display: flex;
     gap: 18px;
+    align-items: stretch;
 }
 
 .pdp-thumb-col {
-    width: 76px;
+    width: 88px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -2370,12 +2586,18 @@ nav.scrolled {
     border-radius: 2px;
     cursor: pointer;
     overflow: hidden;
-    transition: border-color 0.3s ease;
+    background-image: var(--thumb-image);
+    background-size: cover;
+    background-position: center;
+    background-color: #E8E2D9;
+    padding: 0;
+    transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
 .pdp-thumb.active,
 .pdp-thumb:hover {
     border-color: var(--accent-ember);
+    transform: translateY(-1px);
 }
 
 .pdp-main-img-wrap {
@@ -2385,6 +2607,15 @@ nav.scrolled {
     border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+}
+
+.pdp-image-stage {
+    width: 100%;
+    height: 100%;
+    background-image: var(--gallery-image);
+    background-size: cover;
+    background-position: center;
+    background-color: #E8E2D9;
 }
 
 .pdp-content {
@@ -2947,7 +3178,7 @@ nav.scrolled {
     height: auto;
     display: block;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform var(--hover-duration) var(--hover-ease);
 }
 
 .vessel-img-frame:hover .vessel-featured-img {
@@ -3007,7 +3238,7 @@ nav.scrolled {
     border: 1px solid var(--border-dark);
     border-radius: 3px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.025);
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    transition: transform var(--hover-duration) var(--hover-ease), box-shadow var(--hover-duration) var(--hover-ease), border-color var(--hover-duration) var(--hover-ease);
 }
 
 .craft-card:hover {
@@ -3324,9 +3555,10 @@ nav.scrolled {
     position: relative !important;
     overflow: hidden !important;
     z-index: 1 !important;
-    transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-                border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.4s ease !important;
+    transition: color var(--hover-duration) var(--hover-ease), 
+                border-color var(--hover-duration) var(--hover-ease),
+                box-shadow var(--hover-duration) var(--hover-ease),
+                transform var(--hover-duration) var(--hover-ease) !important;
 }
 
 /* Sliding background sweep element */
@@ -3349,8 +3581,8 @@ nav.scrolled {
     height: 100% !important;
     background-color: #FAF6F0 !important; /* Off-white / Ivory sweep fill */
     transform: scaleX(0) !important;
-    transform-origin: left center !important;
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transform-origin: right center !important;
+    transition: transform var(--hover-duration) var(--hover-ease) !important;
     z-index: -1 !important;
 }
 
@@ -3367,6 +3599,7 @@ nav.scrolled {
 .footer-submit:hover::before,
 .build-btn:hover::before {
     transform: scaleX(1) !important;
+    transform-origin: left center !important;
 }
 
 /* Text & border color inversion on hover */
@@ -3468,7 +3701,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform var(--hover-duration) var(--hover-ease);
 }
 
 .harriet-product-card:hover .harriet-product-img-wrap img {

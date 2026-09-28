@@ -5,6 +5,19 @@ const navLogoImg = document.getElementById('nav-logo-img');
 let navUpdateFrame = null;
 
 function updateNav() {
+    const isPdpPage = document.querySelector('.pdp-page-container') !== null ||
+                      document.body.classList.contains('pdp-body') ||
+                      (navbar && navbar.classList.contains('nav-always-scrolled'));
+
+    if (isPdpPage) {
+        if (navbar) {
+            navbar.classList.add('scrolled');
+            navbar.classList.add('nav-always-scrolled');
+        }
+        if (navLogoImg) navLogoImg.src = 'Logo-side-dark.svg';
+        return;
+    }
+
     const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
     if (window.scrollY > barHeight) {
         navbar.classList.add('scrolled');
@@ -26,6 +39,63 @@ function requestNavUpdate() {
 
 window.addEventListener('scroll', requestNavUpdate, { passive: true });
 updateNav();
+
+// Let hover zoom continue slightly forward before it settles after pointer exit.
+const hoverZoomTargets = document.querySelectorAll(
+    '.candle-img, .vessel-featured-img, .harriet-product-img-wrap img'
+);
+
+hoverZoomTargets.forEach((target) => {
+    let exitAnimation = null;
+
+    target.addEventListener('pointerenter', () => {
+        if (exitAnimation) {
+            exitAnimation.cancel();
+            exitAnimation = null;
+        }
+    });
+
+    target.addEventListener('pointerleave', () => {
+        const currentTransform = getComputedStyle(target).transform;
+        const currentScale = currentTransform === 'none'
+            ? 1
+            : new DOMMatrixReadOnly(currentTransform).a;
+        const continuedScale = Math.max(currentScale, 1.02) + 0.015;
+
+        exitAnimation = target.animate([
+            { transform: currentTransform },
+            { transform: `scale(${continuedScale})`, offset: 0.4 },
+            { transform: 'scale(1)' }
+        ], {
+            duration: 2200,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+        });
+
+        exitAnimation.onfinish = () => {
+            exitAnimation = null;
+        };
+    });
+});
+
+// Product detail gallery thumbnails
+const productGalleries = document.querySelectorAll('.pdp-gallery');
+
+productGalleries.forEach((gallery) => {
+    const mainStage = gallery.querySelector('.pdp-image-stage');
+    const thumbnails = gallery.querySelectorAll('.pdp-thumb');
+
+    if (!mainStage || thumbnails.length === 0) return;
+
+    thumbnails.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+            const imageValue = thumb.style.getPropertyValue('--thumb-image') || thumb.getAttribute('data-image');
+            if (!imageValue) return;
+
+            mainStage.style.setProperty('--gallery-image', imageValue);
+            thumbnails.forEach((item) => item.classList.toggle('active', item === thumb));
+        });
+    });
+});
 
 // Hamburger menu toggle
 const hamburger = document.getElementById('hamburger');
@@ -389,7 +459,7 @@ if (track && originalSlides.length > 0) {
 
 // Track which tier's button was last clicked so the COMPLETE
 // handler knows which form + amount to send to Make.
-let activeTier = null; // 'kurinuki' | 'studio'
+let activeTier = null; // 'kurinuki' | 'studio' | 'mini'
 
 // ---------- Tier config ----------
 const TIERS = {
@@ -424,7 +494,7 @@ const TIERS = {
         phoneId:      'mini-phone',
         emailId:      'mini-email',
         amount:       800,
-        label:        'Mini Collection — Glass Vessel',
+        label:        'Mini Collection — Eco-Resin Vessel',
     }
 };
 
@@ -455,12 +525,13 @@ function initScentOptions(optionsId, scentSelectId) {
 
 initScentOptions(TIERS.kurinuki.optionsId, TIERS.kurinuki.scentSelectId);
 initScentOptions(TIERS.studio.optionsId,   TIERS.studio.scentSelectId);
+initScentOptions(TIERS.mini.optionsId,     TIERS.mini.scentSelectId);
 
 // ---------- Collection card links pre-fill form ----------
 document.querySelectorAll('.candle-preorder').forEach(link => {
     link.addEventListener('click', () => {
         const scent = link.dataset.scent;
-        const tier  = link.dataset.tier; // 'kurinuki' | 'studio'
+        const tier  = link.dataset.tier; // 'kurinuki' | 'studio' | 'mini'
         if (!tier || !TIERS[tier]) return;
 
         const cfg       = TIERS[tier];
@@ -508,6 +579,7 @@ function armTierButton(tierKey) {
 
 armTierButton('kurinuki');
 armTierButton('studio');
+armTierButton('mini');
 
 // ---------- Async-safe Make webhook (fixes race condition) ----------
 async function sendToMake(form, paymentResults) {
@@ -563,7 +635,7 @@ window.addEventListener('FAILED', (e) => {
 });
 
 // ---------- Prevent native form submit ----------
-['kurinuki-form', 'studio-form'].forEach(id => {
+['kurinuki-form', 'studio-form', 'mini-form'].forEach(id => {
     const f = document.getElementById(id);
     if (f) f.addEventListener('submit', e => e.preventDefault());
 });
