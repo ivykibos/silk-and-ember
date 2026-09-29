@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
 :root {
     /* Base Palette */
     --bg-main: #FAF6F0;              /* Luminous Alabaster Ivory */
@@ -476,9 +478,10 @@ nav.scrolled .nav-icons {
     left: 16px;
     background-color: var(--accent-ember);
     color: #FFFFFF;
+    font-family: 'Courier Prime', monospace;
     font-size: 8.5px;
     font-weight: 500;
-    letter-spacing: 2px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     padding: 5px 12px;
     border-radius: 1px;
@@ -1829,7 +1832,8 @@ nav.nav-always-scrolled .hamburger span,
 
 .mobile-menu.open { right: 0; }
 
-.mobile-links {
+.mobile-links,
+.mobile-nav-links {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -1838,7 +1842,8 @@ nav.nav-always-scrolled .hamburger span,
     margin-top: 16px;
 }
 
-.mobile-links a {
+.mobile-links a,
+.mobile-nav-links a {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 300;
@@ -1848,7 +1853,34 @@ nav.nav-always-scrolled .hamburger span,
     transition: color 0.3s ease;
 }
 
-.mobile-links a:hover { color: #8B5A2B; }
+.mobile-links a:hover,
+.mobile-nav-links a:hover { color: #8B5A2B; }
+
+@media (min-width: 769px) and (max-width: 960px) {
+    nav {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .nav-icons {
+        gap: 10px;
+    }
+
+    .reserve-allocation {
+        padding: 8px 9px;
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
 
 /* ===========================
    MOBILE RESPONSIVE
@@ -1900,15 +1932,64 @@ nav.nav-always-scrolled .hamburger span,
         height: 80vh;
     }
 
+    .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(13, 11, 10, 0.48) 0%, rgba(13, 11, 10, 0.2) 62%, transparent 100%);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .hero-gif {
+        object-position: center 68%;
+    }
+
     .hero-content {
         padding: 0 24px;
+        width: min(100%, 380px);
         max-width: 100%;
         position: relative;
         z-index: 2;
-        margin-top: 50px;
+        margin-top: 0;
+        transform: translateY(-clamp(32px, 6vh, 52px));
+        align-items: flex-start;
+        text-align: left;
     }
     .hero-title { font-size: clamp(40px, 11vw, 56px); }
     .hero-sub { font-size: 13px; max-width: 260px; }
+
+    .vessel-hero {
+        min-height: 72svh;
+        padding: 144px 20px 64px;
+    }
+
+    .vessel-hero-content {
+        width: 100%;
+    }
+
+    .vessel-hero-title {
+        font-size: 38px;
+    }
+
+    .vessel-hero-subtitle {
+        font-size: 13px;
+        margin-bottom: 28px;
+    }
+
+    .vessel-hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .vessel-hero-actions .vessel-btn-primary,
+    .vessel-hero-actions .vessel-btn-secondary {
+        width: 100%;
+        max-width: 360px;
+        padding: 14px 18px;
+        text-align: center;
+    }
 
     /* COLLECTION */
     .collection { padding: 60px 24px; }
@@ -2032,6 +2113,39 @@ nav.nav-always-scrolled .hamburger span,
         margin: 0 16px;
     }
 }
+
+@media (max-width: 600px) {
+    .vessel-section {
+        padding: 72px 20px;
+    }
+
+    .pdp-thumb-col {
+        overflow-x: auto;
+        padding: 2px 1px 8px;
+        scrollbar-width: thin;
+    }
+
+    .pdp-thumb {
+        flex: 0 0 56px;
+    }
+}
+
+@media (max-width: 380px) {
+    .announcement-bar {
+        font-size: 8px;
+        letter-spacing: 0.6px;
+    }
+
+    .vessel-hero-title {
+        font-size: 32px;
+    }
+
+    .pdp-page-container {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
 /* ============================================================
    KURINUKI SECTION — Dark, scarce, editorial
    ============================================================ */
@@ -2628,8 +2742,9 @@ nav.scrolled {
 
 .pdp-brand-kicker {
     color: var(--accent-ember);
+    font-family: 'Courier Prime', monospace;
     font-size: 10px;
-    letter-spacing: 3px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
     font-weight: 500;
 }
@@ -2652,6 +2767,7 @@ nav.scrolled {
 }
 
 .pdp-vibe-tag span {
+    font-family: 'Courier Prime', monospace;
     font-style: normal;
     font-weight: 500;
     text-transform: uppercase;
@@ -2677,6 +2793,7 @@ nav.scrolled {
 }
 
 .pdp-prescription-badge .badge-label {
+    font-family: 'Courier Prime', monospace;
     font-size: 9.5px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -2821,6 +2938,7 @@ nav.scrolled {
 }
 
 .pdp-note-line strong {
+    font-family: 'Courier Prime', monospace;
     color: var(--accent-ember);
     font-weight: 500;
     min-width: 60px;
@@ -3741,6 +3859,7 @@ nav.scrolled {
 }
 
 .harriet-pyramid-label {
+    font-family: 'Courier Prime', monospace;
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 0.8px;
