@@ -3052,6 +3052,15 @@ nav.scrolled {
     letter-spacing: 0.2px;
 }
 
+.mini-collection-page .vessel-kicker,
+.mini-collection-page .vessel-hero-title,
+.mini-collection-page .vessel-hero-subtitle,
+.studio-collection-page .vessel-kicker,
+.studio-collection-page .vessel-hero-title,
+.studio-collection-page .vessel-hero-subtitle {
+    color: #FAF6F0;
+}
+
 .vessel-hero-actions {
     display: flex;
     gap: 20px;
