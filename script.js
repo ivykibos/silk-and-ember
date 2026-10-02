@@ -21,9 +21,13 @@ function updateNav() {
     const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
     if (window.scrollY > barHeight) {
         navbar.classList.add('scrolled');
+        navbar.style.transform = '';
         if (navLogoImg) navLogoImg.src = 'Logo-side-dark.svg';
     } else {
         navbar.classList.remove('scrolled');
+        // Track the bar as it scrolls away — nav follows it up 1:1
+        const offset = Math.max(0, barHeight - window.scrollY);
+        navbar.style.transform = `translateY(${offset}px)`;
         if (navLogoImg) navLogoImg.src = 'logo-side-light.svg';
     }
 }

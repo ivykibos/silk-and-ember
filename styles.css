@@ -68,7 +68,6 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 48px;
-    transform: translateY(44px);
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), padding 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
     will-change: transform, background-color, box-shadow, opacity;
 }
@@ -1893,7 +1892,6 @@ nav.nav-always-scrolled .hamburger span,
 
     nav {
         padding: 16px 24px;
-        top: 36px;
     }
 
     .nav-logo {
@@ -1908,7 +1906,6 @@ nav.nav-always-scrolled .hamburger span,
         width: auto;
     }
 
-    nav.scrolled { top: 0; }
     .nav-links { display: none; }
     .nav-icons { display: none; }
     .hamburger { display: flex; }
@@ -1932,11 +1929,23 @@ nav.nav-always-scrolled .hamburger span,
         height: 80vh;
     }
 
+    /* Full-bleed reverse vignette + frost on mobile:
+       darkens the bright flame core so white text reads against white flame */
     .hero::after {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, rgba(13, 11, 10, 0.48) 0%, rgba(13, 11, 10, 0.2) 62%, transparent 100%);
+        /* Radial shadow centered on the flame's brightest point */
+        background: radial-gradient(
+            ellipse 80% 60% at 54% 72%,
+            rgba(8, 4, 2, 0.62) 0%,
+            rgba(8, 4, 2, 0.32) 40%,
+            rgba(8, 4, 2, 0.08) 70%,
+            transparent 100%
+        );
+        /* Subtle frost on top of the gradient */
+        backdrop-filter: blur(3px) saturate(1.4) brightness(0.88);
+        -webkit-backdrop-filter: blur(3px) saturate(1.4) brightness(0.88);
         pointer-events: none;
         z-index: 1;
     }
@@ -1956,8 +1965,15 @@ nav.nav-always-scrolled .hamburger span,
         align-items: flex-start;
         text-align: left;
     }
-    .hero-title { font-size: clamp(40px, 11vw, 56px); }
-    .hero-sub { font-size: 13px; max-width: 260px; }
+    .hero-title {
+        font-size: clamp(40px, 11vw, 56px);
+        text-shadow: 0 2px 18px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.4);
+    }
+    .hero-sub {
+        font-size: 13px;
+        max-width: 260px;
+        text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    }
 
     .vessel-hero {
         min-height: 72svh;
