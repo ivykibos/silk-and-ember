@@ -1235,7 +1235,7 @@ footer {
     height: 34px;
     border: 1px solid rgba(242, 232, 220, 0.3);
     border-radius: 50%;
-    color: #F2E8DC80;
+    color: #F2E8DC;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -1249,16 +1249,8 @@ footer {
 .footer-socials svg {
     width: 16px;
     height: 16px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.footer-socials a:nth-child(2) svg,
-.footer-socials a:nth-child(3) svg {
-    stroke-width: 1.7;
+    fill: currentColor;
+    stroke: none;
 }
 
 .footer-links {
