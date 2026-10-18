@@ -35,6 +35,10 @@
         </ul>
         <div class="nav-right">
             <div class="nav-icons">
+                <div class="se-currency-toggle" aria-label="Switch currency">
+                    <button data-currency-btn="KES">KES</button>
+                    <button data-currency-btn="USD">USD</button>
+                </div>
                 <a href="#mini-preorder" class="reserve-allocation">Order Mini Eco-Resin</a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -64,7 +68,7 @@
             </p>
             <div class="vessel-hero-actions">
                 <a href="#mini-scents" class="vessel-btn-primary" style="background-color: var(--color-burgundy);">Explore Scents</a>
-                <a href="#mini-preorder" class="vessel-btn-secondary">Order Now — KSh 950</a>
+                <a href="#mini-preorder" class="vessel-btn-secondary" data-kes-text="950" data-price-template="Order Now — {price}">Order Now — KSh 950</a>
             </div>
         </div>
     </header>
@@ -185,7 +189,7 @@
     <section class="vessel-cta-banner" style="background-color: var(--color-burgundy);">
         <div class="vessel-container text-center">
             <h2 class="vessel-cta-title" style="color: #FAF6F0;">Order Your Mini Eco-Resin Ritual</h2>
-            <p class="vessel-cta-desc" style="color: #FAF6F0CC;">KSh 950 per vessel · Express 1–2 Day Delivery within Nairobi.</p>
+            <p class="vessel-cta-desc" style="color: #FAF6F0CC;"><span data-kes-text="950" data-price-template="{price} per vessel">KSh 950 per vessel</span> · Express 1–2 Day Delivery within Nairobi.</p>
             <a href="#mini-preorder" class="vessel-btn-primary" style="background-color: #FAF6F0; color: var(--color-burgundy);">Order Mini Eco-Resin →</a>
         </div>
     </section>
@@ -194,7 +198,7 @@
     <section class="preorder-section mini-preorder-section" id="mini-preorder">
         <div class="preorder-inner">
             <h2 class="preorder-title">Complete Your Mini Order</h2>
-            <p class="preorder-sub">Select your fragrance and enter your contact details to order your Mini Eco-Resin vessel (KSh 950).</p>
+            <p class="preorder-sub">Select your fragrance and enter your contact details to order your Mini Eco-Resin vessel (<span data-kes-text="950" data-price-template="{price}">KSh 950</span>).</p>
 
             <form id="mini-form" class="preorder-form">
                 <input type="hidden" name="Product Tier" value="Mini Eco-Resin" />
@@ -258,6 +262,7 @@
 
     <script src="https://unpkg.com/intasend-inlinejs-sdk@4.0.0/build/intasend-inline.js"></script>
     <script src="script.js"></script>
+    <script src="currency.js"></script>
     <script>
     if (window.IntaSend) {
         new window.IntaSend({

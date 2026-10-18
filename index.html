@@ -84,9 +84,13 @@
         </ul>
         <div class="nav-right">
             <div class="nav-icons">
-                <button type="button" id="search-icon" aria-label="Open search">&#9906;</button>
-                <a href="studio.html" class="reserve-allocation">Explore Studio Glass</a>
-            </div>
+                    <div class="se-currency-toggle" aria-label="Switch currency">
+                        <button data-currency-btn="KES">KES</button>
+                        <button data-currency-btn="USD">USD</button>
+                    </div>
+                    <button type="button" id="search-icon" aria-label="Open search">&#9906;</button>
+                    <a href="studio.html" class="reserve-allocation">Explore Studio Glass</a>
+                </div>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -531,6 +535,7 @@
 </div>
     <script src="https://unpkg.com/intasend-inlinejs-sdk@4.0.0/build/intasend-inline.js"></script>
     <script src="script.js?v=2"></script>
+    <script src="currency.js"></script>
     <script>
     if (window.IntaSend) {
         new window.IntaSend({

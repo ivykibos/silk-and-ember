@@ -3889,3 +3889,83 @@ nav.scrolled {
     opacity: 0.6;
 }
 
+
+/* ============================================================
+   CURRENCY TOGGLE
+   ============================================================ */
+
+.se-currency-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(28, 25, 23, 0.07);
+    border: 1px solid rgba(28, 25, 23, 0.15);
+    border-radius: 20px;
+    padding: 3px;
+    gap: 2px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    font-family: 'Inter', sans-serif;
+}
+
+/* When nav is light (top of page, hero behind it) */
+.se-currency-toggle {
+    background: rgba(250, 246, 240, 0.15);
+    border-color: rgba(250, 246, 240, 0.3);
+}
+
+/* When nav is scrolled (white bg) */
+.scrolled .se-currency-toggle,
+.nav-always-scrolled .se-currency-toggle {
+    background: rgba(28, 25, 23, 0.07);
+    border-color: rgba(28, 25, 23, 0.18);
+}
+
+.se-currency-toggle [data-currency-btn] {
+    padding: 4px 10px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 240, 0.7);
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: 1;
+}
+
+.scrolled .se-currency-toggle [data-currency-btn],
+.nav-always-scrolled .se-currency-toggle [data-currency-btn] {
+    color: var(--text-secondary);
+}
+
+.se-currency-toggle [data-currency-btn].active {
+    background: var(--color-burgundy);
+    color: #FAF6F0;
+    font-weight: 500;
+}
+
+.scrolled .se-currency-toggle [data-currency-btn].active,
+.nav-always-scrolled .se-currency-toggle [data-currency-btn].active {
+    background: var(--color-burgundy);
+    color: #FAF6F0;
+}
+
+.se-currency-toggle [data-currency-btn]:hover:not(.active) {
+    color: #FAF6F0;
+    background: rgba(250, 246, 240, 0.1);
+}
+
+.scrolled .se-currency-toggle [data-currency-btn]:hover:not(.active),
+.nav-always-scrolled .se-currency-toggle [data-currency-btn]:hover:not(.active) {
+    color: var(--text-primary);
+    background: rgba(28, 25, 23, 0.07);
+}
+
+/* Price transition when switching */
+[data-kes],
+[data-kes-text] {
+    transition: opacity 0.2s ease;
+}

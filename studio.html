@@ -35,6 +35,10 @@
         </ul>
         <div class="nav-right">
             <div class="nav-icons">
+                <div class="se-currency-toggle" aria-label="Switch currency">
+                    <button data-currency-btn="KES">KES</button>
+                    <button data-currency-btn="USD">USD</button>
+                </div>
                 <a href="#studio-scents" class="reserve-allocation">Order Studio Glass</a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -66,7 +70,7 @@
             </p>
             <div class="vessel-hero-actions">
                 <a href="#studio-scents" class="vessel-btn-primary" style="background-color: var(--color-burgundy);">Explore Scents</a>
-                <a href="#studio-preorder" class="vessel-btn-secondary">Order Now — KSh 1,800</a>
+                <a href="#studio-preorder" class="vessel-btn-secondary" data-kes-text="1800" data-price-template="Order Now — {price}">Order Now — KSh 1,800</a>
             </div>
         </div>
     </header>
@@ -78,7 +82,7 @@
                 <p class="section-label" style="color: var(--color-burgundy);">Always Available · Ships This Week</p>
                 <h2 class="vessel-heading text-center" style="color: var(--text-primary);">Studio Vessels</h2>
                 <p class="vessel-subheading text-center" style="color: var(--text-secondary);">
-                    Hand-poured in Nairobi with clean-burning soy wax and lead-free cotton wicks. KSh 1,800 each.
+                    Hand-poured in Nairobi with clean-burning soy wax and lead-free cotton wicks. <span data-kes-text="1800" data-price-template="{price} each.">KSh 1,800 each.</span>
                 </p>
             </div>
 
@@ -92,7 +96,7 @@
                     <div class="candle-info">
                         <div class="candle-header">
                             <h3 class="candle-name">Brown Butter</h3>
-                            <span class="candle-price" style="color: var(--color-burgundy);">KSh 1,800</span>
+                            <span class="candle-price" style="color: var(--color-burgundy);" data-kes="1800">KSh 1,800</span>
                         </div>
                         <p class="candle-note">Pumpkin · Maple Sugar · Salted Caramel</p>
                         <span class="candle-spatial-note">Spatial Prescription: The Kitchen / Dining Area</span>
@@ -114,7 +118,7 @@
                     <div class="candle-info">
                         <div class="candle-header">
                             <h3 class="candle-name">Caramel Dusk</h3>
-                            <span class="candle-price" style="color: var(--color-burgundy);">KSh 1,800</span>
+                            <span class="candle-price" style="color: var(--color-burgundy);" data-kes="1800">KSh 1,800</span>
                         </div>
                         <p class="candle-note">Salted Caramel · Sage & Sea Salt · Amber</p>
                         <span class="candle-spatial-note">Spatial Prescription: The Living Room / Entryway</span>
@@ -136,7 +140,7 @@
                     <div class="candle-info">
                         <div class="candle-header">
                             <h3 class="candle-name">Melon Haze</h3>
-                            <span class="candle-price" style="color: var(--color-burgundy);">KSh 1,800</span>
+                            <span class="candle-price" style="color: var(--color-burgundy);" data-kes="1800">KSh 1,800</span>
                         </div>
                         <p class="candle-note">Orange Blossom & Bergamot · Watermelon · Coconut Vanilla</p>
                         <span class="candle-spatial-note">Spatial Prescription: Living Room, Sunroom & Social Spaces</span>
@@ -146,6 +150,28 @@
                         <div class="candle-actions">
                             <a href="melon-haze.html" class="candle-details-link" style="color: var(--color-burgundy);">Explore Scent →</a>
                             <a href="#studio-preorder" class="candle-preorder" style="background-color: var(--color-burgundy); border-color: var(--color-burgundy);" data-scent="Melon Haze" data-tier="studio">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vanilla Café -->
+                <div class="candle" style="width: 100%;">
+                    <div class="candle-img" style="background-image: url('brown-butter-studio.jpg'); background-size: cover; background-position: center;">
+                        <span class="candle-tag" style="background-color: var(--color-burgundy);">Studio Glass</span>
+                    </div>
+                    <div class="candle-info">
+                        <div class="candle-header">
+                            <h3 class="candle-name">Vanilla Café</h3>
+                            <span class="candle-price" style="color: var(--color-burgundy);" data-kes="1800">KSh 1,800</span>
+                        </div>
+                        <p class="candle-note">Coffee · French Vanilla</p>
+                        <span class="candle-spatial-note">Spatial Prescription: The Study / Home Office</span>
+                        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                            The warmth of a slow morning pour. Rich espresso and silky French vanilla — indulgent, grounding, and effortlessly elegant.
+                        </p>
+                        <div class="candle-actions">
+                            <a href="vanilla-cafe.html" class="candle-details-link" style="color: var(--color-burgundy);">Explore Scent →</a>
+                            <a href="#studio-preorder" class="candle-preorder" style="background-color: var(--color-burgundy); border-color: var(--color-burgundy);" data-scent="Vanilla Café" data-tier="studio">Order Now →</a>
                         </div>
                     </div>
                 </div>
@@ -191,7 +217,7 @@
     <section class="vessel-cta-banner" style="background-color: var(--color-burgundy);">
         <div class="vessel-container text-center">
             <h2 class="vessel-cta-title" style="color: #FAF6F0;">Order Your Studio Glass Ritual</h2>
-            <p class="vessel-cta-desc" style="color: #FAF6F0CC;">KSh 1,800 per vessel · Ships this week within Nairobi.</p>
+            <p class="vessel-cta-desc" style="color: #FAF6F0CC;"><span data-kes-text="1800" data-price-template="{price} per vessel">KSh 1,800 per vessel</span> · Ships this week within Nairobi.</p>
             <a href="#studio-preorder" class="vessel-btn-primary" style="background-color: #FAF6F0; color: var(--color-burgundy);">Order Studio Vessel →</a>
         </div>
     </section>
@@ -200,7 +226,7 @@
     <section class="preorder-section studio-preorder-section" id="studio-preorder">
         <div class="preorder-inner">
             <h2 class="preorder-title">Complete Your Studio Order</h2>
-            <p class="preorder-sub">Select your fragrance and enter your contact details to order your Studio Glass vessel (KSh 1,800).</p>
+            <p class="preorder-sub">Select your fragrance and enter your contact details to order your Studio Glass vessel (<span data-kes-text="1800" data-price-template="{price}">KSh 1,800</span>).</p>
 
             <form id="studio-form" class="preorder-form">
                 <input type="hidden" name="Product Tier" value="Studio Glass" />
@@ -213,12 +239,14 @@
                         <span class="preorder-option" data-scent="Brown Butter">Brown Butter</span>
                         <span class="preorder-option" data-scent="Caramel Dusk">Caramel Dusk</span>
                         <span class="preorder-option" data-scent="Melon Haze">Melon Haze</span>
+                        <span class="preorder-option" data-scent="Vanilla Café">Vanilla Café</span>
                     </div>
                     <select id="studio-scent" name="Scent Selection" class="preorder-input preorder-select" aria-label="Scent selection" style="display: none;">
                         <option value="">Select a scent</option>
                         <option value="Brown Butter">Brown Butter</option>
                         <option value="Caramel Dusk">Caramel Dusk</option>
                         <option value="Melon Haze">Melon Haze</option>
+                        <option value="Vanilla Café">Vanilla Café</option>
                     </select>
                 </div>
 
@@ -260,6 +288,7 @@
 
     <script src="https://unpkg.com/intasend-inlinejs-sdk@4.0.0/build/intasend-inline.js"></script>
     <script src="script.js"></script>
+    <script src="currency.js"></script>
     <script>
     if (window.IntaSend) {
         new window.IntaSend({
